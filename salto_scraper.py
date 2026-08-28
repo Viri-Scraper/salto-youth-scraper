@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import time
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
@@ -9,18 +10,14 @@ BASE_URL = "https://www.salto-youth.net"
 CALENDAR_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "en-US,en;q=0.9,nl;q=0.8"
 }
 
 def parse_deadline(date_str):
-    """Zet een tekstuele datum om naar een Python datetime object."""
     if not date_str:
         return None
-    
     clean_str = re.sub(r'(?i)application deadline:?', '', date_str).strip()
-    
-    # SALTO datumnotaties
     formats = ["%d %B %Y", "%d-%m-%Y", "%d/%m/%Y", "%Y-%m-%d"]
     for fmt in formats:
         try:
@@ -30,25 +27,25 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt de detailpagina op voor exacte deadline en verfijnde type-herkenning."""
+    """Haalt veilig details op zonder het script te laten crashen bij een netwerkfout."""
     details = {"deadline": None, "extra_text": ""}
     try:
+        # Pauzeer heel even om rate-limiting te voorkomen
+        time.sleep(0.5)
         res = requests.get(course_url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             text = soup.get_text(" ", strip=True)
             details["extra_text"] = text
 
-            # Zoek naar deadline patronen
             match = re.search(r"Application deadline:\s*([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", text, re.IGNORECASE)
             if match:
                 details["deadline"] = match.group(1).strip()
     except Exception as e:
-        print(f"Kon details niet ophalen voor {course_url}: {e}")
+        print(f"Waarschuwing: Kon details niet ophalen voor {course_url} ({e})")
     return details
 
 def categorize_activity(title, content_text):
-    """Bepaalt de exacte categorie van het Erasmus+ programma onderdeel."""
     combined = f"{title} {content_text}".lower()
 
     if "youth exchange" in combined or "jongerenuitwisseling" in combined:
@@ -79,74 +76,65 @@ def scrape_salto():
         response.raise_for_status()
     except Exception as e:
         print(f"Fout bij ophalen van SALTO-overzicht: {e}")
+        # Retoneer een lege lijst i.p.v. het script te laten crashen
         return []
 
     soup = BeautifulSoup(response.text, "html.parser")
     valid_courses = []
     today = datetime.now()
 
-    # Zoek alle relevante training/uitwisseling links
     links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/training/"))
     seen_urls = set()
 
     for link in links:
-        course_url = BASE_URL + link["href"] if link["href"].startswith("/") else link["href"]
-        
-        if course_url in seen_urls:
+        try:
+            course_url = BASE_URL + link["href"] if link["href"].startswith("/") else link["href"]
+            
+            if course_url in seen_urls:
+                continue
+            seen_urls.add(course_url)
+
+            title = link.get_text(strip=True)
+            if not title or len(title) < 4:
+                continue
+
+            parent_text = link.parent.parent.get_text(" ", strip=True) if link.parent else ""
+            
+            page_details = fetch_details_from_page(course_url)
+            
+            match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
+            deadline_str = page_details["deadline"] or (match.group(1) if match else None)
+            deadline_dt = parse_deadline(deadline_str) if deadline_str else None
+
+            # Controle op verstreken deadline
+            if deadline_dt and deadline_dt < today:
+                print(f"Overslaan (Deadline verstreken): {title} ({deadline_str})")
+                continue
+
+            category = categorize_activity(title, page_details["extra_text"])
+
+            valid_courses.append({
+                "id": course_url.split("/")[-2] if "/" in course_url else course_url,
+                "title": title,
+                "category": category,
+                "deadline": deadline_str if deadline_str else "Zolang aanmelding open staat",
+                "deadline_iso": deadline_dt.strftime("%Y-%m-%d") if deadline_dt else None,
+                "url": course_url,
+                "target_country": "Netherlands",
+                "scraped_at": today.strftime("%Y-%m-%d %H:%M:%S")
+            })
+        except Exception as err:
+            print(f"Foutje bij verwerken item, sla over: {err}")
             continue
-        seen_urls.add(course_url)
-
-        title = link.get_text(strip=True)
-        if not title or len(title) < 4:
-            continue
-
-        parent_text = link.parent.parent.get_text(" ", strip=True) if link.parent else ""
-        
-        # 1. Haal detailinformatie op
-        page_details = fetch_details_from_page(course_url)
-        
-        # 2. Bepaal de deadline
-        match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
-        deadline_str = page_details["deadline"] or (match.group(1) if match else None)
-        deadline_dt = parse_deadline(deadline_str) if deadline_str else None
-
-        # -------------------------------------------------------------
-        # AUTOMATISCHE OPSCHOONLOGICA:
-        # Is de deadline verstreken vergeleken met vandaag?
-        # Dan slaan we het project over (verwijderd uit JSON output).
-        # -------------------------------------------------------------
-        if deadline_dt and deadline_dt < today:
-            print(f"Overslaan (Deadline verstreken): {title} ({deadline_str})")
-            continue
-
-        # 3. Categoriseer de activiteit
-        category = categorize_activity(title, page_details["extra_text"])
-
-        valid_courses.append({
-            "id": course_url.split("/")[-2] if "/" in course_url else course_url,
-            "title": title,
-            "category": category,
-            "deadline": deadline_str if deadline_str else "Zolang aanmelding open staat",
-            "deadline_iso": deadline_dt.strftime("%Y-%m-%d") if deadline_dt else None,
-            "url": course_url,
-            "target_country": "Netherlands",
-            "scraped_at": today.strftime("%Y-%m-%d %H:%M:%S")
-        })
 
     print(f"\nTotaal {len(valid_courses)} actuele projecten gecategoriseerd en opgeslagen.")
     return valid_courses
 
 def save_json(data, filename="salto_courses.json"):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(script_dir, filename)
-    with open(filepath, "w", encoding="utf-8") as f:
+    with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"Bestand succesvol opgeslagen op: {filepath}")
+    print(f"Bestand opgeslagen: {filename}")
 
 if __name__ == "__main__":
     courses = scrape_salto()
     save_json(courses)
-
-if __name__ == "__main__":
-    actueel_aanbod = scrape_salto_calendar()
-    save_to_json(actueel_aanbod)
