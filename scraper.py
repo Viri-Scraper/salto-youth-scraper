@@ -333,11 +333,13 @@ def scrape():
         "html.parser",
     )
 
-    print(
-        f"Page title: "
-        f"{clean_text(soup.title.get_text()) "
-        if soup.title else 'UNKNOWN'}"
-    )
+    if soup.title:
+    page_title = clean_text(soup.title.get_text())
+else:
+    page_title = "UNKNOWN"
+
+print(f"Page title: {page_title}")
+
 
     links = extract_training_links(soup)
 
