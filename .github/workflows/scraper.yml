@@ -2,20 +2,21 @@ name: SALTO Youth Scraper
 
 on:
   schedule:
+    # Draait automatisch elke dag om 06:00 UTC
     - cron: '0 6 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Maakt handmatig starten via de GitHub-interface mogelijk
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Noodzakelijk om salto_courses.json te mogen pushen
 
     steps:
       - name: Repository uitchecken
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Volledige geschiedenis ophalen voor Git-acties
 
       - name: Python instellen
         uses: actions/setup-python@v5
@@ -28,11 +29,9 @@ jobs:
           pip install requests beautifulsoup4
 
       - name: Python scraper uitvoeren
-        # OPLOSSING 1: Altijd 'python' voor het bestand zetten
         run: python salto_scraper.py
 
-      - name: Wijzigingen committen en pushen
-        # OPLOSSING 2: Juiste Git volgorde met automatische rebase
+      - name: Wijzigingen committen en geforceerd pushen
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -41,9 +40,7 @@ jobs:
           
           if ! git diff --cached --quiet; then
             git commit -m "Automated update: SALTO courses"
-            # Haal nieuwste stand op en plaats jouw commit er bovenaan op
-            git pull origin main --rebase -X theirs
-            git push origin main
+            git push origin main --force
           else
-            echo "Geen nieuwe wijzigingen om te pushen."
+            echo "Geen nieuwe wijzigingen in salto_courses.json om te pushen."
           fi
