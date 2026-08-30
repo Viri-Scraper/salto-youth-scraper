@@ -1,3 +1,4 @@
+YAML
 name: SALTO Youth Scraper
 
 on:
@@ -16,7 +17,7 @@ jobs:
       - name: Repository uitchecken
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Volledige geschiedenis ophalen voor Git-rebase
+          fetch-depth: 0 # Volledige geschiedenis ophalen
 
       - name: Python instellen
         uses: actions/setup-python@v5
@@ -36,15 +37,18 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
+          # 1. Haal de allernieuwste stand van remote op
+          git fetch origin main
+          
+          # 2. Zet de lokale status gelijk met remote main (zonder gescrapte bestanden kwijt te raken)
+          git reset --soft origin/main
+          
+          # 3. Voeg de nieuw gescrapte JSON toe
           git add salto_courses.json
           
+          # 4. Commit en push alleen als er inhoudelijke verschillen zijn
           if ! git diff --cached --quiet; then
             git commit -m "Automated update: SALTO courses"
-            
-            # Haal eventuele remote updates op en plaats jouw commit bovenaan
-            git pull origin main --rebase -X theirs
-            
-            # Push expliciet naar main
             git push origin HEAD:main
           else
             echo "Geen nieuwe wijzigingen in salto_courses.json om te pushen."
