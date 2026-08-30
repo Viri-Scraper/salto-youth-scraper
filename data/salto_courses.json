@@ -1,1 +1,114 @@
-[]
+[
+  {
+    "title": "Working with Queer Youth",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/working-with-queer-youth.14859/",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "26-30 October 2026",
+      "30 August 2026",
+      "14 September 2026"
+    ],
+    "application_deadline": "30 August 2026",
+    "application_deadline_iso": "2026-08-30",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:53.615664+00:00"
+  },
+  {
+    "title": "SHIFT - Smart Hands-on Innovation & Facilitation Tech in Youth work",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/shift-smart-hands-on-innovation-facilitation-tech-in-youth-work.15184/",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "15-22 October 2026",
+      "30 August 2026",
+      "7 September 2026"
+    ],
+    "application_deadline": "30 August 2026",
+    "application_deadline_iso": "2026-08-30",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:54.934589+00:00"
+  },
+  {
+    "title": "Second Call for 'The Get Together' III: ‘Practitioner As Person’ – Connection and Recharge - Creating Meaningful Space and Time for YOU the person",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/second-call-for-the-get-together-iii-practitioner-as-person-connection-and-recharge-creating-meaningful-space-and-time-for-you-the-person.15206/",
+    "activity_type": "Conference",
+    "dates_found": [
+      "23-28 October 2026",
+      "30 August 2026",
+      "13 September 2026"
+    ],
+    "application_deadline": "30 August 2026",
+    "application_deadline_iso": "2026-08-30",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:55.828775+00:00"
+  },
+  {
+    "title": "Practical Tools for Creative Youth STEAM Projects",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/practical-tools-for-creative-youth-steam-projects.15026/",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "10 September 2026",
+      "31 August 2026",
+      "2 September 2026"
+    ],
+    "application_deadline": "31 August 2026",
+    "application_deadline_iso": "2026-08-31",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:56.715761+00:00"
+  },
+  {
+    "title": "Outdoor Paths: Designing Experiential Activities for Young People",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/outdoor-paths-designing-experiential-activities-for-young-people.15032/",
+    "activity_type": "E-learning",
+    "dates_found": [
+      "15 September 2026",
+      "31 August 2026",
+      "2 September 2026"
+    ],
+    "application_deadline": "31 August 2026",
+    "application_deadline_iso": "2026-08-31",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:57.599851+00:00"
+  },
+  {
+    "title": "Play to Learn: Creating Educational Games for Youth Work",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/play-to-learn-creating-educational-games-for-youth-work.15033/",
+    "activity_type": "Seminar",
+    "dates_found": [
+      "17 September 2026",
+      "31 August 2026",
+      "2 September 2026"
+    ],
+    "application_deadline": "31 August 2026",
+    "application_deadline_iso": "2026-08-31",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:58.639886+00:00"
+  },
+  {
+    "title": "Robotics in Youth Work: From Playful Missions to Real Skills",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/robotics-in-youth-work-from-playful-missions-to-real-skills.15031/",
+    "activity_type": "E-learning",
+    "dates_found": [
+      "8 September 2026",
+      "31 August 2026",
+      "2 September 2026"
+    ],
+    "application_deadline": "31 August 2026",
+    "application_deadline_iso": "2026-08-31",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:07:59.706470+00:00"
+  },
+  {
+    "title": "Ask Better, Teach Better: Question‑driven AI & advocacy in youth work",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ask-better-teach-better-question-driven-ai-advocacy-in-youth-work.15018/",
+    "activity_type": "Seminar",
+    "dates_found": [
+      "5 September 2026",
+      "31 August 2026",
+      "2 September 2026"
+    ],
+    "application_deadline": "31 August 2026",
+    "application_deadline_iso": "2026-08-31",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T16:08:00.737717+00:00"
+  }
+]
