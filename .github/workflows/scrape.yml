@@ -3,20 +3,21 @@ name: SALTO Youth Scraper
 
 on:
   schedule:
+    # Draait automatisch elke dag om 06:00 UTC (08:00 Nederlandse tijd)
     - cron: '0 6 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Maakt handmatig starten mogelijk
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Noodzakelijk om bestanden te mogen committen/pushen
 
     steps:
       - name: Repository uitchecken
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Haalt de volledige geschiedenis op
 
       - name: Python instellen
         uses: actions/setup-python@v5
@@ -31,8 +32,23 @@ jobs:
       - name: Python scraper uitvoeren
         run: python salto_scraper.py
 
-      - name: Automatisch opslaan en pushen naar GitHub
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Automated update: SALTO courses"
-          file_pattern: 'salto_courses.json'
+      - name: Wijzigingen committen en veilig pushen
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 1. Voeg het gegenereerde JSON-bestand toe
+          git add salto_courses.json
+          
+          # 2. Commit alleen als er daadwerkelijk wijzigingen zijn
+          if ! git diff --cached --quiet; then
+            git commit -m "Automated update: SALTO courses"
+            
+            # 3. Haal de nieuwste remote commits op en zet onze commit bovenaan (voorkomt rejection)
+            git pull --rebase origin main
+            
+            # 4. Push veilig naar main
+            git push origin main
+          else
+            echo "Geen wijzigingen in salto_courses.json om te committen."
+          fi
