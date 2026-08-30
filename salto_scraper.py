@@ -31,7 +31,6 @@ def fetch_details_from_page(course_url):
     """Haalt veilig details op en controleert of Nederlandse deelnemers mogen meedoen."""
     details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
     try:
-        # Pauzeer heel even om rate-limiting te voorkomen
         time.sleep(0.5)
         res = requests.get(course_url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
@@ -44,10 +43,8 @@ def fetch_details_from_page(course_url):
             if match:
                 details["deadline"] = match.group(1).strip()
 
-            # 2. Gerichte controle op deelnemende/toegestane landen op de pagina
+            # 2. Controleer geschiktheid voor Nederlanders
             text_lower = text.lower()
-            
-            # Controleer op Nederland én verzameltermen die geschiktheid aanduiden
             keywords = ["netherlands", "dutch", "programme countries", "all countries", "erasmus+ countries"]
             if any(kw in text_lower for kw in keywords):
                 details["is_nl_eligible"] = True
@@ -98,7 +95,11 @@ def scrape_salto():
 
     for link in links:
         try:
-            course_url = BASE_URL + link["href"] if link["href"].startswith("/") else link["href"]
+            href = link.get("href", "")
+            if not href:
+                continue
+
+            course_url = BASE_URL + href if href.startswith("/") else href
             
             if course_url in seen_urls:
                 continue
@@ -108,12 +109,15 @@ def scrape_salto():
             if not title or len(title) < 4:
                 continue
 
-            parent_text = link.parent.parent.get_text(" ", strip=True) if link.parent else ""
+            # Veilige weergave van parent-tekst om NoneType crashes te voorkomen
+            parent_text = ""
+            if link.parent and link.parent.parent:
+                parent_text = link.parent.parent.get_text(" ", strip=True)
             
             # Detailpagina ophalen
             page_details = fetch_details_from_page(course_url)
 
-            # EXTRA CONTROLE: Sla project over als Nederland niet op de detailpagina vermeld staat
+            # Controle op geschiktheid
             if not page_details["is_nl_eligible"]:
                 print(f"Overslaan (Nederland niet toegestaan/vermeld): {title}")
                 continue
@@ -147,9 +151,12 @@ def scrape_salto():
     return valid_courses
 
 def save_json(data, filename="salto_courses.json"):
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"Bestand opgeslagen: {filename}")
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"Bestand opgeslagen: {filename}")
+    except Exception as e:
+        print(f"Fout bij opslaan bestand: {e}")
 
 if __name__ == "__main__":
     courses = scrape_salto()
