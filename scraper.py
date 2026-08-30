@@ -82,20 +82,44 @@ def extract_deadline(soup, text):
     return None
 
 
-def extract_activity_type(text):
-    """Bepaalt het type activiteit op basis van de tekst."""
-    text_lower = text.lower()
-    if "youth exchange" in text_lower or "jongerenuitwisseling" in text_lower:
-        return "Youth Exchange"
-    elif "training" in text_lower or "course" in text_lower:
-        return "Training Course"
-    elif "study visit" in text_lower:
-        return "Study Visit"
-    elif "partnership" in text_lower or "pba" in text_lower:
-        return "Partnership Building Activity"
-    elif "esc" in text_lower or "solidarity corps" in text_lower or "volunteering" in text_lower:
+def extract_activity_type(soup, full_text):
+    """
+    Bepaalt het type activiteit op basis van specifieke HTML-elementen 
+    of via regex-zoekwoorden over de gehele tekst.
+    Dekt alle 9 gevraagde categorieën + ESC af.
+    """
+    extracted_raw = ""
+    
+    # 1. Probeer het type eerst uit te lezen via specifieke SALTO HTML-labels/velden
+    type_label = soup.find(text=re.compile(r"Type of event|Event type|Activity type|Type of activity", re.IGNORECASE))
+    if type_label and type_label.parent:
+        # Haal de tekst op uit de parent/container van het label
+        extracted_raw = type_label.parent.get_text(" ", strip=True)
+    
+    # Gecombineerde tekst om in te zoeken (HTML label-tekst heeft voorrang, anders full_text)
+    search_text = (extracted_raw + " " + full_text).lower()
+
+    # 2. Categorie-matching (geprioriteerd)
+    if "youth exchange" in search_text or "jongerenuitwisseling" in search_text:
+        return "Jongerenuitwisseling"
+    elif "e-learning" in search_text or "online course" in search_text or "webinar" in search_text or "mooc" in search_text:
+        return "E-learning"
+    elif "study visit" in search_text or "studiebezoek" in search_text:
+        return "Studiebezoek"
+    elif "partnership" in search_text or "pba" in search_text or "partnerschap" in search_text:
+        return "Partnerschapsbijeenkomst"
+    elif "seminar" in search_text:
+        return "Seminar"
+    elif "conference" in search_text or "conferentie" in search_text:
+        return "Conferentie"
+    elif "networking" in search_text or "network" in search_text or "netwerk" in search_text:
+        return "Netwerkevenement"
+    elif "training" in search_text or "course" in search_text:
+        return "Training"
+    elif "esc" in search_text or "solidarity corps" in search_text or "volunteering" in search_text:
         return "European Solidarity Corps"
-    return "Erasmus+ Project"
+    
+    return "Overig"
 
 
 # ============================================================
@@ -160,13 +184,13 @@ def fetch_training_calendar(session):
 
                 detail_resp = fetch(session, full_url)
                 deadline_str = None
-                act_type = "Training Course"
+                act_type = "Overig"
 
                 if detail_resp:
                     dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
                     dt_text = clean_text(dt_soup.get_text(" ", strip=True))
                     deadline_str = extract_deadline(dt_soup, dt_text)
-                    act_type = extract_activity_type(dt_text)
+                    act_type = extract_activity_type(dt_soup, dt_text)
 
                 deadline_date = parse_date(deadline_str)
 
@@ -185,7 +209,7 @@ def fetch_training_calendar(session):
                 new_count += 1
                 time.sleep(0.2)
 
-        print(f"  -> {new_count} nieuwe trainingen toegevoegd.")
+        print(f"  -> {new_count} nieuwe activiteiten toegevoegd.")
 
         if new_count == 0:
             break
@@ -257,13 +281,13 @@ def fetch_otlas_exchanges(session):
 
                 detail_resp = fetch(session, full_url)
                 deadline_str = None
-                act_type = "Erasmus+ Project"
+                act_type = "Overig"
 
                 if detail_resp:
                     dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
                     dt_text = clean_text(dt_soup.get_text(" ", strip=True))
                     deadline_str = extract_deadline(dt_soup, dt_text)
-                    act_type = extract_activity_type(dt_text)
+                    act_type = extract_activity_type(dt_soup, dt_text)
 
                 deadline_date = parse_date(deadline_str)
                 deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
