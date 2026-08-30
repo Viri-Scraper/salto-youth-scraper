@@ -10,10 +10,14 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://www.salto-youth.net"
 CALENDAR_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept-Language": "en-US,en;q=0.9,nl;q=0.8"
-}
+# Maak een sessie aan met realistische browser-headers
+session = requests.Session()
+session.headers.update({
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9,nl;q=0.8",
+    "Referer": "https://www.salto-youth.net/"
+})
 
 def parse_deadline(date_str):
     if not date_str:
@@ -28,28 +32,30 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt veilig details op van de specifieke cursuspagina zonder dat het script kan crashen."""
-    details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
+    """Haalt veilig details op van de detailpagina met error-handling."""
+    details = {"deadline": None, "extra_text": "", "is_nl_eligible": True}
     try:
-        time.sleep(0.5)  # Pauze om rate-limiting te voorkomen
-        res = requests.get(course_url, headers=HEADERS, timeout=10)
+        time.sleep(1) # Rustpauze om blokkades te voorkomen
+        res = session.get(course_url, timeout=10)
+        
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             text = soup.get_text(" ", strip=True)
             details["extra_text"] = text
 
-            # 1. Deadline ophalen via regex
+            # Deadline zoeken
             match = re.search(r"Application deadline:\s*([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", text, re.IGNORECASE)
             if match:
                 details["deadline"] = match.group(1).strip()
 
-            # 2. Controleer op geschiktheid voor Nederland (inclusief algemene termen)
+            # Controle geschiktheid
             text_lower = text.lower()
             keywords = ["netherlands", "dutch", "programme countries", "all countries", "erasmus+ countries"]
-            if any(kw in text_lower for kw in keywords):
-                details["is_nl_eligible"] = True
+            details["is_nl_eligible"] = any(kw in text_lower for kw in keywords)
+        else:
+            print(f"Waarschuwing: HTTP {res.status_code} voor {course_url}")
     except Exception as e:
-        print(f"Waarschuwing: Kon details niet ophalen voor {course_url} ({e})")
+        print(f"Waarschuwing: Kon {course_url} niet ophalen ({e})")
     
     return details
 
@@ -72,7 +78,7 @@ def categorize_activity(title, content_text):
         return "Erasmus+ Project"
 
 def scrape_salto():
-    print("Starten met ophalen en categoriseren van SALTO-Youth projecten...")
+    print("Starten met ophalen van SALTO-Youth projecten...")
     
     params = {
         "target_group_country": "Netherlands",
@@ -80,10 +86,10 @@ def scrape_salto():
     }
 
     try:
-        response = requests.get(CALENDAR_URL, headers=HEADERS, params=params, timeout=15)
+        response = session.get(CALENDAR_URL, params=params, timeout=15)
         response.raise_for_status()
     except Exception as e:
-        print(f"Kritieke fout bij ophalen van SALTO-overzicht: {e}")
+        print(f"Kritieke fout bij ophalen van overzichtspagina: {e}")
         return []
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -92,6 +98,8 @@ def scrape_salto():
 
     links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/training/"))
     seen_urls = set()
+
+    print(f"Gevonden links op overzicht: {len(links)}")
 
     for link in links:
         try:
@@ -109,17 +117,19 @@ def scrape_salto():
             if not title or len(title) < 4:
                 continue
 
-            # Veilige weergave van parent-tekst om NoneType crashes te voorkomen
             parent_text = ""
             if link.parent and link.parent.parent:
                 parent_text = link.parent.parent.get_text(" ", strip=True)
             
+            # Stap 1: Haal detailpagina veilig op
             page_details = fetch_details_from_page(course_url)
 
+            # Stap 2: Filter op geschiktheid
             if not page_details["is_nl_eligible"]:
-                print(f"Overslaan (Nederland niet vermeld): {title}")
+                print(f"Overslaan (Geen NL geschiktheid): {title}")
                 continue
 
+            # Stap 3: Datum en deadline verwerken
             match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
             deadline_str = page_details["deadline"] or (match.group(1) if match else None)
             deadline_dt = parse_deadline(deadline_str) if deadline_str else None
@@ -141,19 +151,19 @@ def scrape_salto():
                 "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             })
         except Exception as err:
-            print(f"Foutje bij verwerken item, sla over: {err}")
+            print(f"Fout bij verwerken van item, overgeslagen: {err}")
             continue
 
-    print(f"\nTotaal {len(valid_courses)} actuele projecten gecategoriseerd.")
+    print(f"\nTotaal {len(valid_courses)} actuele projecten opgeslagen.")
     return valid_courses
 
 def save_json(data, filename="salto_courses.json"):
     try:
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"Bestand succesvol opgeslagen: {filename}")
+        print(f"Bestand opgeslagen: {filename}")
     except Exception as e:
-        print(f"Fout bij opslaan van JSON-bestand: {e}")
+        print(f"Fout bij opslaan: {e}")
 
 if __name__ == "__main__":
     courses = scrape_salto()
