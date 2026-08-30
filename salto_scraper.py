@@ -1,3 +1,4 @@
+Python
 import os
 import json
 import re
@@ -27,8 +28,8 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt veilig details op zonder het script te laten crashen bij een netwerkfout."""
-    details = {"deadline": None, "extra_text": ""}
+    """Haalt veilig details op en controleert of Nederland bij de toegestane landen staat."""
+    details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
     try:
         # Pauzeer heel even om rate-limiting te voorkomen
         time.sleep(0.5)
@@ -38,9 +39,15 @@ def fetch_details_from_page(course_url):
             text = soup.get_text(" ", strip=True)
             details["extra_text"] = text
 
+            # 1. Deadline ophalen via regex
             match = re.search(r"Application deadline:\s*([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", text, re.IGNORECASE)
             if match:
                 details["deadline"] = match.group(1).strip()
+
+            # 2. Controleren of Nederland expliciet wordt vermeld op de pagina
+            if "netherlands" in text.lower():
+                details["is_nl_eligible"] = True
+
     except Exception as e:
         print(f"Waarschuwing: Kon details niet ophalen voor {course_url} ({e})")
     return details
@@ -76,12 +83,11 @@ def scrape_salto():
         response.raise_for_status()
     except Exception as e:
         print(f"Fout bij ophalen van SALTO-overzicht: {e}")
-        # Retoneer een lege lijst i.p.v. het script te laten crashen
         return []
 
     soup = BeautifulSoup(response.text, "html.parser")
     valid_courses = []
-    today = datetime.now()
+    today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
     links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/training/"))
     seen_urls = set()
@@ -100,7 +106,13 @@ def scrape_salto():
 
             parent_text = link.parent.parent.get_text(" ", strip=True) if link.parent else ""
             
+            # Detailpagina ophalen
             page_details = fetch_details_from_page(course_url)
+
+            # Filter: Sla projecten over waar Nederland NIET op de pagina staat
+            if not page_details["is_nl_eligible"]:
+                print(f"Overslaan (Nederland niet toegestaan): {title}")
+                continue
             
             match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
             deadline_str = page_details["deadline"] or (match.group(1) if match else None)
@@ -121,7 +133,7 @@ def scrape_salto():
                 "deadline_iso": deadline_dt.strftime("%Y-%m-%d") if deadline_dt else None,
                 "url": course_url,
                 "target_country": "Netherlands",
-                "scraped_at": today.strftime("%Y-%m-%d %H:%M:%S")
+                "scraped_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             })
         except Exception as err:
             print(f"Foutje bij verwerken item, sla over: {err}")
