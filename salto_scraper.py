@@ -1,3 +1,4 @@
+Python
 import os
 import json
 import re
@@ -46,8 +47,9 @@ def fetch_details_from_page(course_url):
             # 2. Gerichte controle op deelnemende/toegestane landen op de pagina
             text_lower = text.lower()
             
-            # Controleer of 'netherlands' of 'dutch' voorkomt in de pagina
-            if "netherlands" in text_lower or "dutch" in text_lower:
+            # Controleer op Nederland én verzameltermen die geschiktheid aanduiden
+            keywords = ["netherlands", "dutch", "programme countries", "all countries", "erasmus+ countries"]
+            if any(kw in text_lower for kw in keywords):
                 details["is_nl_eligible"] = True
 
     except Exception as e:
