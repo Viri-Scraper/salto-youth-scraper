@@ -28,29 +28,29 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt details op van de specifieke cursuspagina."""
+    """Haalt veilig details op van de specifieke cursuspagina zonder dat het script kan crashen."""
     details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
     try:
-        time.sleep(0.5) # Netjes pauzeren tegen rate-limiting
+        time.sleep(0.5)
         res = requests.get(course_url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             text = soup.get_text(" ", strip=True)
             details["extra_text"] = text
 
-            # 1. Deadline ophalen via regex
+            # Deadline ophalen via regex
             match = re.search(r"Application deadline:\s*([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", text, re.IGNORECASE)
             if match:
                 details["deadline"] = match.group(1).strip()
 
-            # 2. Controleer op geschiktheid voor Nederland (inclusief algemene termen)
+            # Controle op geschiktheid voor Nederlanders
             text_lower = text.lower()
             keywords = ["netherlands", "dutch", "programme countries", "all countries", "erasmus+ countries"]
             if any(kw in text_lower for kw in keywords):
                 details["is_nl_eligible"] = True
-
     except Exception as e:
-        print(f"Waarschuwing: Kon details niet ophalen voor {course_url} ({e})")
+        print(f"Waarschuwing: Fout bij ophalen {course_url}: {e}")
+    
     return details
 
 def categorize_activity(title, content_text):
@@ -83,7 +83,7 @@ def scrape_salto():
         response = requests.get(CALENDAR_URL, headers=HEADERS, params=params, timeout=15)
         response.raise_for_status()
     except Exception as e:
-        print(f"Fout bij ophalen van SALTO-overzicht: {e}")
+        print(f"Kritieke fout bij ophalen van SALTO-overzicht: {e}")
         return []
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -116,7 +116,7 @@ def scrape_salto():
             page_details = fetch_details_from_page(course_url)
 
             if not page_details["is_nl_eligible"]:
-                print(f"Overslaan (Nederland niet toegestaan/vermeld): {title}")
+                print(f"Overslaan (Nederland niet vermeld): {title}")
                 continue
 
             match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
@@ -124,7 +124,7 @@ def scrape_salto():
             deadline_dt = parse_deadline(deadline_str) if deadline_str else None
 
             if deadline_dt and deadline_dt < today:
-                print(f"Overslaan (Deadline verstreken): {title} ({deadline_str})")
+                print(f"Overslaan (Deadline verstreken): {title}")
                 continue
 
             category = categorize_activity(title, page_details["extra_text"])
@@ -143,16 +143,16 @@ def scrape_salto():
             print(f"Foutje bij verwerken item, sla over: {err}")
             continue
 
-    print(f"\nTotaal {len(valid_courses)} actuele projecten gecategoriseerd en opgeslagen.")
+    print(f"\nTotaal {len(valid_courses)} actuele projecten gecategoriseerd.")
     return valid_courses
 
 def save_json(data, filename="salto_courses.json"):
     try:
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"Bestand opgeslagen: {filename}")
+        print(f"Bestand succesvol opgeslagen: {filename}")
     except Exception as e:
-        print(f"Fout bij opslaan bestand: {e}")
+        print(f"Fout bij opslaan van JSON-bestand: {e}")
 
 if __name__ == "__main__":
     courses = scrape_salto()
