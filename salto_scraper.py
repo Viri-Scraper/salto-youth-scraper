@@ -1,4 +1,3 @@
-Python
 import os
 import json
 import re
@@ -28,7 +27,7 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt veilig details op en controleert of Nederland bij de toegestane landen staat."""
+    """Haalt veilig details op en controleert of Nederlandse deelnemers mogen meedoen."""
     details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
     try:
         # Pauzeer heel even om rate-limiting te voorkomen
@@ -44,8 +43,11 @@ def fetch_details_from_page(course_url):
             if match:
                 details["deadline"] = match.group(1).strip()
 
-            # 2. Controleren of Nederland expliciet wordt vermeld op de pagina
-            if "netherlands" in text.lower():
+            # 2. Gerichte controle op deelnemende/toegestane landen op de pagina
+            text_lower = text.lower()
+            
+            # Controleer of 'netherlands' of 'dutch' voorkomt in de pagina
+            if "netherlands" in text_lower or "dutch" in text_lower:
                 details["is_nl_eligible"] = True
 
     except Exception as e:
@@ -109,11 +111,11 @@ def scrape_salto():
             # Detailpagina ophalen
             page_details = fetch_details_from_page(course_url)
 
-            # Filter: Sla projecten over waar Nederland NIET op de pagina staat
+            # EXTRA CONTROLE: Sla project over als Nederland niet op de detailpagina vermeld staat
             if not page_details["is_nl_eligible"]:
-                print(f"Overslaan (Nederland niet toegestaan): {title}")
+                print(f"Overslaan (Nederland niet toegestaan/vermeld): {title}")
                 continue
-            
+
             match = re.search(r"([0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})", parent_text)
             deadline_str = page_details["deadline"] or (match.group(1) if match else None)
             deadline_dt = parse_deadline(deadline_str) if deadline_str else None
