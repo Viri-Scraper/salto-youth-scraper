@@ -27,7 +27,7 @@ jobs:
           pip install requests beautifulsoup4
 
       - name: Python scraper uitvoeren
-        run: python scraper.py # Pas de bestandsnaam aan als je script anders heet!
+        run: salto_scraper.py # Pas de bestandsnaam aan als je script anders heet!
 
       - name: Wijzigingen committen en pushen
         run: |
