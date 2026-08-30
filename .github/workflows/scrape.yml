@@ -3,15 +3,14 @@ name: SALTO Youth Scraper
 
 on:
   schedule:
-    # Draait automatisch elke dag om 06:00 UTC (08:00 Nederlandse tijd)
     - cron: '0 6 * * *'
-  workflow_dispatch: # Maakt handmatig starten via de GitHub-interface mogelijk
+  workflow_dispatch:
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Noodzakelijk om salto_courses.json te mogen schrijven/pushen
+      contents: write
 
     steps:
       - name: Repository uitchecken
