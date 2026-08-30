@@ -3,18 +3,21 @@ name: SALTO Youth Scraper
 
 on:
   schedule:
+    # Draait automatisch elke dag om 06:00 UTC (08:00 Nederlandse tijd)
     - cron: '0 6 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Maakt handmatig starten via de GitHub-interface mogelijk
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Schrijfrechten om salto_courses.json te mogen pushen
 
     steps:
       - name: Repository uitchecken
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # CRUCIAAL: Haalt de volledige geschiedenis op om 'missing local files' te voorkomen
 
       - name: Python instellen
         uses: actions/setup-python@v5
@@ -24,7 +27,7 @@ jobs:
       - name: Dependencies installeren
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4
+          pip install -r requirements.txt
 
       - name: Python scraper uitvoeren
         run: python salto_scraper.py
