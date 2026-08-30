@@ -273,10 +273,9 @@ def is_netherlands_eligible(text):
 # TRAINING LINKS
 # ============================================================
 
-def extract_training_links(soup):
+def extract_training_links(soup, seen):
 
     results = []
-    seen = set()
 
     for link in soup.find_all(
         "a",
@@ -324,6 +323,39 @@ def extract_training_links(soup):
         })
 
     return results
+
+
+def fetch_all_training_links(session):
+    """Loop door alle pagina's van de SALTO kalender om links te verzamelen."""
+
+    all_links = []
+    seen = set()
+    page = 1
+
+    while True:
+        # SALTO ondersteunt pagination via de 'page' query parameter
+        page_url = f"{CALENDAR_URL}?page={page}"
+        print(f"\nPagina {page} ophalen: {page_url}")
+
+        response = fetch(session, page_url)
+        if response is None:
+            print(f"Kon pagina {page} niet ophalen. Stoppen met pagineren.")
+            break
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        new_links = extract_training_links(soup, seen)
+
+        if not new_links:
+            print(f"Geen nieuwe training links meer gevonden op pagina {page}. Paginering voltooid.")
+            break
+
+        print(f"Pagina {page}: {len(new_links)} nieuwe trainingen gevonden.")
+        all_links.extend(new_links)
+        
+        page += 1
+        time.sleep(0.5)
+
+    return all_links
 
 
 # ============================================================
@@ -391,76 +423,17 @@ def scrape():
 
     session = create_session()
 
-    print("\nOverzichtspagina ophalen...")
-
-    response = fetch(
-        session,
-        CALENDAR_URL,
-    )
-
-    if response is None:
-
-        raise RuntimeError(
-            "SALTO calendar kon niet worden opgehaald."
-        )
-
-    soup = BeautifulSoup(
-        response.text,
-        "html.parser",
-    )
-
-    # --------------------------------------------------------
-    # PAGE TITLE
-    # --------------------------------------------------------
-
-    if soup.title:
-        page_title = clean_text(
-            soup.title.get_text()
-        )
-    else:
-        page_title = "UNKNOWN"
+    print("\nAlle overzichtspagina's doorlopen...")
+    links = fetch_all_training_links(session)
 
     print(
-        f"Page title: {page_title}"
-    )
-
-    # --------------------------------------------------------
-    # FIND TRAINING LINKS
-    # --------------------------------------------------------
-
-    links = extract_training_links(
-        soup
-    )
-
-    print(
-        f"Training links gevonden: "
+        f"\nTotaal training links gevonden over alle pagina's: "
         f"{len(links)}"
     )
 
     if not links:
-
-        Path(
-            "debug_salto.html"
-        ).write_text(
-            response.text,
-            encoding="utf-8",
-        )
-
         raise RuntimeError(
-            "Geen training links gevonden. "
-            "debug_salto.html is opgeslagen."
-        )
-
-    print("\nEerste trainingen:")
-
-    for item in links[:10]:
-
-        print(
-            f"- {item['title']}"
-        )
-
-        print(
-            f"  {item['url']}"
+            "Geen training links gevonden."
         )
 
     # --------------------------------------------------------
