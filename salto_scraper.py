@@ -28,10 +28,10 @@ def parse_deadline(date_str):
     return None
 
 def fetch_details_from_page(course_url):
-    """Haalt veilig details op en controleert of Nederlandse deelnemers mogen meedoen."""
+    """Haalt details op van de specifieke cursuspagina."""
     details = {"deadline": None, "extra_text": "", "is_nl_eligible": False}
     try:
-        time.sleep(0.5)
+        time.sleep(0.5) # Netjes pauzeren tegen rate-limiting
         res = requests.get(course_url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
@@ -43,7 +43,7 @@ def fetch_details_from_page(course_url):
             if match:
                 details["deadline"] = match.group(1).strip()
 
-            # 2. Controleer geschiktheid voor Nederlanders
+            # 2. Controleer op geschiktheid voor Nederland (inclusief algemene termen)
             text_lower = text.lower()
             keywords = ["netherlands", "dutch", "programme countries", "all countries", "erasmus+ countries"]
             if any(kw in text_lower for kw in keywords):
@@ -109,15 +109,12 @@ def scrape_salto():
             if not title or len(title) < 4:
                 continue
 
-            # Veilige weergave van parent-tekst om NoneType crashes te voorkomen
             parent_text = ""
             if link.parent and link.parent.parent:
                 parent_text = link.parent.parent.get_text(" ", strip=True)
             
-            # Detailpagina ophalen
             page_details = fetch_details_from_page(course_url)
 
-            # Controle op geschiktheid
             if not page_details["is_nl_eligible"]:
                 print(f"Overslaan (Nederland niet toegestaan/vermeld): {title}")
                 continue
@@ -126,7 +123,6 @@ def scrape_salto():
             deadline_str = page_details["deadline"] or (match.group(1) if match else None)
             deadline_dt = parse_deadline(deadline_str) if deadline_str else None
 
-            # Controle op verstreken deadline
             if deadline_dt and deadline_dt < today:
                 print(f"Overslaan (Deadline verstreken): {title} ({deadline_str})")
                 continue
