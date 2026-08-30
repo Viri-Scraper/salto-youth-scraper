@@ -1,5 +1,14 @@
-Plaintext
 __pycache__/
 *.py[cod]
-venv/
+
 .venv/
+venv/
+env/
+
+.env
+
+debug_salto.html
+
+.idea/
+.vscode/
+.DS_Store
