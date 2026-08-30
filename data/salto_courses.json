@@ -11,7 +11,21 @@
     "application_deadline": "30 August 2026",
     "application_deadline_iso": "2026-08-30",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:30:57.451392+00:00"
+    "scraped_at": "2026-08-30T17:35:17.799016+00:00"
+  },
+  {
+    "title": "EuroMed Participation Lab - PBA on Youth participation Activities KA154",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/euromed-participation-lab-pba-on-youth-participation-activities-ka154.15148/",
+    "activity_type": "Partnership-building Activity",
+    "dates_found": [
+      "23-27 November 2026",
+      "30 August 2026",
+      "21 September 2026"
+    ],
+    "application_deadline": "30 August 2026",
+    "application_deadline_iso": "2026-08-30",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T17:35:18.378352+00:00"
   },
   {
     "title": "SHIFT - Smart Hands-on Innovation & Facilitation Tech in Youth work",
@@ -25,7 +39,7 @@
     "application_deadline": "30 August 2026",
     "application_deadline_iso": "2026-08-30",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:30:58.860128+00:00"
+    "scraped_at": "2026-08-30T17:35:19.824829+00:00"
   },
   {
     "title": "Second Call for 'The Get Together' III: ‘Practitioner As Person’ – Connection and Recharge - Creating Meaningful Space and Time for YOU the person",
@@ -39,7 +53,7 @@
     "application_deadline": "30 August 2026",
     "application_deadline_iso": "2026-08-30",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:30:59.739558+00:00"
+    "scraped_at": "2026-08-30T17:35:20.726609+00:00"
   },
   {
     "title": "Practical Tools for Creative Youth STEAM Projects",
@@ -53,7 +67,7 @@
     "application_deadline": "31 August 2026",
     "application_deadline_iso": "2026-08-31",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:31:00.604662+00:00"
+    "scraped_at": "2026-08-30T17:35:21.400126+00:00"
   },
   {
     "title": "Outdoor Paths: Designing Experiential Activities for Young People",
@@ -67,7 +81,7 @@
     "application_deadline": "31 August 2026",
     "application_deadline_iso": "2026-08-31",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:31:01.475562+00:00"
+    "scraped_at": "2026-08-30T17:35:22.480795+00:00"
   },
   {
     "title": "Play to Learn: Creating Educational Games for Youth Work",
@@ -81,7 +95,7 @@
     "application_deadline": "31 August 2026",
     "application_deadline_iso": "2026-08-31",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:31:02.479854+00:00"
+    "scraped_at": "2026-08-30T17:35:23.261481+00:00"
   },
   {
     "title": "Robotics in Youth Work: From Playful Missions to Real Skills",
@@ -95,7 +109,7 @@
     "application_deadline": "31 August 2026",
     "application_deadline_iso": "2026-08-31",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:31:03.524239+00:00"
+    "scraped_at": "2026-08-30T17:35:24.034959+00:00"
   },
   {
     "title": "Ask Better, Teach Better: Question‑driven AI & advocacy in youth work",
@@ -109,6 +123,22 @@
     "application_deadline": "31 August 2026",
     "application_deadline_iso": "2026-08-31",
     "netherlands_eligible": true,
-    "scraped_at": "2026-08-30T17:31:04.547696+00:00"
+    "scraped_at": "2026-08-30T17:35:24.710901+00:00"
+  },
+  {
+    "title": "SO.ART - SOCIAL AND PARTICIPATORY ARTS FOR YOUTH COMMUNITY BUILDING",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/so-art-social-and-participatory-arts-for-youth-community-building.15200/",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "13 October 2026",
+      "13-19 October 2026",
+      "12 October 2026",
+      "20 October 2026",
+      "20 October 2026"
+    ],
+    "application_deadline": "19 October 2026",
+    "application_deadline_iso": "2026-10-19",
+    "netherlands_eligible": true,
+    "scraped_at": "2026-08-30T17:35:19.084982+00:00"
   }
 ]
