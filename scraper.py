@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 # ============================================================
 
 BASE_URL = "https://www.salto-youth.net"
-# We filteren direct in de URL op Nederland (ID 177 op SALTO)
+# Gefilterd op de SALTO-server op deelnemers uit Nederland (ID 177)
 CALENDAR_URL = f"{BASE_URL}/tools/european-training-calendar/browse/?b_participating_countries%5B%5D=177"
 OUTPUT_FILE = Path("data/salto_courses.json")
 
@@ -100,7 +100,7 @@ def parse_date(value):
         return None
 
     value = clean_text(value)
-    # Verwijder eventuele tijdsaanduidingen zoals (23:59 CET)
+    # Verwijder eventuele haakjes/tijdsaanduidingen (bijv. 23:59 CET)
     value = re.sub(r"\([^)]*\)", "", value).strip()
 
     formats = [
@@ -122,7 +122,7 @@ def parse_date(value):
 
 def extract_deadline(soup, text):
     """Zoek de application deadline in de pagina via selectors en regex fallback."""
-    # Method 1: Zoek in bekende HTML structuren van SALTO
+    # Method 1: HTML-structuur van SALTO
     for label in soup.find_all(["dt", "th", "strong", "b"]):
         if "application deadline" in label.get_text().lower():
             parent = label.find_parent(["tr", "dl", "div"])
@@ -132,7 +132,7 @@ def extract_deadline(soup, text):
                 if match:
                     return match.group(1)
 
-    # Method 2: Fallback Regex op platte tekst
+    # Method 2: Regex fallback
     patterns = [
         r"Application\s+deadline(?:\s*\([^)]*\))?\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
         r"Deadline\s*:\s*(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})",
@@ -176,33 +176,6 @@ def extract_activity_type(text):
 
 
 # ============================================================
-# NETHERLANDS ELIGIBILITY
-# ============================================================
-
-def is_netherlands_eligible(soup, text):
-    """
-    Controleert of Nederlanders mogen meedoen.
-    Omdat we op de overzichtspagina al filteren via SALTO's eigen 'b_participating_countries[]=177',
-    is de kans heel groot dat het al klopt. We doen hier een bredere check.
-    """
-    lower = text.lower()
-
-    keywords = [
-        "netherlands",
-        "erasmus+ youth programme countries",
-        "erasmus+ programme countries",
-        "all countries",
-        "eu member states"
-    ]
-
-    if any(kw in lower for kw in keywords):
-        return True
-
-    # Als de overzichtspagina al op NL gefilterd is, vertrouwen we het bij twijfel
-    return True
-
-
-# ============================================================
 # TRAINING LINKS & PAGINATION
 # ============================================================
 
@@ -236,16 +209,15 @@ def extract_training_links(soup, seen):
 
 
 def fetch_all_training_links(session):
-    """Loop door ALLE pagina's van de SALTO kalender."""
+    """Loop door ALLE pagina's van de SALTO kalender voor Nederland."""
     all_links = []
     seen = set()
     page = 1
 
     while True:
-        # SALTO gebruikt 'page' query parameter voor paginering
         separator = "&" if "?" in CALENDAR_URL else "?"
         page_url = f"{CALENDAR_URL}{separator}page={page}"
-        
+
         print(f"\nPagina {page} ophalen: {page_url}")
 
         response = fetch(session, page_url)
@@ -296,7 +268,7 @@ def scrape_detail(session, item):
             if deadline_date
             else None
         ),
-        "netherlands_eligible": is_netherlands_eligible(soup, text),
+        "netherlands_eligible": True,  # Zeker gesteld door SALTO zoekfilter
     }
 
 
@@ -306,7 +278,7 @@ def scrape_detail(session, item):
 
 def scrape():
     print("=" * 60)
-    print("SALTO-YOUTH SCRAPER")
+    print("SALTO-YOUTH SCRAPER (ALLE RESULTATEN VOOR NL)")
     print("=" * 60)
 
     session = create_session()
@@ -319,10 +291,9 @@ def scrape():
     if not links:
         raise RuntimeError("Geen training links gevonden.")
 
-    today = datetime.now(timezone.utc).date()
     results = []
 
-    print("\nDetails ophalen en filteren...")
+    print("\nDetails ophalen en opslaan...")
 
     for index, item in enumerate(links, start=1):
         print(f"\n[{index}/{len(links)}] {item['title']}")
@@ -334,20 +305,9 @@ def scrape():
                 print("  -> ophalen mislukt")
                 continue
 
-            # Check geschiktheid Nederland
-            if not data["netherlands_eligible"]:
-                print("  -> niet beschikbaar voor Nederland")
-                continue
-
-            # Check deadline filter
-            deadline_iso = data["application_deadline_iso"]
-            if deadline_iso:
-                deadline = datetime.strptime(deadline_iso, "%Y-%m-%d").date()
-                if deadline < today:
-                    print("  -> deadline verstreken")
-                    continue
-
             data["scraped_at"] = datetime.now(timezone.utc).isoformat()
+            
+            # Voeg ALLES direct toe zonder te filteren
             results.append(data)
             print("  -> TOEGEVOEGD")
 
@@ -366,6 +326,7 @@ def scrape():
 def save_results(results):
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 
+    # Sorteer op deadline als die bekend is, anders achteraan
     results.sort(
         key=lambda item: (
             item["application_deadline_iso"] or "9999-12-31"
