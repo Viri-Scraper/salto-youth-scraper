@@ -13,7 +13,8 @@ from bs4 import BeautifulSoup
 # ============================================================
 
 BASE_URL = "https://www.salto-youth.net"
-BROWSE_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
+BROWSE_TRAINING_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
+BROWSE_OTLAS_URL = f"{BASE_URL}/tools/otlas-partner-finding/projects/"
 OUTPUT_FILE = Path("data/salto_courses.json")
 
 
@@ -51,9 +52,9 @@ def fetch(session, url, retries=3):
             response = session.get(url, timeout=30)
             if response.status_code == 200:
                 return response
-            print(f"  Attempt {attempt}/{retries}: HTTP {response.status_code}")
+            print(f"   Attempt {attempt}/{retries}: HTTP {response.status_code}")
         except requests.RequestException as exc:
-            print(f"  Attempt {attempt}/{retries}: {exc}")
+            print(f"   Attempt {attempt}/{retries}: {exc}")
 
         if attempt < retries:
             time.sleep(2 * attempt)
@@ -77,8 +78,8 @@ def parse_date(value):
 
 def extract_deadline(soup, text):
     for label in soup.find_all(["dt", "th", "strong", "b"]):
-        if "application deadline" in label.get_text().lower():
-            parent = label.find_parent(["tr", "dl", "div"])
+        if "application deadline" in label.get_text().lower() or "deadline" in label.get_text().lower():
+            parent = label.find_parent(["tr", "dl", "div", "p"])
             if parent:
                 full_str = clean_text(parent.get_text())
                 match = re.search(r"(\d{1,2}\s+[A-Za-z]+\s+\d{4})", full_str)
@@ -86,7 +87,7 @@ def extract_deadline(soup, text):
                     return match.group(1)
 
     match = re.search(
-        r"Application\s+deadline(?:\s*\([^)]*\))?\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+        r"deadline(?:\s*\([^)]*\))?\s*:?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
         text,
         re.IGNORECASE,
     )
@@ -98,10 +99,10 @@ def extract_deadline(soup, text):
 
 def extract_activity_type(text):
     patterns = [
-        ("Training Course", r"\bTraining Course\b"),
-        ("Partnership-building Activity", r"\bPartnership[- ]building Activity\b"),
+        ("Youth Exchange", r"\bYouth[- ]Exchange\b|\bYouth Mobility\b|\bKA105\b|\bKA151\b|\bKA152\b"),
+        ("Training Course", r"\bTraining Course\b|\bTraining\b"),
+        ("Partnership-building Activity", r"\bPartnership[- ]building Activity\b|\bPBA\b"),
         ("Study Visit", r"\bStudy Visit\b"),
-        ("Youth Exchange", r"\bYouth Exchange\b"),
         ("Seminar", r"\bSeminar\b"),
         ("Conference", r"\bConference\b"),
         ("E-learning", r"\bE-learning\b"),
@@ -109,17 +110,15 @@ def extract_activity_type(text):
     for name, pattern in patterns:
         if re.search(pattern, text, re.IGNORECASE):
             return name
-    return "Other"
+    return "Youth Exchange"  # Default fallback voor Otlas projecten
 
 
 # ============================================================
-# PAGINATED FETCHING (MET B_OFFSET)
+# 1. TRAINING CALENDAR SCRAPING
 # ============================================================
 
-def build_search_url(offset=0, limit=20):
-    """Bouwt de exacte SALTO URL op met de juiste parameters voor NL en datum van vandaag."""
+def build_training_search_url(offset=0, limit=20):
     now = datetime.now()
-
     params = {
         "b_offset": offset,
         "b_limit": limit,
@@ -128,43 +127,27 @@ def build_search_url(offset=0, limit=20):
         "b_begin_date_after_day": now.day,
         "b_begin_date_after_month": now.month,
         "b_begin_date_after_year": now.year,
-        "b_begin_date_before_day": "",
-        "b_begin_date_before_month": "",
-        "b_begin_date_before_year": "",
-        "b_end_date_after_day": "",
-        "b_end_date_after_month": "",
-        "b_end_date_after_year": "",
-        "b_end_date_before_day": "",
-        "b_end_date_before_month": "",
-        "b_end_date_before_year": "",
-        "b_activity_type": "",
-        "b_country": "",
         "b_participating_countries": "country-20",  # Nederland
         "b_application_deadline_after_day": now.day,
         "b_application_deadline_after_month": now.month,
         "b_application_deadline_after_year": now.year,
-        "b_application_deadline_before_day": "",
-        "b_application_deadline_before_month": "",
-        "b_application_deadline_before_year": "",
         "b_browse": "1",
     }
-
-    return f"{BROWSE_URL}?{urlencode(params)}"
+    return f"{BROWSE_TRAINING_URL}?{urlencode(params)}"
 
 
 def fetch_all_training_links(session):
     all_links = []
     seen = set()
     offset = 0
-    limit = 20  # Haal 20 items per pagina op
+    limit = 20
 
     while True:
-        url = build_search_url(offset=offset, limit=limit)
-        print(f"\n[Offset {offset}] Ophalen via: {url}")
+        url = build_training_search_url(offset=offset, limit=limit)
+        print(f"\n[Training Calendar Offset {offset}] Ophalen via: {url}")
 
         response = fetch(session, url)
         if not response:
-            print("  -> Kon pagina niet laden. Stoppen.")
             break
 
         soup = BeautifulSoup(response.text, "html.parser")
@@ -177,20 +160,13 @@ def fetch_all_training_links(session):
             if "/tools/european-training-calendar/training/" in full_url:
                 if full_url not in seen:
                     title = clean_text(link.get_text(" ", strip=True))
-                    if (
-                        title
-                        and len(title) > 3
-                        and title.lower() not in ["read more", "apply now", "details"]
-                    ):
+                    if title and len(title) > 3 and title.lower() not in ["read more", "apply now", "details"]:
                         seen.add(full_url)
                         all_links.append({"title": title, "url": full_url})
                         new_count += 1
 
-        print(f"  -> {new_count} nieuwe trainingen gevonden op deze pagina.")
-
-        # Als er geen nieuwe trainingen meer op de pagina staan, zijn we klaar
+        print(f"  -> {new_count} nieuwe trainingen gevonden.")
         if new_count == 0:
-            print("Geen nieuwe resultaten meer gevonden. Bladeren voltooid.")
             break
 
         offset += limit
@@ -200,7 +176,95 @@ def fetch_all_training_links(session):
 
 
 # ============================================================
-# DETAIL SCRAPING & MAIN LOGIC
+# 2. OTLAS PARTNER FINDING (YOUTH EXCHANGES)
+# ============================================================
+
+def build_otlas_search_url(page=1):
+    params = {
+        "q": "Youth Exchange",
+        "action": "ka1",
+        "country": "NL",
+        "page": page
+    }
+    return f"{BROWSE_OTLAS_URL}?{urlencode(params)}"
+
+
+def fetch_otlas_exchanges(session):
+    print("\n" + "=" * 60)
+    print("OTLAS SCRAPING (YOUTH EXCHANGES)")
+    print("=" * 60)
+
+    otlas_results = []
+    seen = set()
+    page = 1
+
+    while page <= 5:  # Maximaal 5 pagina's Otlas doorzoeken
+        url = build_otlas_search_url(page=page)
+        print(f"\n[Otlas Pagina {page}] Ophalen via: {url}")
+
+        response = fetch(session, url)
+        if not response:
+            break
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        project_cards = soup.find_all(["div", "article"], class_=re.compile(r"project|item|card", re.I))
+
+        # Indien geen specifieke cards gevonden, zoek op alle links in de Otlas projecten map
+        links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/\d+"))
+        
+        if not links:
+            print("  -> Geen Otlas projecten meer gevonden op deze pagina.")
+            break
+
+        new_count = 0
+        for link in links:
+            href = link.get("href", "").strip()
+            full_url = urljoin(BASE_URL, href)
+
+            if full_url not in seen:
+                seen.add(full_url)
+                title = clean_text(link.get_text(" ", strip=True))
+                if not title or title.lower() in ["view", "more", "details"]:
+                    title = "Youth Exchange Project"
+
+                # Detailpagina scrapen voor type en deadline
+                detail_resp = fetch(session, full_url)
+                deadline_str = None
+                act_type = "Youth Exchange"
+
+                if detail_resp:
+                    dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
+                    dt_text = clean_text(dt_soup.get_text(" ", strip=True))
+                    deadline_str = extract_deadline(dt_soup, dt_text)
+                    act_type = extract_activity_type(dt_text)
+
+                deadline_date = parse_date(deadline_str)
+
+                otlas_results.append({
+                    "title": title,
+                    "url": full_url,
+                    "activity_type": act_type,
+                    "application_deadline": deadline_str,
+                    "application_deadline_iso": (
+                        deadline_date.strftime("%Y-%m-%d") if deadline_date else None
+                    ),
+                    "netherlands_eligible": True,
+                    "scraped_at": datetime.now(timezone.utc).isoformat()
+                })
+                new_count += 1
+                time.sleep(0.3)
+
+        print(f"  -> {new_count} Otlas projecten toegevoegd.")
+        if new_count == 0:
+            break
+
+        page += 1
+
+    return otlas_results
+
+
+# ============================================================
+# MAIN SCRAPE LOGIC
 # ============================================================
 
 def scrape_detail(session, item):
@@ -228,17 +292,19 @@ def scrape_detail(session, item):
 
 def scrape():
     print("=" * 60)
-    print("SALTO-YOUTH SCRAPER (EXACTE BROWSE STRUCTUUR)")
+    print("SALTO-YOUTH & OTLAS COMBINED SCRAPER")
     print("=" * 60)
 
     session = create_session()
+
+    # 1. Training Calendar
     links = fetch_all_training_links(session)
+    results = []
 
     print(f"\n==========================================================")
-    print(f"Totaal unieke trainingen verzameld: {len(links)}")
+    print(f"Verwerken van {len(links)} Training Calendar links...")
     print(f"==========================================================")
 
-    results = []
     for index, item in enumerate(links, start=1):
         print(f"[{index}/{len(links)}] {item['title']}")
         try:
@@ -246,26 +312,35 @@ def scrape():
             if data:
                 data["scraped_at"] = datetime.now(timezone.utc).isoformat()
                 results.append(data)
-                print("  -> Toegevoegd")
         except Exception as exc:
             print(f"  -> Error: {exc}")
-
         time.sleep(0.3)
+
+    # 2. Otlas Youth Exchanges
+    otlas_items = fetch_otlas_exchanges(session)
+    results.extend(otlas_items)
 
     return results
 
 
 def save_results(results):
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    results.sort(
+
+    # Ontdubbelen op basis van URL
+    unique_results = {}
+    for item in results:
+        unique_results[item["url"]] = item
+
+    final_list = list(unique_results.values())
+    final_list.sort(
         key=lambda item: (item["application_deadline_iso"] or "9999-12-31")
     )
 
     with OUTPUT_FILE.open("w", encoding="utf-8") as file:
-        json.dump(results, file, ensure_ascii=False, indent=2)
+        json.dump(final_list, file, ensure_ascii=False, indent=2)
 
     print("\n" + "=" * 60)
-    print(f"Voltooid! {len(results)} trainingen opgeslagen in {OUTPUT_FILE}")
+    print(f"Voltooid! Totaal {len(final_list)} items opgeslagen in {OUTPUT_FILE}")
     print("=" * 60)
 
 
