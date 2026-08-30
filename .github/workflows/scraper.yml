@@ -2,17 +2,23 @@ name: SALTO-YOUTH Scraper
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: "0 */6 * * *"
 
 permissions:
   contents: write
 
+concurrency:
+  group: salto-youth-scraper
+  cancel-in-progress: false
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout latest main
         uses: actions/checkout@v4
         with:
@@ -39,63 +45,36 @@ jobs:
         run: |
           python scraper.py
 
-      - name: Show generated data
+      - name: Verify JSON
         run: |
-          echo "========================================"
-          echo "DATA DIRECTORY"
-          echo "========================================"
+          test -f data/salto_courses.json
+          python -m json.tool data/salto_courses.json > /dev/null
+          echo "JSON is geldig."
 
-          ls -la data || true
-
-          echo "========================================"
-          echo "JSON FILE"
-          echo "========================================"
-
-          if [ -f data/salto_courses.json ]; then
-            echo "JSON bestaat."
-            wc -c data/salto_courses.json
-            cat data/salto_courses.json
-          else
-            echo "ERROR: data/salto_courses.json bestaat NIET."
-            exit 1
-          fi
-
-      - name: Synchronize with remote
+      - name: Show changes
         run: |
-          git fetch origin main
-          git reset --hard origin/main
-
-      - name: Copy generated JSON back
-        run: |
-          # De scraper heeft het bestand vóór de reset gegenereerd.
-          # Daarom draaien we de scraper opnieuw na synchronisatie.
-          python scraper.py
-
-      - name: Check Git changes
-        run: |
-          echo "========================================"
-          echo "GIT STATUS"
-          echo "========================================"
-
-          git status --short
-
-          echo "========================================"
-          echo "GIT DIFF"
-          echo "========================================"
-
+          git status
           git diff -- data/salto_courses.json
 
-      - name: Commit JSON
+      - name: Commit changes
         run: |
           git add data/salto_courses.json
 
           if git diff --cached --quiet; then
-            echo "Geen wijzigingen in JSON."
+            echo "Geen wijzigingen."
             exit 0
           fi
 
           git commit -m "Automated update: SALTO courses"
 
-      - name: Push JSON
+      - name: Get latest remote
+        run: |
+          git fetch origin main
+
+      - name: Rebase changes
+        run: |
+          git rebase origin/main
+
+      - name: Push
         run: |
           git push origin HEAD:main
