@@ -2,7 +2,6 @@ name: SALTO-YOUTH Scraper
 
 on:
   workflow_dispatch:
-
   schedule:
     - cron: "0 */6 * * *"
 
@@ -14,16 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout latest main
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -34,26 +39,63 @@ jobs:
         run: |
           python scraper.py
 
-      - name: Check generated file
+      - name: Show generated data
         run: |
-          test -f data/salto_courses.json
-          echo "Output file gevonden."
+          echo "========================================"
+          echo "DATA DIRECTORY"
+          echo "========================================"
 
-      - name: Commit and push results
+          ls -la data || true
+
+          echo "========================================"
+          echo "JSON FILE"
+          echo "========================================"
+
+          if [ -f data/salto_courses.json ]; then
+            echo "JSON bestaat."
+            wc -c data/salto_courses.json
+            cat data/salto_courses.json
+          else
+            echo "ERROR: data/salto_courses.json bestaat NIET."
+            exit 1
+          fi
+
+      - name: Synchronize with remote
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
 
+      - name: Copy generated JSON back
+        run: |
+          # De scraper heeft het bestand vóór de reset gegenereerd.
+          # Daarom draaien we de scraper opnieuw na synchronisatie.
+          python scraper.py
+
+      - name: Check Git changes
+        run: |
+          echo "========================================"
+          echo "GIT STATUS"
+          echo "========================================"
+
+          git status --short
+
+          echo "========================================"
+          echo "GIT DIFF"
+          echo "========================================"
+
+          git diff -- data/salto_courses.json
+
+      - name: Commit JSON
+        run: |
           git add data/salto_courses.json
 
           if git diff --cached --quiet; then
-            echo "Geen wijzigingen."
+            echo "Geen wijzigingen in JSON."
             exit 0
           fi
 
           git commit -m "Automated update: SALTO courses"
 
-          git fetch origin main
-          git rebase origin/main
-
+      - name: Push JSON
+        run: |
           git push origin HEAD:main
