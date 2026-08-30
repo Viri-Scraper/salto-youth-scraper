@@ -1,6 +1,8 @@
 import json
 import re
-from datetime import datetime
+import time
+from datetime import datetime, timezone
+from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
@@ -8,7 +10,52 @@ from bs4 import BeautifulSoup
 
 
 BASE_URL = "https://www.salto-youth.net"
-CALENDAR_URL = "https://www.salto-youth.net/tools/european-training-calendar/browse/"
+CALENDAR_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
+
+OUTPUT_FILE = Path("data/salto_courses.json")
+
+# Nederland zit in de Erasmus+ Youth Programme countries.
+NETHERLANDS = "netherlands"
+
+ERASMUS_PLUS_COUNTRIES = {
+    "austria",
+    "belgium - de",
+    "belgium - fl",
+    "belgium - fr",
+    "bulgaria",
+    "croatia",
+    "cyprus",
+    "czech republic",
+    "denmark",
+    "estonia",
+    "finland",
+    "france",
+    "germany",
+    "greece",
+    "hungary",
+    "iceland",
+    "ireland",
+    "italy",
+    "latvia",
+    "liechtenstein",
+    "lithuania",
+    "luxembourg",
+    "malta",
+    "netherlands",
+    "norway",
+    "poland",
+    "portugal",
+    "republic of north macedonia",
+    "romania",
+    "serbia",
+    "slovak republic",
+    "slovenia",
+    "spain",
+    "sweden",
+    "switzerland",
+    "türkiye",
+    "turkey",
+}
 
 
 def create_session():
@@ -16,49 +63,58 @@ def create_session():
 
     session.headers.update({
         "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
+            "Mozilla/5.0 (X11; Linux x86_64) "
+            "AppleWebKit/537.36 "
+            "(KHTML, like Gecko) "
+            "Chrome/124.0 Safari/537.36"
         ),
         "Accept": (
-            "text/html,application/xhtml+xml,application/xml;"
-            "q=0.9,image/avif,image/webp,*/*;q=0.8"
+            "text/html,application/xhtml+xml,"
+            "application/xml;q=0.9,image/webp,*/*;q=0.8"
         ),
-        "Accept-Language": "en-US,en;q=0.9,nl;q=0.8",
-        "Referer": BASE_URL + "/",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": f"{BASE_URL}/",
     })
 
     return session
 
 
-def get_page(session, url, params=None):
-    print(f"\nGET {url}")
-
-    try:
-        response = session.get(
-            url,
-            params=params,
-            timeout=20,
-            allow_redirects=True,
-        )
-    except requests.RequestException as exc:
-        print(f"REQUEST ERROR: {exc}")
-        return None
-
-    print(f"HTTP: {response.status_code}")
-    print(f"Final URL: {response.url}")
-    print(f"Content-Type: {response.headers.get('content-type')}")
-    print(f"Response length: {len(response.text)} bytes")
-
-    if response.status_code != 200:
-        print(response.text[:500])
-        return None
-
-    return response
+def clean_text(value):
+    return re.sub(r"\s+", " ", value or "").strip()
 
 
-def clean_text(text):
-    return re.sub(r"\s+", " ", text or "").strip()
+def fetch(session, url, retries=3):
+    for attempt in range(1, retries + 1):
+        try:
+            response = session.get(
+                url,
+                timeout=30,
+                allow_redirects=True,
+            )
+
+            print(
+                f"GET {response.url} "
+                f"[HTTP {response.status_code}]"
+            )
+
+            if response.status_code == 200:
+                return response
+
+            print(
+                f"Attempt {attempt}/{retries}: "
+                f"HTTP {response.status_code}"
+            )
+
+        except requests.RequestException as exc:
+            print(
+                f"Attempt {attempt}/{retries}: "
+                f"{type(exc).__name__}: {exc}"
+            )
+
+        if attempt < retries:
+            time.sleep(2 * attempt)
+
+    return None
 
 
 def parse_date(value):
@@ -79,265 +135,321 @@ def parse_date(value):
         try:
             return datetime.strptime(value, fmt)
         except ValueError:
-            pass
+            continue
 
     return None
 
 
 def extract_deadline(text):
-    """
-    Zoek bijvoorbeeld:
-
-    Application deadline (24h UTC):
-    30 August 2026
-    """
-
-    pattern = (
+    patterns = [
         r"Application\s+deadline"
         r"(?:\s*\([^)]*\))?"
         r"\s*:?\s*"
-        r"(\d{1,2}\s+[A-Za-z]+\s+\d{4})"
-    )
+        r"(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
 
-    match = re.search(pattern, text, re.IGNORECASE)
+        r"Deadline\s*:\s*"
+        r"(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})",
+    ]
 
-    if not match:
-        return None
+    for pattern in patterns:
+        match = re.search(
+            pattern,
+            text,
+            re.IGNORECASE,
+        )
 
-    return clean_text(match.group(1))
+        if match:
+            return clean_text(match.group(1))
+
+    return None
 
 
-def extract_country_eligibility(text):
+def extract_activity_type(text):
+    patterns = [
+        (
+            "Training Course",
+            r"\bTraining Course\b",
+        ),
+        (
+            "Partnership-building Activity",
+            r"\bPartnership[- ]building Activity\b",
+        ),
+        (
+            "Study Visit",
+            r"\bStudy Visit\b",
+        ),
+        (
+            "Seminar",
+            r"\bSeminar\b",
+        ),
+        (
+            "Conference – Symposium - Forum",
+            r"\bConference\s*[–-]\s*Symposium\s*-\s*Forum\b",
+        ),
+        (
+            "E-learning",
+            r"\bE-learning\b",
+        ),
+    ]
+
+    for name, pattern in patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            return name
+
+    return "Other"
+
+
+def is_netherlands_eligible(text):
     """
-    SALTO toont vaak tekst zoals:
-
-    This activity is for participants from
-    ...
-    Netherlands
-    ...
+    Nederland kan expliciet genoemd worden of vallen
+    onder 'Erasmus+ Youth Programme countries'.
     """
 
     lower = text.lower()
 
-    # Expliciet Nederland gevonden.
     if "netherlands" in lower:
         return True
 
-    # Deze groepen bevatten Nederland volgens SALTO.
     if "erasmus+ youth programme countries" in lower:
         return True
 
     return False
 
 
-def categorize(title, text):
-    combined = f"{title} {text}".lower()
-
-    if "youth exchange" in combined:
-        return "Youth Exchange"
-
-    if "partnership-building activity" in combined:
-        return "Partnership Building Activity (PBA)"
-
-    if "training course" in combined:
-        return "Training Course"
-
-    if "seminar" in combined:
-        return "Seminar"
-
-    if "conference" in combined:
-        return "Conference"
-
-    if "study visit" in combined:
-        return "Study Visit"
-
-    if "e-learning" in combined:
-        return "E-learning"
-
-    return "Other"
-
-
 def extract_training_links(soup):
-    """
-    Zoek alle links naar SALTO training detailpagina's.
-
-    We gebruiken urljoin() zodat zowel relatieve als absolute
-    URLs correct worden verwerkt.
-    """
-
     results = []
     seen = set()
 
     for link in soup.find_all("a", href=True):
-        href = link["href"].strip()
+        href = link.get("href", "").strip()
 
-        absolute_url = urljoin(BASE_URL, href)
-
-        if "/tools/european-training-calendar/training/" not in absolute_url:
+        if not href:
             continue
 
-        if absolute_url in seen:
+        url = urljoin(BASE_URL, href)
+
+        if "/tools/european-training-calendar/training/" not in url:
             continue
 
-        seen.add(absolute_url)
+        if url in seen:
+            continue
 
-        title = clean_text(link.get_text(" ", strip=True))
+        title = clean_text(
+            link.get_text(" ", strip=True)
+        )
 
         if not title:
             continue
 
+        seen.add(url)
+
         results.append({
             "title": title,
-            "url": absolute_url,
+            "url": url,
         })
 
     return results
 
 
-def scrape_training_page(session, item):
-    response = get_page(session, item["url"])
+def extract_dates(text):
+    """
+    Zoek datumreeksen zoals:
+
+    15-22 October 2026
+    10 September 2026
+    """
+
+    pattern = (
+        r"\b"
+        r"(\d{1,2}"
+        r"(?:-\d{1,2})?"
+        r"\s+[A-Za-z]+\s+\d{4})"
+        r"\b"
+    )
+
+    matches = re.findall(
+        pattern,
+        text,
+        re.IGNORECASE,
+    )
+
+    return matches[:3]
+
+
+def scrape_detail(session, item):
+    response = fetch(session, item["url"])
 
     if response is None:
         return None
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser",
+    )
 
-    text = clean_text(soup.get_text(" ", strip=True))
+    text = clean_text(
+        soup.get_text(" ", strip=True)
+    )
 
     deadline = extract_deadline(text)
     deadline_date = parse_date(deadline)
 
-    eligible = extract_country_eligibility(text)
+    dates = extract_dates(text)
 
     return {
         "title": item["title"],
         "url": item["url"],
-        "category": categorize(item["title"], text),
-        "deadline": deadline,
-        "deadline_iso": (
+        "activity_type": extract_activity_type(text),
+        "dates_found": dates,
+        "application_deadline": deadline,
+        "application_deadline_iso": (
             deadline_date.strftime("%Y-%m-%d")
             if deadline_date
             else None
         ),
-        "netherlands_eligible": eligible,
-        "scraped_at": datetime.now().isoformat(timespec="seconds"),
+        "netherlands_eligible": is_netherlands_eligible(text),
     }
 
 
-def scrape_salto():
-    session = create_session()
-
+def scrape():
     print("=" * 60)
     print("SALTO-YOUTH SCRAPER")
     print("=" * 60)
 
-    # Eerst bewust GEEN filters.
-    #
-    # Dit is belangrijk:
-    # we willen eerst bewijzen dat de basispagina werkt.
-    response = get_page(session, CALENDAR_URL)
+    session = create_session()
+
+    response = fetch(
+        session,
+        CALENDAR_URL,
+    )
 
     if response is None:
-        print("\nKON DE SALTO-PAGINA NIET OPHALEN.")
-        return []
+        raise RuntimeError(
+            "SALTO calendar kon niet worden opgehaald."
+        )
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser",
+    )
 
-    print("\nHTML geladen.")
-    print(f"Page title: {clean_text(soup.title.get_text()) if soup.title else 'UNKNOWN'}")
+    print(
+        f"Page title: "
+        f"{clean_text(soup.title.get_text()) "
+        if soup.title else 'UNKNOWN'}"
+    )
 
     links = extract_training_links(soup)
 
-    print(f"\nTraining links gevonden: {len(links)}")
+    print(
+        f"Training links gevonden: {len(links)}"
+    )
 
     if not links:
-        print("\nGEEN TRAINING LINKS GEVONDEN.")
-        print("De eerste 2000 tekens van de HTML:")
-        print(response.text[:2000])
+        Path("debug_salto.html").write_text(
+            response.text,
+            encoding="utf-8",
+        )
 
-        # HTML opslaan zodat we exact kunnen inspecteren wat SALTO terugstuurt.
-        with open("debug_salto.html", "w", encoding="utf-8") as file:
-            file.write(response.text)
+        raise RuntimeError(
+            "Geen training links gevonden. "
+            "debug_salto.html is opgeslagen."
+        )
 
-        print("\nHTML opgeslagen als: debug_salto.html")
-        return []
-
-    print("\nEerste gevonden trainingen:")
-
-    for item in links[:10]:
-        print(f"- {item['title']}")
-        print(f"  {item['url']}")
+    today = datetime.now(timezone.utc).date()
 
     results = []
 
-    today = datetime.now().replace(
-        hour=0,
-        minute=0,
-        second=0,
-        microsecond=0,
-    )
-
-    print("\nDetails ophalen...\n")
-
-    for index, item in enumerate(links, start=1):
-
-        print(f"[{index}/{len(links)}] {item['title']}")
+    for index, item in enumerate(
+        links,
+        start=1,
+    ):
+        print(
+            f"\n[{index}/{len(links)}] "
+            f"{item['title']}"
+        )
 
         try:
-            data = scrape_training_page(session, item)
+            data = scrape_detail(
+                session,
+                item,
+            )
 
-            if not data:
+            if data is None:
+                print("  -> ophalen mislukt")
                 continue
 
             if not data["netherlands_eligible"]:
-                print("  -> Niet voor Nederland")
+                print("  -> niet beschikbaar voor Nederland")
                 continue
 
-            if data["deadline_iso"]:
-                deadline_date = datetime.strptime(
-                    data["deadline_iso"],
-                    "%Y-%m-%d",
-                )
+            deadline_iso = (
+                data["application_deadline_iso"]
+            )
 
-                if deadline_date < today:
-                    print("  -> Deadline verstreken")
+            if deadline_iso:
+                deadline = datetime.strptime(
+                    deadline_iso,
+                    "%Y-%m-%d",
+                ).date()
+
+                if deadline < today:
+                    print("  -> deadline verstreken")
                     continue
 
-            print("  -> TOEGEVOEGD")
+            data["scraped_at"] = (
+                datetime.now(timezone.utc)
+                .isoformat()
+            )
 
             results.append(data)
 
+            print("  -> TOEGEVOEGD")
+
         except Exception as exc:
-            print(f"  -> FOUT: {type(exc).__name__}: {exc}")
+            print(
+                f"  -> ERROR: "
+                f"{type(exc).__name__}: {exc}"
+            )
+
+        # Niet alle detailpagina's tegelijk belasten.
+        time.sleep(0.5)
 
     return results
 
 
-def save_json(data):
-    filename = "salto_courses.json"
+def save_results(results):
+    OUTPUT_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    with open(filename, "w", encoding="utf-8") as file:
+    results.sort(
+        key=lambda item: (
+            item["application_deadline_iso"]
+            or "9999-12-31"
+        )
+    )
+
+    with OUTPUT_FILE.open(
+        "w",
+        encoding="utf-8",
+    ) as file:
         json.dump(
-            data,
+            results,
             file,
             ensure_ascii=False,
             indent=2,
         )
 
-    print(f"\nOpgeslagen: {filename}")
-    print(f"Aantal resultaten: {len(data)}")
+    print("\n" + "=" * 60)
+    print(
+        f"{len(results)} trainingen opgeslagen."
+    )
+    print(f"Bestand: {OUTPUT_FILE}")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
-    try:
-        courses = scrape_salto()
-        save_json(courses)
-
-    except KeyboardInterrupt:
-        print("\nGestopt door gebruiker.")
-
-    except Exception as exc:
-        print("\nKRIITIEKE FOUT")
-        print(f"{type(exc).__name__}: {exc}")
-
-        raise
+    results = scrape()
+    save_results(results)
