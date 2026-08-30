@@ -1,41 +1,68 @@
+import re
+import time
+from datetime import datetime, timezone
+from urllib.parse import urlencode, urljoin
+import requests
+from bs4 import BeautifulSoup
+
+# Base URL's
+BASE_URL = "https://www.salto-youth.net"
+BROWSE_TRAINING_URL = f"{BASE_URL}/tools/european-training-calendar/browse/"
+BROWSE_OTLAS_URL = f"{BASE_URL}/tools/otlas-partner-finding/projects/"
+
+
 # ============================================================
 # 1. TRAINING CALENDAR (Alle types, alleen NL-geschikt)
 # ============================================================
 
 def build_training_search_url(offset=0, limit=20):
     """
-    Haalt álle soorten activiteiten op (trainingen, seminars, PBA's, study visits)
+    Haalt alle soorten activiteiten op (trainingen, seminars, PBA's, study visits)
     waarbij Nederlanders mogen deelnemen.
     """
     now = datetime.now()
-    params = {
-        "b_offset": offset,
-        "b_limit": limit,
-        "b_order": "applicationDeadline",
-        "b_keyword": "",
-        "b_participating_countries": "country-20",  # Nederland blijft behouden
-        "b_application_deadline_after_day": now.day,
-        "b_application_deadline_after_month": now.month,
-        "b_application_deadline_after_year": now.year,
-        "b_browse": "1",
-    }
+    params = [
+        ("b_offset", offset),
+        ("b_limit", limit),
+        ("b_order", "applicationDeadline"),
+        ("b_keyword", ""),
+        ("b_participating_countries", "country-20"),  # Nederland
+        ("b_application_deadline_after_day", now.day),
+        ("b_application_deadline_after_month", now.month),
+        ("b_application_deadline_after_year", now.year),
+        ("b_browse", "1"),
+    ]
     return f"{BROWSE_TRAINING_URL}?{urlencode(params)}"
 
 
 # ============================================================
-# 2. OTLAS PARTNER FINDING (Alle Erasmus+ & ESC projecten voor NL)
+# 2. OTLAS PARTNER FINDING (Aangepast op de exacte SALTO parameters)
 # ============================================================
 
-def build_otlas_search_url(page=1):
+def build_otlas_search_url(offset=0, limit=10):
     """
-    Zoekt in Otlas naar álle projecten (KA1, KA2, ESC) voor Nederland 
-    zonder te beperken tot enkel 'Youth Exchange'.
+    Bouwt de correcte Otlas URL op basis van de exacte site-parameters.
+    Gebruikt een lijst van tuples om b_countries[] correct te encoderen.
     """
-    params = {
-        "country": "NL",  # Nederland blijft behouden
-        "page": page
-        # 'q' is verwijderd zodat ALLE projecttypes binnenkomen
-    }
+    now = datetime.now()
+    params = [
+        ("b_countries[]", "country-20"),             # Nederland
+        ("b_inclusion", "0"),
+        ("b_partners_needed", "0"),                  # Zet op "1" als je enkel actieve partneroproepen wilt
+        ("b_future_deadline", "0"),                  # Zet op "1" als je enkel toekomstige deadlines wilt
+        ("b_range_projects", "0"),
+        ("b_range_projects_begin_date_day", now.day),
+        ("b_range_projects_begin_date_month", now.month),
+        ("b_range_projects_begin_date_year", now.year),
+        ("b_range_projects_end_date_day", now.day),
+        ("b_range_projects_end_date_month", now.month),
+        ("b_range_projects_end_date_year", now.year + 5),
+        ("b_name", ""),
+        ("b_browse", "Search projects"),
+        ("b_offset", offset),                         # Gebruik offset i.p.v. page voor paginering
+        ("b_limit", limit),                          # Aantal items per pagina (10)
+        ("b_order", "created")
+    ]
     return f"{BROWSE_OTLAS_URL}?{urlencode(params)}"
 
 
@@ -46,11 +73,12 @@ def fetch_otlas_exchanges(session):
 
     otlas_results = []
     seen = set()
-    page = 1
+    offset = 0
+    limit = 10
 
-    while True:  # Blijf doorgaan totdat er geen pagina's meer zijn
-        url = build_otlas_search_url(page=page)
-        print(f"\n[Otlas Pagina {page}] Ophalen via: {url}")
+    while True:
+        url = build_otlas_search_url(offset=offset, limit=limit)
+        print(f"\n[Otlas Offset {offset}] Ophalen via: {url}")
 
         response = fetch(session, url)
         if not response:
@@ -58,7 +86,7 @@ def fetch_otlas_exchanges(session):
 
         soup = BeautifulSoup(response.text, "html.parser")
         links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/\d+"))
-        
+
         if not links:
             print("  -> Geen Otlas projecten meer gevonden.")
             break
@@ -102,11 +130,11 @@ def fetch_otlas_exchanges(session):
                 time.sleep(0.3)
 
         print(f"  -> {new_count} nieuwe Otlas projecten toegevoegd op deze pagina.")
-        
-        # Als er geen NIEUWE projecten meer op de pagina stonden, zijn we aan het einde
+
+        # Geen nieuwe projecten meer gevonden op deze pagina = einde van de zoekresultaten
         if new_count == 0:
             break
 
-        page += 1
+        offset += limit
 
     return otlas_results
