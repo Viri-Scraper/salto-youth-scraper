@@ -31,34 +31,68 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/virtuallyedu-final-conference-bridging-the-digital-skills-divide-in-youth-work-and-education.15267/"
   },
   {
-    "title": "Room to Breathe",
+    "title": "KA153 Cut FREE from Catastrophe",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "activity_type": "Training and Networking",
+    "dates_found": [
+      "2026-09-24",
+      "2027-06-01",
+      "2027-12-01"
+    ],
+    "application_deadline": "2026-09-24",
+    "application_deadline_iso": "2026-09-24",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615/"
+  },
+  {
+    "title": "Learning – Motivation – Plasticity",
     "source": "otlas",
     "category": "training_course",
     "activity_type": "Training and Networking",
     "dates_found": [
-      "2026-09-21"
-    ],
-    "application_deadline": "2026-09-21",
-    "application_deadline_iso": "2026-09-21",
-    "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/room-to-breathe.20562/"
-  },
-  {
-    "title": "ROBOTECH: Human-Centred AI & Robotics for Youth Civic Participation and Future of Work",
-    "source": "otlas",
-    "category": "strategic_partnership",
-    "activity_type": "Meetings between young people and decision-makers",
-    "dates_found": [
-      "2026-09-25",
-      "2027-02-01",
-      "2027-11-01"
+      "2026-09-25"
     ],
     "application_deadline": "2026-09-25",
     "application_deadline_iso": "2026-09-25",
     "netherlands_eligible": true,
     "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/robotech-human-centred-ai-robotics-for-youth-civic-participation-and-future-of-work.20564/"
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/learning-motivation-plasticity.20566/"
+  },
+  {
+    "title": "Outdoor Education KA152",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-09-25",
+      "2027-06-01",
+      "2027-12-01"
+    ],
+    "application_deadline": "2026-09-25",
+    "application_deadline_iso": "2026-09-25",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/outdoor-education-ka152.19616/"
+  },
+  {
+    "title": "AI at Work: Youth, Future Skills and Critical Thinking",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-10-01",
+      "2027-06-27",
+      "2026-09-23",
+      "2027-03-01",
+      "2027-08-31"
+    ],
+    "application_deadline": "1 October 2026",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-at-work-youth-future-skills-and-critical-thinking.20546/"
   },
   {
     "title": "Looking to join KA1 or KA2",
@@ -200,20 +234,5 @@
     "netherlands_eligible": true,
     "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka2-capacity-building-with-sub-sahara-africa.20565/"
-  },
-  {
-    "title": "Think Green, Transform Digital",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2027-09-05",
-      "2027-09-13"
-    ],
-    "application_deadline": "Niet opgegeven",
-    "application_deadline_iso": null,
-    "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/think-green-transform-digital.20563/"
   }
 ]
