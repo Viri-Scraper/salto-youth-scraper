@@ -1,40 +1,294 @@
 [
   {
-    "title": "Bringing Agile Learning into Youth Work",
+    "title": "International Seen & Heard Festival",
     "source": "salto",
-    "category": "seminar",
-    "activity_type": "Seminar",
-    "dates_found": [
-      "2026-09-21",
-      "2026-09-20"
+    "category": "study_visit",
+    "categories": [
+      "study_visit"
     ],
-    "application_deadline": "21 September 2026",
-    "application_deadline_iso": "2026-09-21",
+    "activity_type": "study visit",
+    "dates_found": [],
+    "application_deadline": "18 September 2026",
+    "application_deadline_iso": "2026-09-18",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/bringing-agile-learning-into-youth-work.15164/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/international-seen-heard-festival.15135"
+  },
+  {
+    "title": "Training course \"Career UP\"",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "18 September 2026",
+    "application_deadline_iso": "2026-09-18",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303"
+  },
+  {
+    "title": "Training Course \"Roots\" - Life Paths",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "18 September 2026",
+    "application_deadline_iso": "2026-09-18",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-roots-life-paths.15287"
   },
   {
     "title": "VIRTUALLYEDU Final Conference - Bridging the Digital Skills Divide in Youth Work and Education",
     "source": "salto",
-    "category": "strategic_partnership",
-    "activity_type": "E-learning",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "19 September 2026",
+    "application_deadline_iso": "2026-09-19",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/virtuallyedu-final-conference-bridging-the-digital-skills-divide-in-youth-work-and-education.15267"
+  },
+  {
+    "title": "Bringing Agile Learning into Youth Work",
+    "source": "salto",
+    "category": "seminar",
+    "categories": [
+      "seminar"
+    ],
+    "activity_type": "seminar",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/bringing-agile-learning-into-youth-work.15164"
+  },
+  {
+    "title": "Digital Eco Activism For The Earth",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-09-20",
+      "2027-02-07",
+      "2027-02-17"
+    ],
+    "application_deadline": "2026-09-20",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-eco-activism-for-the-earth.20442"
+  },
+  {
+    "title": "EGL-DR – Empowerment Youth, from Policy to Practice: How Municipal Approaches Can Drive Transformative Change Study Visit",
+    "source": "salto",
+    "category": "study_visit",
+    "categories": [
+      "study_visit"
+    ],
+    "activity_type": "study visit",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/egl-dr-empowerment-youth-from-policy-to-practice-how-municipal-approaches-can-drive-transformative-change-study-visit.15124"
+  },
+  {
+    "title": "Evidence-based approach in Erasmus+ and European Solidarity Corps: Innovations in Research, Research on Innovations",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/evidence-based-approach-in-erasmus-and-european-solidarity-corps-innovations-in-research-research-on-innovations.15167"
+  },
+  {
+    "title": "PBA with Study Visit Elements on Democratic Transformation and European Values",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/pba-with-study-visit-elements-on-democratic-transformation-and-european-values.15232"
+  },
+  {
+    "title": "Sparking Change: Enhancing Community Impact in European Solidarity Corps Activities",
+    "source": "salto",
+    "category": "seminar",
+    "categories": [
+      "seminar"
+    ],
+    "activity_type": "seminar",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sparking-change-enhancing-community-impact-in-european-solidarity-corps-activities.15102"
+  },
+  {
+    "title": "YOUTH WORK CREATE-Creativity, Resilience, Entrepreneurship & Action Through Empowerment",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 September 2026",
+    "application_deadline_iso": "2026-09-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-create-creativity-resilience-entrepreneurship-action-through-empowerment.15292"
+  },
+  {
+    "title": "Dance Without Borders",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
     "dates_found": [
       "2026-09-21",
-      "2026-09-20",
-      "2026-09-19"
+      "2027-03-01",
+      "2027-03-08"
     ],
-    "application_deadline": "21 September 2026",
+    "application_deadline": "2026-09-21",
     "application_deadline_iso": "2026-09-21",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/virtuallyedu-final-conference-bridging-the-digital-skills-divide-in-youth-work-and-education.15267/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/dance-without-borders.20443"
+  },
+  {
+    "title": "Quality in Practice: Strengthening Youth Organisations through Self-Assessment and Learning",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "22 September 2026",
+    "application_deadline_iso": "2026-09-22",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/quality-in-practice-strengthening-youth-organisations-through-self-assessment-and-learning.15194"
+  },
+  {
+    "title": "TOGETHER WE HOST, TOGETHER WE GROW",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "22 September 2026",
+    "application_deadline_iso": "2026-09-22",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/together-we-host-together-we-grow.15297"
+  },
+  {
+    "title": "Navigating the Polarities of Democracy: Human Rights & Communal Obligation - Live Webinar Series",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "23 September 2026",
+    "application_deadline_iso": "2026-09-23",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/navigating-the-polarities-of-democracy-human-rights-communal-obligation-live-webinar-series.15315"
+  },
+  {
+    "title": "Social Economy in Practice",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-09-23"
+    ],
+    "application_deadline": "2026-09-23",
+    "application_deadline_iso": "2026-09-23",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/social-economy-in-practice.20559"
+  },
+  {
+    "title": "Streetstival 2026 - Without us, there is no community",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "23 September 2026",
+    "application_deadline_iso": "2026-09-23",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/streetstival-2026-without-us-there-is-no-community.15338"
   },
   {
     "title": "KA153 Cut FREE from Catastrophe",
     "source": "otlas",
-    "category": "youth_exchange",
-    "activity_type": "Training and Networking",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
     "dates_found": [
       "2026-09-24",
       "2027-06-01",
@@ -43,27 +297,89 @@
     "application_deadline": "2026-09-24",
     "application_deadline_iso": "2026-09-24",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
   },
   {
-    "title": "Learning – Motivation – Plasticity",
+    "title": "CyberShield Youth: Cybersecurity and Digital Privacy Awareness for Young People/Erasmus+KA152",
     "source": "otlas",
-    "category": "training_course",
-    "activity_type": "Training and Networking",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
     "dates_found": [
-      "2026-09-25"
+      "2026-09-25",
+      "2027-05-01",
+      "2028-10-31"
     ],
     "application_deadline": "2026-09-25",
     "application_deadline_iso": "2026-09-25",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/learning-motivation-plasticity.20566/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/cybershield-youth-cybersecurity-and-digital-privacy-awareness-for-young-people-erasmus-ka152.20421"
+  },
+  {
+    "title": "Getting started with CP’s – Introduction to KA2",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 September 2026",
+    "application_deadline_iso": "2026-09-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/getting-started-with-cp-s-introduction-to-ka2.15248"
+  },
+  {
+    "title": "KA210-SafeNet & KiVa: AI-Driven Cyberbullying Prevention and Digital Empathy in Schools",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-09-25",
+      "2027-05-20",
+      "2028-11-20"
+    ],
+    "application_deadline": "2026-09-25",
+    "application_deadline_iso": "2026-09-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka210-safenet-kiva-ai-driven-cyberbullying-prevention-and-digital-empathy-in-schools.20510"
+  },
+  {
+    "title": "LEC (Love Every Challenge)",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 September 2026",
+    "application_deadline_iso": "2026-09-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/lec-love-every-challenge.15310"
   },
   {
     "title": "Outdoor Education KA152",
     "source": "otlas",
     "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
     "activity_type": "Youth Exchanges",
     "dates_found": [
       "2026-09-25",
@@ -73,166 +389,2313 @@
     "application_deadline": "2026-09-25",
     "application_deadline_iso": "2026-09-25",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/outdoor-education-ka152.19616/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/outdoor-education-ka152.19616"
   },
   {
-    "title": "AI at Work: Youth, Future Skills and Critical Thinking",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-10-01",
-      "2027-06-27",
-      "2026-09-23",
-      "2027-03-01",
-      "2027-08-31"
+    "title": "Roadmap to NEETwork 4.0",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
     ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "27 September 2026",
+    "application_deadline_iso": "2026-09-27",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/roadmap-to-neetwork-4-0.15321"
+  },
+  {
+    "title": "ROOTED. In yourself and in relationships. Embodied Nonviolent Communication training",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "27 September 2026",
+    "application_deadline_iso": "2026-09-27",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/rooted-in-yourself-and-in-relationships-embodied-nonviolent-communication-training.15318"
+  },
+  {
+    "title": "BREAK THE LOOP: Breking The Digital Gambling-Relapse Cycle in Addiction Rehabilitation",
+    "source": "otlas",
+    "category": "capacity_building",
+    "categories": [
+      "capacity_building"
+    ],
+    "activity_type": "Capacity Building",
+    "dates_found": [
+      "2026-09-29",
+      "2027-09-15",
+      "2028-09-15"
+    ],
+    "application_deadline": "2026-09-29",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/break-the-loop-breking-the-digital-gambling-relapse-cycle-in-addiction-rehabilitation.20523"
+  },
+  {
+    "title": "Co-create space with and for youth",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "29 September 2026",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/co-create-space-with-and-for-youth.15244"
+  },
+  {
+    "title": "Discover EU Inclusion Meeting",
+    "source": "salto",
+    "category": "seminar",
+    "categories": [
+      "seminar"
+    ],
+    "activity_type": "seminar",
+    "dates_found": [],
+    "application_deadline": "29 September 2026",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/discover-eu-inclusion-meeting.15215"
+  },
+  {
+    "title": "Listening to Every-Body",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "29 September 2026",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/listening-to-every-body.15327"
+  },
+  {
+    "title": "STOP THE NOISE Stop-Motion & Digital Wellbeing Tools",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "29 September 2026",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/stop-the-noise-stop-motion-digital-wellbeing-tools.15343"
+  },
+  {
+    "title": "Empowering Youth Participation & Democratic Engagement: Online Activity-Based Civic Education Training for Trainers, Educators, Teachers & Youth Workers",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/empowering-youth-participation-democratic-engagement-online-activity-based-civic-education-training-for-trainers-educators-teachers-youth-workers.15259"
+  },
+  {
+    "title": "KA210YOU Girls4Future AI, STEM & Green Entrepreneurship",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "youth_exchange"
+    ],
+    "activity_type": "Strategic Partnerships, Youth Exchanges",
+    "dates_found": [
+      "2026-09-30",
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka210you-girls4future-ai-stem-green-entrepreneurship.20177"
+  },
+  {
+    "title": "Massive Open Online Course on European Solidarity Corps 2026",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15280"
+  },
+  {
+    "title": "Media Literacy, Misinformation & Digital Citizenship Online Activity-Based Civic Education Training for Trainers, Educators, Teachers & Youth Workers",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/media-literacy-misinformation-digital-citizenship-online-activity-based-civic-education-training-for-trainers-educators-teachers-youth-workers.15258"
+  },
+  {
+    "title": "My Next Step",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-09-30"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/my-next-step.20373"
+  },
+  {
+    "title": "OPEN CALL FOR PARTICIPANTS - Growing into Real Leaders – GIRL",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/open-call-for-participants-growing-into-real-leaders-girl.15285"
+  },
+  {
+    "title": "Spaces that Empower: Rethinking Environments for Young People in Europe (IN GERMAN LANGUAGE)",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/spaces-that-empower-rethinking-environments-for-young-people-in-europe-in-german-language.14430"
+  },
+  {
+    "title": "STORYBUILDERS LAB: From Story to STEAM Challenge in Youth Work",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "30 September 2026",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/storybuilders-lab-from-story-to-steam-challenge-in-youth-work.15276"
+  },
+  {
+    "title": "Youth Bridges: Inclusion, Culture and Intercultural Dialogue in Puglia",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering",
+      "training_and_networking",
+      "youth_exchange"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs), Training And Networking, Youth Exchanges",
+    "dates_found": [
+      "2026-09-01",
+      "2026-09-30",
+      "2027-06-30"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/youth-bridges-inclusion-culture-and-intercultural-dialogue-in-puglia.19994"
+  },
+  {
+    "title": "Ctrl+Alt+Solidarity: training course on digital empowerment in European Solidarity Corps",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
     "application_deadline": "1 October 2026",
     "application_deadline_iso": "2026-10-01",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-at-work-youth-future-skills-and-critical-thinking.20546/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ctrl-alt-solidarity-training-course-on-digital-empowerment-in-european-solidarity-corps.15300"
+  },
+  {
+    "title": "European Solidary Corps 2026",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs)",
+    "dates_found": [
+      "2026-10-01",
+      "2027-10-31"
+    ],
+    "application_deadline": "2026-10-01",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/european-solidary-corps-2026.11367"
+  },
+  {
+    "title": "Future Skills Lab – Preparing Young People for the AI Era KA210YOU",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "youth_exchange"
+    ],
+    "activity_type": "Strategic Partnerships, Youth Exchanges",
+    "dates_found": [
+      "2026-10-01",
+      "2027-01-01",
+      "2028-12-31"
+    ],
+    "application_deadline": "2026-10-01",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/future-skills-lab-preparing-young-people-for-the-ai-era-ka210you.20209"
+  },
+  {
+    "title": "Inclusion & Diversity in Youth Work",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "1 October 2026",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inclusion-diversity-in-youth-work.15245"
   },
   {
     "title": "Looking to join KA1 or KA2",
     "source": "otlas",
     "category": "training_and_networking",
-    "activity_type": "Training and Networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Capacity Building",
     "dates_found": [
       "2026-10-01"
     ],
     "application_deadline": "2026-10-01",
     "application_deadline_iso": "2026-10-01",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-to-join-ka1-or-ka2.20271/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-to-join-ka1-or-ka2.20271"
   },
   {
-    "title": "Training Course \"Roots\" - Life Paths",
+    "title": "EmpowerYouth Forum 3.0: Bringing Change to Communities",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "2 October 2026",
+    "application_deadline_iso": "2026-10-02",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/empoweryouth-forum-3-0-bringing-change-to-communities.15294"
+  },
+  {
+    "title": "MindBoost Academy: Mental Health & Youth Work",
     "source": "salto",
     "category": "training_course",
-    "activity_type": "Training Course",
-    "dates_found": [
-      "2026-10-09",
-      "2026-09-18",
-      "2026-09-21"
+    "categories": [
+      "training_course"
     ],
-    "application_deadline": "9 October 2026",
-    "application_deadline_iso": "2026-10-09",
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "2 October 2026",
+    "application_deadline_iso": "2026-10-02",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-roots-life-paths.15287/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/mindboost-academy-mental-health-youth-work.15180"
   },
   {
-    "title": "Training course \"Career UP\"",
+    "title": "ScreenWriting for Social Change: Tell the Story that Changes the World",
     "source": "salto",
     "category": "training_course",
-    "activity_type": "Training Course",
-    "dates_found": [
-      "2026-10-16",
-      "2026-09-18",
-      "2026-09-23"
+    "categories": [
+      "training_course"
     ],
-    "application_deadline": "16 October 2026",
-    "application_deadline_iso": "2026-10-16",
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "2 October 2026",
+    "application_deadline_iso": "2026-10-02",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/screenwriting-for-social-change-tell-the-story-that-changes-the-world.14963"
   },
   {
-    "title": "Creative training for non-creative youth workers 3.0",
+    "title": "The Story of Us",
     "source": "salto",
     "category": "training_course",
-    "activity_type": "Training Course",
-    "dates_found": [
-      "2026-10-18",
-      "2026-09-18",
-      "2026-09-19"
+    "categories": [
+      "training_course"
     ],
-    "application_deadline": "18 October 2026",
-    "application_deadline_iso": "2026-10-18",
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "2 October 2026",
+    "application_deadline_iso": "2026-10-02",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/creative-training-for-non-creative-youth-workers-3-0.15121/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-story-of-us.15347"
   },
   {
-    "title": "Evidence-based approach in Erasmus+ and European Solidarity Corps: Innovations in Research, Research on Innovations",
+    "title": "Erasmus+ Make art not walls",
     "source": "salto",
-    "category": "strategic_partnership",
-    "activity_type": "Conference – Symposium - Forum",
-    "dates_found": [
-      "2026-11-26",
-      "2026-09-20",
-      "2026-10-05"
+    "category": "training_course",
+    "categories": [
+      "training_course"
     ],
-    "application_deadline": "26 November 2026",
-    "application_deadline_iso": "2026-11-26",
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "3 October 2026",
+    "application_deadline_iso": "2026-10-03",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/evidence-based-approach-in-erasmus-and-european-solidarity-corps-innovations-in-research-research-on-innovations.15167/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/erasmus-make-art-not-walls.15331"
   },
   {
-    "title": "EGL-DR – Empowerment Youth, from Policy to Practice: How Municipal Approaches Can Drive Transformative Change Study Visit",
+    "title": "Democracy Reloading Webinars 2026: Developing youth participation in municipal decisions",
     "source": "salto",
-    "category": "study_visit",
-    "activity_type": "Study Visit",
-    "dates_found": [
-      "2026-11-27",
-      "2026-11-23",
-      "2026-11-26",
-      "2026-09-20",
-      "2026-10-02"
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
     ],
-    "application_deadline": "27 November 2026",
-    "application_deadline_iso": "2026-11-27",
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "4 October 2026",
+    "application_deadline_iso": "2026-10-04",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/egl-dr-empowerment-youth-from-policy-to-practice-how-municipal-approaches-can-drive-transformative-change-study-visit.15124/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/democracy-reloading-webinars-2026-developing-youth-participation-in-municipal-decisions.14419"
   },
   {
-    "title": "Sparking Change: Enhancing Community Impact in European Solidarity Corps Activities",
+    "title": "Partnership Building Activity with Study Visits in the field of Sport",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "4 October 2026",
+    "application_deadline_iso": "2026-10-04",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/partnership-building-activity-with-study-visits-in-the-field-of-sport.15182"
+  },
+  {
+    "title": "Sharing practices for preventing gender-based violence and support victims",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "4 October 2026",
+    "application_deadline_iso": "2026-10-04",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sharing-practices-for-preventing-gender-based-violence-and-support-victims.15325"
+  },
+  {
+    "title": "Tafa’ul تفاؤل Capacity building of youth work for euromediterranean social justice",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "4 October 2026",
+    "application_deadline_iso": "2026-10-04",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tafa-ul-capacity-building-of-youth-work-for-euromediterranean-social-justice.15334"
+  },
+  {
+    "title": "Dive into Youth Participation",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "5 October 2026",
+    "application_deadline_iso": "2026-10-05",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/dive-into-youth-participation.15041"
+  },
+  {
+    "title": "From Empathy to Action PBA",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "5 October 2026",
+    "application_deadline_iso": "2026-10-05",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/from-empathy-to-action-pba.15342"
+  },
+  {
+    "title": "Training course \"Inside OUT\"",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "5 October 2026",
+    "application_deadline_iso": "2026-10-05",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-inside-out.15336"
+  },
+  {
+    "title": "\"Inside Track\" Webinar Series by Youth@Work Partnership \"Unfiltered finance: breaking taboos and building economic autonomy with young people\"",
     "source": "salto",
     "category": "seminar",
-    "activity_type": "Seminar",
-    "dates_found": [
-      "2026-11-27",
-      "2026-09-20",
-      "2026-10-05"
+    "categories": [
+      "seminar"
     ],
-    "application_deadline": "27 November 2026",
-    "application_deadline_iso": "2026-11-27",
+    "activity_type": "seminar",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sparking-change-enhancing-community-impact-in-european-solidarity-corps-activities.15102/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inside-track-webinar-series-by-youth-work-partnership-unfiltered-finance-breaking-taboos-and-building-economic-autonomy-with-young-people.15304"
   },
   {
-    "title": "International Seen & Heard Festival",
+    "title": "CONNECTING WITH NATURE: Nature-Based learning for Eco-friendly Youth Work",
     "source": "salto",
-    "category": "study_visit",
-    "activity_type": "Study Visit",
-    "dates_found": [
-      "2026-12-05",
-      "2026-12-02",
-      "2026-09-18",
-      "2026-09-25"
+    "category": "training_course",
+    "categories": [
+      "training_course"
     ],
-    "application_deadline": "5 December 2026",
-    "application_deadline_iso": "2026-12-05",
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/international-seen-heard-festival.15135/"
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/connecting-with-nature-nature-based-learning-for-eco-friendly-youth-work.15329"
   },
   {
-    "title": "KA2 Capacity building with sub Sahara Africa",
+    "title": "From Idea to Impact - An Erasmus+ Youth and European Solidarity Corps Project Lab for Deaf and hard-of-hearing people and organisations",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/from-idea-to-impact-an-erasmus-youth-and-european-solidarity-corps-project-lab-for-deaf-and-hard-of-hearing-people-and-organisations.15238"
+  },
+  {
+    "title": "Tools for Adventurous Education",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tools-for-adventurous-education.15298"
+  },
+  {
+    "title": "Training for Mentors 2",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-for-mentors-2.15320"
+  },
+  {
+    "title": "UNLOCK LEARNING - Creative Learning Through Educational Escape Rooms",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/unlock-learning-creative-learning-through-educational-escape-rooms.15333"
+  },
+  {
+    "title": "\"LIVING AND ORGANIZING IN OUR COMMUNITIES : Towards more justice, integrity, and tenderness\"",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "15 October 2026",
+    "application_deadline_iso": "2026-10-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/living-and-organizing-in-our-communities-towards-more-justice-integrity-and-tenderness.14942"
+  },
+  {
+    "title": "BISYOC 2027 - Emsland, Germany",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "transnational_youth_initiative",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Transnational Youth Initiatives, Youth Exchanges",
+    "dates_found": [
+      "2026-10-15",
+      "2027-07-19",
+      "2027-08-01"
+    ],
+    "application_deadline": "2026-10-15",
+    "application_deadline_iso": "2026-10-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/bisyoc-2027-emsland-germany.20367"
+  },
+  {
+    "title": "Synapse: Connecting Networks for Impact",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "15 October 2026",
+    "application_deadline_iso": "2026-10-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/synapse-connecting-networks-for-impact.15313"
+  },
+  {
+    "title": "Partner Search | KA210-YOU | Coordinating Organisation Needed | Youth Workers’ Well-being & Child Protection",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-10-16",
+      "2026-12-01",
+      "2027-12-01"
+    ],
+    "application_deadline": "2026-10-16",
+    "application_deadline_iso": "2026-10-16",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/partner-search-ka210-you-coordinating-organisation-needed-youth-workers-well-being-child-protection.20356"
+  },
+  {
+    "title": "Bağımlılıkla Mücadelede Yeni Nesil Gençlik Çalışması: Etkileşimli ve Deneyime Dayalı Metotlar İçin Uluslararası İş Başı Gözlemi ve Eğitimi",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-09-22",
+      "2026-10-22"
+    ],
+    "application_deadline": "2026-10-22",
+    "application_deadline_iso": "2026-10-22",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/bamllkla-muecadelede-yeni-nesil-genlik-almas-etkileimli-ve-deneyime-dayal-metotlar-iin-uluslararas-i-ba-goezlemi-ve-eitimi.18840"
+  },
+  {
+    "title": "Create with Makey Makey: Turning Everyday Objects into Interactive Learning",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "26 October 2026",
+    "application_deadline_iso": "2026-10-26",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/create-with-makey-makey-turning-everyday-objects-into-interactive-learning.15330"
+  },
+  {
+    "title": "Seeking Long-Term Accredited Partners for KA1, KA2 & CBY Cooperation",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2026-03-21",
+      "2026-12-01"
+    ],
+    "application_deadline": "2026-12-01",
+    "application_deadline_iso": "2026-12-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/seeking-long-term-accredited-partners-for-ka1-ka2-cby-cooperation.18807"
+  },
+  {
+    "title": "RIGHTS4CLIMATE – Youth Observatories for Climate‑Just Cities",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "strategic_partnership"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Strategic Partnerships",
+    "dates_found": [
+      "2026-12-15",
+      "2027-09-01",
+      "2028-08-31"
+    ],
+    "application_deadline": "2026-12-15",
+    "application_deadline_iso": "2026-12-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/rights4climate-youth-observatories-for-climate-just-cities.20350"
+  },
+  {
+    "title": "Digital Independence for Adults in an AI-Driven Society",
     "source": "otlas",
     "category": "strategic_partnership",
-    "activity_type": "Capacity Building",
-    "dates_found": [],
-    "application_deadline": "Niet opgegeven",
-    "application_deadline_iso": null,
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2027-02-01",
+      "2027-08-28",
+      "2029-08-28"
+    ],
+    "application_deadline": "2027-02-01",
+    "application_deadline_iso": "2027-02-01",
     "netherlands_eligible": true,
-    "eligibility_status": "eligible",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka2-capacity-building-with-sub-sahara-africa.20565/"
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-independence-for-adults-in-an-ai-driven-society.20258"
+  },
+  {
+    "title": "From Lived Experience to Opportunity, Knowledge and Action: European Dialogue & Capacity-Building Forum 2027",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "9 March 2027",
+    "application_deadline_iso": "2027-03-09",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/from-lived-experience-to-opportunity-knowledge-and-action-european-dialogue-capacity-building-forum-2027.15346"
+  },
+  {
+    "title": "Volunteer exchange for development and evolvement..",
+    "source": "otlas",
+    "category": "capacity_building",
+    "categories": [
+      "capacity_building"
+    ],
+    "activity_type": "Capacity Building",
+    "dates_found": [
+      "2027-05-01",
+      "2027-06-08",
+      "2028-06-08"
+    ],
+    "application_deadline": "2027-05-01",
+    "application_deadline_iso": "2027-05-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/volunteer-exchange-for-development-and-evolvement.20328"
+  },
+  {
+    "title": "Heritage Revised — New Media Approaches to Heritage Awareness in Youth Work",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "31 May 2027",
+    "application_deadline_iso": "2027-05-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/heritage-revised-new-media-approaches-to-heritage-awareness-in-youth-work.15241"
+  },
+  {
+    "title": "URGENT! ESC Host Organisation Partner Search",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs), Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2024-12-01",
+      "2027-08-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "2027-12-31",
+    "application_deadline_iso": "2027-12-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/urgent-esc-host-organisation-partner-search.16806"
+  },
+  {
+    "title": "Kick Out Malaria School and Community Outreach (SCO) - Climate Change Bundle - for Individuals, Corporate Organizations and Municipal Institutions",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-05-05",
+      "2030-12-31"
+    ],
+    "application_deadline": "2030-12-31",
+    "application_deadline_iso": "2030-12-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/kick-out-malaria-school-and-community-outreach-sco-climate-change-bundle-for-individuals-corporate-organizations-and-municipal-institutions.18214"
+  },
+  {
+    "title": "Partnerships for the Kick Out Malaria School and Community Outreach (SCO) and Train-the-trainer Program",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2024-01-01",
+      "2030-12-31"
+    ],
+    "application_deadline": "2030-12-31",
+    "application_deadline_iso": "2030-12-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/partnerships-for-the-kick-out-malaria-school-and-community-outreach-sco-and-train-the-trainer-program.18213"
+  },
+  {
+    "title": "Youth+: How to help youth with fewer/less opportunities grow in volunteering projects",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "30 September 2032",
+    "application_deadline_iso": "2032-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-how-to-help-youth-with-fewer-less-opportunities-grow-in-volunteering-projects.11591"
+  },
+  {
+    "title": "Ladder to Inclusion - Create Safer International Mobilities for Highly Vulnerable Young People Online Course",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "27 December 2032",
+    "application_deadline_iso": "2032-12-27",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ladder-to-inclusion-create-safer-international-mobilities-for-highly-vulnerable-young-people-online-course.15005"
+  },
+  {
+    "title": "\"Yağcıbedir Carpet: From Tradition to Future\"",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-12-12",
+      "2026-12-11"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/yacbedir-carpet-from-tradition-to-future.18064"
+  },
+  {
+    "title": ": Eau et biodiversité : jeunes engagés pour un avenir durable à Mayotte",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eau-et-biodiversit-jeunes-engags-pour-un-avenir-durable-mayotte.19162"
+  },
+  {
+    "title": "ACCOMPANIER",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-02-10",
+      "2027-02-09"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/accompanier.16665"
+  },
+  {
+    "title": "AgriLearn Digital Farming Future",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2025-12-12",
+      "2026-12-11"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/agrilearn-digital-farming-future.18063"
+  },
+  {
+    "title": "AI & Digital Tools for Modern Teaching – Practical Training in Nantes (France)",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-09-22",
+      "2026-09-26"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-digital-tools-for-modern-teaching-practical-training-in-nantes-france.19935"
+  },
+  {
+    "title": "AI & Sport: modernizing professional practices (KA-182)",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-09-21",
+      "2026-10-04"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-sport-modernizing-professional-practices-ka-182.19190"
+  },
+  {
+    "title": "AI-Supported Digital Literacy for Ethical Social Media Use",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Training And Networking, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-10-20",
+      "2027-04-20"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-supported-digital-literacy-for-ethical-social-media-use.18071"
+  },
+  {
+    "title": "APPLICANT PARTNER FOR KA220 SCHOOL EDUCATION",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2025-09-01",
+      "2027-10-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/applicant-partner-for-ka220-school-education.17696"
+  },
+  {
+    "title": "Aqua Lab 21",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-02-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/aqua-lab-21.19960"
+  },
+  {
+    "title": "Are you looking for an experienced host organisation for your Erasmus+ project in Sicily?",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2025-10-20",
+      "2027-12-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/are-you-looking-for-an-experienced-host-organisation-for-your-erasmus-project-in-sicily.20144"
+  },
+  {
+    "title": "Beyond the Trails: Professional Mobility in Cycling, Skiing, and Canyoning",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2027-01-01",
+      "2030-01-16"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/beyond-the-trails-professional-mobility-in-cycling-skiing-and-canyoning.20086"
+  },
+  {
+    "title": "Books Without Borders",
+    "source": "otlas",
+    "category": "volunteering",
+    "categories": [
+      "volunteering",
+      "training_and_networking",
+      "strategic_partnership"
+    ],
+    "activity_type": "Volunteering Activities (Formerly Evs), Training And Networking, Strategic Partnerships",
+    "dates_found": [
+      "2026-09-01",
+      "2027-09-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/books-without-borders.19637"
+  },
+  {
+    "title": "Born Equal",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2025-07-01",
+      "2029-08-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/born-equal.18904"
+  },
+  {
+    "title": "Building more inclusive sports practices through European mobility (KA-182)",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-10-17",
+      "2026-11-02"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/building-more-inclusive-sports-practices-through-european-mobility-ka-182.19202"
+  },
+  {
+    "title": "CALL FOR AN APPLICANT - BRIDGE OF POSSIBILITIES KA-1",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/call-for-an-applicant-bridge-of-possibilities-ka-1.15457"
+  },
+  {
+    "title": "climate Action and sustainable lifestyle for youth",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/climate-action-and-sustainable-lifestyle-for-youth.19860"
+  },
+  {
+    "title": "Data Can save our world!",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/data-can-save-our-world.16307"
+  },
+  {
+    "title": "Documentary \"Je pars pour la france !\" AK220 - HED",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-12-15",
+      "2028-12-14"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/documentary-je-pars-pour-la-france-ak220-hed.19532"
+  },
+  {
+    "title": "ECO-TRACE",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-02-15",
+      "2027-02-15"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eco-trace.16664"
+  },
+  {
+    "title": "eco-vision",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-02-17",
+      "2029-02-17"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eco-vision.19771"
+  },
+  {
+    "title": "Education for Kids in Western Kenya",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2016-05-10",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/education-for-kids-in-western-kenya.9862"
+  },
+  {
+    "title": "Empower to Be Eligible Looking for Partnerships in KA1 + KA2 ERASMUS+ Youth Exchange",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "youth_exchange"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Youth Exchanges",
+    "dates_found": [
+      "2026-06-01",
+      "2028-06-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/empower-to-be-eligible-looking-for-partnerships-in-ka1-ka2-erasmus-youth-exchange.19371"
+  },
+  {
+    "title": "Enhancing Language Skills of Prison Staff Working with Foreign Inmates",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-05-01",
+      "2027-05-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/enhancing-language-skills-of-prison-staff-working-with-foreign-inmates.18671"
+  },
+  {
+    "title": "Erasmus+ Cooperation and Hosting Opportunities - Kars, Türkiye",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-09-15",
+      "2027-06-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/erasmus-cooperation-and-hosting-opportunities-kars-tuerkiye.20270"
+  },
+  {
+    "title": "ES Pathways A 100-Day Reintegration Program",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2027-02-01",
+      "2028-01-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/es-pathways-a-100-day-reintegration-program.20129"
+  },
+  {
+    "title": "Garden Based Education Approach and Nature/Environmental Awareness for early school education",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2024-10-09",
+      "2026-10-08"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/garden-based-education-approach-and-nature-environmental-awareness-for-early-school-education.16320"
+  },
+  {
+    "title": "Give Hope to the Voiceless Children in Kenya",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2016-05-05",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/give-hope-to-the-voiceless-children-in-kenya.9857"
+  },
+  {
+    "title": "GREEN CANVAS – Youth Creating Circular Futures through Art",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2027-03-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/green-canvas-youth-creating-circular-futures-through-art.20480"
+  },
+  {
+    "title": "High-Security, High-Hope",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-05-01",
+      "2027-05-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/high-security-high-hope.18698"
+  },
+  {
+    "title": "Identification of children at risk of learning disabilities and ADHD in early childhood and early intervention",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2025-06-01",
+      "2027-01-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/identification-of-children-at-risk-of-learning-disabilities-and-adhd-in-early-childhood-and-early-intervention.18059"
+  },
+  {
+    "title": "IGNITE THE DREAM OF VULNERABLE YOUTH IN KENYA",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2016-05-05",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ignite-the-dream-of-vulnerable-youth-in-kenya.9855"
+  },
+  {
+    "title": "Innovative AI-powered solutions for young visually impaired individuals",
+    "source": "otlas",
+    "category": "transnational_youth_initiative",
+    "categories": [
+      "transnational_youth_initiative",
+      "youth_exchange"
+    ],
+    "activity_type": "Transnational Youth Initiatives, Youth Exchanges",
+    "dates_found": [
+      "2026-06-10",
+      "2029-06-10"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/innovative-ai-powered-solutions-for-young-visually-impaired-individuals.18539"
+  },
+  {
+    "title": "Innovative Approaches to Crime Prevention and Rehabilitation in Europe",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Capacity Building",
+    "dates_found": [
+      "2025-10-25",
+      "2027-10-25"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/innovative-approaches-to-crime-prevention-and-rehabilitation-in-europe.18843"
+  },
+  {
+    "title": "International Social Research Institute – Partner for Erasmus+ Projects (KA210 / KA220)",
+    "source": "otlas",
+    "category": "transnational_youth_initiative",
+    "categories": [
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership"
+    ],
+    "activity_type": "Transnational Youth Initiatives, Training And Networking, Strategic Partnerships",
+    "dates_found": [
+      "2026-01-01",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/international-social-research-institute-partner-for-erasmus-projects-ka210-ka220.18994"
+  },
+  {
+    "title": "KA154 – Voices Across Borders | Youth, Memory & Participation",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers",
+    "dates_found": [
+      "2026-02-12",
+      "2028-12-12"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka154-voices-across-borders-youth-memory-participation.19621"
+  },
+  {
+    "title": "Looking for an experienced EU partner to co-create and write a new project proposal",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-11-09",
+      "2028-01-02"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-for-an-experienced-eu-partner-to-co-create-and-write-a-new-project-proposal.18251"
+  },
+  {
+    "title": "Looking for partners ?",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2023-06-01",
+      "2027-06-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-for-partners.15168"
+  },
+  {
+    "title": "Looking for Partners in Art, Design, and Social Impact Projects",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2025-10-01",
+      "2027-07-18"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-for-partners-in-art-design-and-social-impact-projects.17446"
+  },
+  {
+    "title": "Looking for project to be sending partner",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Youth Exchanges",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-for-project-to-be-sending-partner.20387"
+  },
+  {
+    "title": "Looking for the Coordinator for Ka210 , EcoWell Youth: Forest Bathing as a Tool for European Youth Mental Health",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-for-the-coordinator-for-ka210-ecowell-youth-forest-bathing-as-a-tool-for-european-youth-mental-health.18985"
+  },
+  {
+    "title": "Meet, Make, Move: Bridging EA and EU through Youth-Led Virtual Exchange",
+    "source": "otlas",
+    "category": "transnational_youth_initiative",
+    "categories": [
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-01-01",
+      "2029-01-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/meet-make-move-bridging-ea-and-eu-through-youth-led-virtual-exchange.18180"
+  },
+  {
+    "title": "Mentoring Program for Underprivileged Youth in Kenya",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2016-05-05",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/mentoring-program-for-underprivileged-youth-in-kenya.9861"
+  },
+  {
+    "title": "Mixed pizza",
+    "source": "otlas",
+    "category": "transnational_youth_initiative",
+    "categories": [
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "youth_exchange"
+    ],
+    "activity_type": "Transnational Youth Initiatives, Training And Networking, Youth Exchanges",
+    "dates_found": [
+      "2026-02-21",
+      "2026-10-05"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/mixed-pizza.19142"
+  },
+  {
+    "title": "NextGen Kurdî 2.0 – Youth, Media and Multilingual Participation",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-12-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/nextgen-kurd-2-0-youth-media-and-multilingual-participation.20501"
+  },
+  {
+    "title": "Ortaklıklara Açığız",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-10-01",
+      "2026-10-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ortaklklara-az.18652"
+  },
+  {
+    "title": "PROMOTION OF HEALTH AND WELL BEING THROUGH ECO THERAPY",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "youth_exchange"
+    ],
+    "activity_type": "Strategic Partnerships, Youth Exchanges",
+    "dates_found": [
+      "2026-01-01",
+      "2027-08-29"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/promotion-of-health-and-well-being-through-eco-therapy.20079"
+  },
+  {
+    "title": "Quiet and invisible students",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-10-01",
+      "2028-02-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/quiet-and-invisible-students.20003"
+  },
+  {
+    "title": "Rebuilding Futures: Post-Release Rehabilitation and Social Reintegration of Juvenile Offenders",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Capacity Building",
+    "dates_found": [
+      "2026-05-01",
+      "2027-05-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/rebuilding-futures-post-release-rehabilitation-and-social-reintegration-of-juvenile-offenders.19240"
+  },
+  {
+    "title": "Save Women & girls from Violence-Kenya",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2018-05-01",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/save-women-girls-from-violence-kenya.9880"
+  },
+  {
+    "title": "SCH ACCREDITATION",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2021-12-22",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sch-accreditation.13703"
+  },
+  {
+    "title": "SOCIAL INCLUSION FOR YOUTH WITH FEWER OPPORTUNITIES THROUGH SPORT IN KENYA",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2019-09-12",
+      "2029-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/social-inclusion-for-youth-with-fewer-opportunities-through-sport-in-kenya.9937"
+  },
+  {
+    "title": "Sowing Seeds of Sustainable Entrepreneurship",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-10-13",
+      "2026-10-20"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sowing-seeds-of-sustainable-entrepreneurship.20301"
+  },
+  {
+    "title": "sport for all",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sport-for-all.20295"
+  },
+  {
+    "title": "Sport for All: Building Active Communities in Romania",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Training And Networking, Capacity Building",
+    "dates_found": [
+      "2026-06-19",
+      "2027-06-17"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sport-for-all-building-active-communities-in-romania.19262"
+  },
+  {
+    "title": "Sport Knows No Barriers",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-09-01",
+      "2027-09-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sport-knows-no-barriers.19052"
+  },
+  {
+    "title": "THE GRAND LOBBY: Transferring Micro-Habitat Biodiversity and Eco-Literacy Methods through Youth Work",
+    "source": "otlas",
+    "category": "transnational_youth_initiative",
+    "categories": [
+      "transnational_youth_initiative",
+      "training_and_networking"
+    ],
+    "activity_type": "Transnational Youth Initiatives, Training And Networking",
+    "dates_found": [
+      "2027-01-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/the-grand-lobby-transferring-micro-habitat-biodiversity-and-eco-literacy-methods-through-youth-work.20146"
+  },
+  {
+    "title": "TwoNGO - Civil Society Grows Digitally Project",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-10-10",
+      "2026-10-10"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/twongo-civil-society-grows-digitally-project.18081"
+  },
+  {
+    "title": "Unity in Diversity: Collaborative Learning",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2025-11-02",
+      "2026-11-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/unity-in-diversity-collaborative-learning.17775"
+  },
+  {
+    "title": "Unleash the Leader in a Girl",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2016-05-06",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/unleash-the-leader-in-a-girl.9881"
+  },
+  {
+    "title": "We all belong to the World",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2013-02-01",
+      "2027-02-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/we-all-belong-to-the-world.2054"
+  },
+  {
+    "title": "We are looking for partners/aplicants.",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2024-10-01",
+      "2030-05-01"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/we-are-looking-for-partners-aplicants.15502"
+  },
+  {
+    "title": "Welcome Desk Europe - AK220 HED",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-10-15",
+      "2028-10-14"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/welcome-desk-europe-ak220-hed.19531"
+  },
+  {
+    "title": "WOMEN ON CYCLISTS",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2026-06-01",
+      "2026-11-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/women-on-cyclists.18959"
+  },
+  {
+    "title": "YCREATE",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-11-01",
+      "2029-10-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ycreate.20114"
+  },
+  {
+    "title": "YOUR SUPPORT IN SPAIN",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-08-18",
+      "2036-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/your-support-in-spain.20321"
+  },
+  {
+    "title": "“Onkoloji Sağlık Personeli İçin Yenilikçi Fiziksel Aktivite Modeli: Pickleball Uygulamaları”",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-04-26",
+      "2026-11-18"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/onkoloji-salk-personeli-iin-yeniliki-fiziksel-aktivite-modeli-pickleball-uygulamalar.19026"
+  },
+  {
+    "title": "“Preventing NEET Risk by Strengthening the Capacities of Youth Workers Working with Disadvantaged Youth”",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Capacity Building",
+    "dates_found": [
+      "2026-01-01",
+      "2028-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/preventing-neet-risk-by-strengthening-the-capacities-of-youth-workers-working-with-disadvantaged-youth.19204"
   }
 ]
