@@ -38,7 +38,6 @@ def scrape_salto_courses():
     
     page = 1
     while True:
-        # target_group='NL' zorgt ervoor dat SALTO alleen projecten toont waar NL deelnemers welkom zijn
         params = {
             "page": page,
             "show_past": "0",
@@ -52,8 +51,6 @@ def scrape_salto_courses():
                 break
                 
             soup = BeautifulSoup(response.text, "html.parser")
-            
-            # Alle training/exchange links op de pagina ophalen
             links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/(training|goto-training)/"))
             
             page_new_items = 0
@@ -190,13 +187,23 @@ def main():
 
     combined_data = salto_data + otlas_data
     
-    # Gebruik het absolute pad van dit script om gegarandeerd 'data/salto_courses.json' aan te maken
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Absolute padbepaling direct gekoppeld aan de locatie van dit scriptbestand
+    current_script_path = os.path.abspath(__file__)
+    script_dir = os.path.dirname(current_script_path)
     target_dir = os.path.join(script_dir, "data")
-    os.makedirs(target_dir, exist_ok=True)
+    
+    print(f"\n[DEBUG] Huidige werkmap (CWD): {os.getcwd()}")
+    print(f"[DEBUG] Locatie van dit script: {current_script_path}")
+    print(f"[DEBUG] Doelmap voor data: {target_dir}")
+    
+    try:
+        os.makedirs(target_dir, exist_ok=True)
+    except Exception as e:
+        print(f"[FOUT] Kon de map '{target_dir}' niet aanmaken: {e}")
+        return
     
     output_path = os.path.join(target_dir, "salto_courses.json")
-    print(f"\n[OPSLAGPAD] Bestand wordt geschreven naar: {output_path}")
+    print(f"[OPSLAGPAD] Bestand wordt geschreven naar: {output_path}")
     
     try:
         with open(output_path, "w", encoding="utf-8") as f:
@@ -206,7 +213,7 @@ def main():
             
         print(f"Succes! In totaal {len(combined_data)} resultaten opgeslagen in '{output_path}'.")
     except Exception as e:
-        print(f"Fout bij opslaan van het JSON-bestand: {e}")
+        print(f"[FOUT] Kon het JSON-bestand niet wegschrijven naar {output_path}: {e}")
 
 
 if __name__ == "__main__":
