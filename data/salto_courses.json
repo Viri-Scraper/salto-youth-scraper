@@ -1,14 +1,5 @@
 [
   {
-    "title": "e-mail notifications",
-    "source": "salto",
-    "activity_type": "training course",
-    "dates": "Zie website",
-    "application_deadline": "Niet opgegeven",
-    "application_deadline_iso": null,
-    "url": "https://www.salto-youth.net/mysalto/"
-  },
-  {
     "title": "International Seen & Heard Festival",
     "source": "salto",
     "activity_type": "study visit",
@@ -65,7 +56,7 @@
   {
     "title": "Evidence-based approach in Erasmus+ and European Solidarity Corps: Innovations in Research, Research on Innovations",
     "source": "salto",
-    "activity_type": "partnership building",
+    "activity_type": "training course",
     "dates": "20 September 2026",
     "application_deadline": "26 November 2026",
     "application_deadline_iso": "2026-11-26",
