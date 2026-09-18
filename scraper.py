@@ -49,7 +49,7 @@ def parse_date(date_str):
         return None
 
     date_str = date_str.strip().lower()
-    
+
     # Vervang Nederlandse maandnamen door Engelse voor eenduidige parsing
     nl_to_en = {
         "januari": "january", "februari": "february", "maart": "march",
@@ -61,12 +61,14 @@ def parse_date(date_str):
         date_str = date_str.replace(nl, en)
 
     formats = [
-        "%Y-%m-%d",        # 2027-03-01
-        "%d %B %Y",        # 1 March 2027
-        "%d %b %Y",        # 1 Mar 2027
-        "%d/%m/%Y",        # 01/03/2027
-        "%d.%m.%Y",        # 01.03.2027
-        "%d-%m-%Y",        # 01-03-2027
+        "%Y-%m-%d",         # 2027-03-01
+        "%d %B %Y",         # 1 March 2027
+        "%d %b %Y",         # 1 Mar 2027
+        "%d/%m/%Y",         # 01/03/2027
+        "%d.%m.%Y",         # 01.03.2027
+        "%d-%m-%Y",         # 01-03-2027
+        "%B %d, %Y",        # March 1, 2027
+        "%b %d, %Y",        # Mar 1, 2027
     ]
 
     for fmt in formats:
@@ -79,12 +81,26 @@ def parse_date(date_str):
 
 def extract_deadline_or_startdate(soup, text):
     """
-    Zoekt eerst naar een expliciete aanmelddeadline.
-    Als die er niet is, zoekt hij naar 'taking place from ...' (project startdatum).
+    Zoekt gerichter naar een inschrijfdeadline (of startdatum als fallback)
+    met behulp van specifieke HTML-labels en verfijnde regex-patronen.
     """
-    # 1. ZOEKEN NAAR EXPLICIETE AANMELDDEADLINES
+    date_pattern = r"(\d{4}-\d{2}-\d{2}|\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})"
+
+    # 1. SPECIFIEKE HTML STRUCTUREN (labels in dt/td/th/span)
+    for dt in soup.find_all(['dt', 'th', 'td', 'strong', 'b', 'div', 'span']):
+        label_text = clean_text(dt.get_text())
+        if re.search(r"application deadline|deadline|apply before|partners needed by", label_text, re.IGNORECASE):
+            # Zoek in het element zelf, direct volgende sibling, of parent rij
+            target_el = dt.find_next_sibling() or dt.parent
+            if target_el:
+                target_text = clean_text(target_el.get_text())
+                match = re.search(date_pattern, target_text)
+                if match and parse_date(match.group(1)):
+                    return match.group(1).strip(), "Inschrijfdeadline"
+
+    # 2. EXPLICIETE REGEX SEARCH IN VOLLEDIGE TEKST
     deadline_patterns = [
-        r"(?:deadline for this partner request|application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{4}-\d{2}-\d{2}|\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
+        r"(?:application deadline|deadline for application|apply before|deadline|partners needed by|partners found by|expiry date|valid until)\s*[:\-\=]?\s*" + date_pattern,
     ]
 
     for element in soup.find_all(['tr', 'div', 'p', 'li', 'td', 'dt']):
@@ -96,10 +112,9 @@ def extract_deadline_or_startdate(soup, text):
                 if parse_date(raw_match):
                     return raw_match, "Inschrijfdeadline"
 
-    # 2. FALLBACK: ZOEKEN NAAR PROJECT STARTDATUM ('taking place from YYYY-MM-DD')
+    # 3. FALLBACK: PROJECT STARTDATUM
     project_date_patterns = [
-        r"taking place from\s+(\d{4}-\d{2}-\d{2}|\d{1,2}\s+[A-Za-z]+\s+\d{4})",
-        r"project dates?\s*[:\-\=]?\s*from\s+(\d{4}-\d{2}-\d{2}|\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+        r"(?:taking place from|dates of the activity|project dates?|event dates?)\s*[:\-\=]?\s*(?:from\s+)?" + date_pattern,
         r"from\s+(\d{4}-\d{2}-\d{2})\s+till",
     ]
 
@@ -110,7 +125,7 @@ def extract_deadline_or_startdate(soup, text):
             if parse_date(raw_match):
                 return raw_match, "Project startdatum (fallback)"
 
-    # 3. BREDE REGEX FALLBACK
+    # 4. BREDE REGEX FALLBACK (Laatste redmiddel)
     months_regex = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     fallback_matches = re.findall(
         rf"(?:deadline|taking place from|from)\b.*?(\d{{4}}-\d{{2}}-\d{{2}}|\d{{1,2}}\s+{months_regex}\s+\d{{4}})",
@@ -128,7 +143,7 @@ def extract_deadline_or_startdate(soup, text):
 def extract_activity_type(soup, full_text):
     """Bepaalt het type activiteit op basis van HTML-elementen of trefwoorden."""
     extracted_raw = ""
-    type_selectors = [".project-type", ".activity-type", ".badge", ".tags", "span[class*='type']"]
+    type_selectors = [".project-type", ".activity-type", ".badge", ".tags", "span[class*='type']", ".type"]
     for selector in type_selectors:
         for el in soup.select(selector):
             extracted_raw += " " + el.get_text(" ", strip=True)
@@ -136,7 +151,7 @@ def extract_activity_type(soup, full_text):
     type_label = soup.find(text=re.compile(r"Type of event|Event type|Activity type|Type of activity|Project type", re.IGNORECASE))
     if type_label and type_label.parent:
         extracted_raw += " " + type_label.parent.get_text(" ", strip=True)
-    
+
     search_text = (extracted_raw + " " + full_text).lower()
 
     if "youth exchange" in search_text or "jongerenuitwisseling" in search_text:
@@ -157,7 +172,7 @@ def extract_activity_type(soup, full_text):
         return "Training"
     elif "esc" in search_text or "solidarity corps" in search_text or "volunteering" in search_text or "vrijwilligerswerk" in search_text:
         return "European Solidarity Corps"
-    
+
     return "Overig"
 
 
@@ -244,7 +259,7 @@ def fetch_training_calendar(session):
             time.sleep(0.1)
 
         print(f"  -> {added_on_page} nieuwe trainingen verwerkt op deze pagina.")
-        
+
         if len(links) < limit:
             break
 
@@ -325,7 +340,7 @@ def fetch_otlas_exchanges(session):
             if detail_resp:
                 dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
                 dt_text = clean_text(dt_soup.get_text(" ", strip=True))
-                
+
                 deadline_str, date_type = extract_deadline_or_startdate(dt_soup, dt_text)
                 act_type = extract_activity_type(dt_soup, dt_text)
 
@@ -383,7 +398,7 @@ def main():
 
     print("\n" + "=" * 60)
     print("SCRAPING EN FILTERING VOLTOOID:")
-    print(f" - Totaal opgehaald     : {len(raw_projects)} items")
+    print(f" - Totaal opgehaald      : {len(raw_projects)} items")
     print(f" - Verlopen (verwijderd): {expired_count} items")
     print(f" - Totaal actief behouden: {len(active_projects)} items")
     print("=" * 60)
@@ -393,7 +408,7 @@ def main():
     output_filename = os.path.join(output_dir, "salto_courses.json")
 
     os.makedirs(output_dir, exist_ok=True)
-    
+
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(active_projects, f, ensure_ascii=False, indent=2)
 
