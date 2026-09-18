@@ -149,7 +149,7 @@ def fetch_training_calendar(session):
 
     while True:
         url = build_training_search_url(offset=offset, limit=limit)
-        print(f"\n[Training Offset {offset}] Ophalen via: {url}")
+        print(f"[Training Offset {offset}] Ophalen via: {url}")
 
         response = fetch(session, url)
         if not response:
@@ -162,47 +162,49 @@ def fetch_training_calendar(session):
             print("  -> Geen trainingen meer gevonden op deze pagina.")
             break
 
-        new_links_found = False
-
+        added_on_page = 0
         for link in links:
             href = link.get("href", "").strip()
             full_url = urljoin(BASE_URL, href)
 
-            if full_url not in seen:
-                seen.add(full_url)
-                new_links_found = True
-                
-                title = clean_text(link.get_text(" ", strip=True))
-                if not title or title.lower() in ["view", "more", "details"]:
-                    continue
+            if full_url in seen:
+                continue
+            seen.add(full_url)
 
-                detail_resp = fetch(session, full_url)
-                deadline_str = None
-                act_type = "Overig"
+            title = clean_text(link.get_text(" ", strip=True))
+            if not title or title.lower() in ["view", "more", "details"]:
+                continue
 
-                if detail_resp:
-                    dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
-                    dt_text = clean_text(dt_soup.get_text(" ", strip=True))
-                    deadline_str = extract_deadline(dt_soup, dt_text)
-                    act_type = extract_activity_type(dt_soup, dt_text)
+            detail_resp = fetch(session, full_url)
+            deadline_str = None
+            act_type = "Overig"
 
-                deadline_date = parse_date(deadline_str)
-                deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
+            if detail_resp:
+                dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
+                dt_text = clean_text(dt_soup.get_text(" ", strip=True))
+                deadline_str = extract_deadline(dt_soup, dt_text)
+                act_type = extract_activity_type(dt_soup, dt_text)
 
-                results.append({
-                    "title": title,
-                    "url": full_url,
-                    "source": "Training Calendar",
-                    "activity_type": act_type,
-                    "application_deadline": deadline_str or "Niet vermeld",
-                    "application_deadline_iso": deadline_iso,
-                    "netherlands_eligible": True,
-                    "scraped_at": datetime.now(timezone.utc).isoformat()
-                })
-                time.sleep(0.1)
+            deadline_date = parse_date(deadline_str)
+            deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
 
-        if not new_links_found:
-            print("  -> Geen nieuwe onziene links op deze pagina.")
+            results.append({
+                "title": title,
+                "url": full_url,
+                "source": "Training Calendar",
+                "activity_type": act_type,
+                "application_deadline": deadline_str or "Niet vermeld",
+                "application_deadline_iso": deadline_iso,
+                "netherlands_eligible": True,
+                "scraped_at": datetime.now(timezone.utc).isoformat()
+            })
+            added_on_page += 1
+            time.sleep(0.1)
+
+        print(f"  -> {added_on_page} nieuwe trainingen verwerkt op deze pagina.")
+        
+        # Stop als er in 2 achtereenvolgende offsets niks meer op de HTML staat
+        if len(links) < limit:
             break
 
         offset += limit
@@ -242,67 +244,69 @@ def fetch_otlas_exchanges(session):
 
     while True:
         url = build_otlas_search_url(offset=offset, limit=limit)
-        print(f"\n[Otlas Offset {offset}] Ophalen via: {url}")
+        print(f"[Otlas Offset {offset}] Ophalen via: {url}")
 
         response = fetch(session, url)
         if not response:
             break
 
         soup = BeautifulSoup(response.text, "html.parser")
-        links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/\d+"))
+        # Brede match voor Otlas project links
+        links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/"))
 
         if not links:
             print("  -> Geen Otlas projecten meer gevonden op deze pagina.")
             break
 
-        new_links_found = False
-
+        added_on_page = 0
         for link in links:
             href = link.get("href", "").strip()
             full_url = urljoin(BASE_URL, href)
 
-            if full_url not in seen:
-                seen.add(full_url)
-                new_links_found = True
+            if full_url in seen:
+                continue
+            seen.add(full_url)
+
+            title = clean_text(link.get_text(" ", strip=True))
+            if not title or title.lower() in ["view", "more", "details", "read more"]:
+                container = link.find_parent(["tr", "div", "li"])
+                if container:
+                    heading = container.find(["h2", "h3", "h4", "strong", "a"])
+                    if heading:
+                        title = clean_text(heading.get_text(" ", strip=True))
+                if not title or title.lower() in ["view", "more", "details"]:
+                    title = "Otlas Partner Project"
+
+            detail_resp = fetch(session, full_url)
+            deadline_str = None
+            act_type = "Overig"
+
+            if detail_resp:
+                dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
+                dt_text = clean_text(dt_soup.get_text(" ", strip=True))
                 
-                title = clean_text(link.get_text(" ", strip=True))
-                if not title or title.lower() in ["view", "more", "details", "read more"]:
-                    container = link.find_parent(["tr", "div", "li"])
-                    if container:
-                        heading = container.find(["h2", "h3", "h4", "strong", "a"])
-                        if heading:
-                            title = clean_text(heading.get_text(" ", strip=True))
-                    if not title or title.lower() in ["view", "more", "details"]:
-                        title = "Otlas Partner Project"
+                deadline_str = extract_deadline(dt_soup, dt_text)
+                act_type = extract_activity_type(dt_soup, dt_text)
 
-                detail_resp = fetch(session, full_url)
-                deadline_str = None
-                act_type = "Overig"
+            deadline_date = parse_date(deadline_str)
+            deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
 
-                if detail_resp:
-                    dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
-                    dt_text = clean_text(dt_soup.get_text(" ", strip=True))
-                    
-                    deadline_str = extract_deadline(dt_soup, dt_text)
-                    act_type = extract_activity_type(dt_soup, dt_text)
+            otlas_results.append({
+                "title": title,
+                "url": full_url,
+                "source": "Otlas",
+                "activity_type": act_type,
+                "application_deadline": deadline_str or "Doorlopend / Niet vermeld",
+                "application_deadline_iso": deadline_iso,
+                "netherlands_eligible": True,
+                "scraped_at": datetime.now(timezone.utc).isoformat()
+            })
+            added_on_page += 1
+            time.sleep(0.1)
 
-                deadline_date = parse_date(deadline_str)
-                deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
+        print(f"  -> {added_on_page} nieuwe Otlas projecten verwerkt op deze pagina.")
 
-                otlas_results.append({
-                    "title": title,
-                    "url": full_url,
-                    "source": "Otlas",
-                    "activity_type": act_type,
-                    "application_deadline": deadline_str or "Doorlopend / Niet vermeld",
-                    "application_deadline_iso": deadline_iso,
-                    "netherlands_eligible": True,
-                    "scraped_at": datetime.now(timezone.utc).isoformat()
-                })
-                time.sleep(0.1)
-
-        if not new_links_found:
-            print("  -> Geen nieuwe onziene links op deze pagina.")
+        if len(links) < limit:
             break
 
         offset += limit
@@ -342,14 +346,12 @@ def main():
     print(f" - Totaal actief behouden: {len(active_projects)} items")
     print("=" * 60)
 
-    # Schrijf naar data/salto_courses.json
+    # Schrijf direct naar data/salto_courses.json
     output_dir = "data"
     output_filename = os.path.join(output_dir, "salto_courses.json")
 
-    # Zorg dat de map 'data/' bestaat
     os.makedirs(output_dir, exist_ok=True)
     
-    # Overschrijf het bestand met de opgeschoonde dataset
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(active_projects, f, ensure_ascii=False, indent=2)
 
