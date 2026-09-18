@@ -28,7 +28,7 @@ def parse_iso_date(date_str):
 
 
 def scrape_salto_courses():
-    """Schraapt de complete SALTO European Training Calendar."""
+    """Schraapt de complete SALTO European Training Calendar zonder paginalimiet."""
     print("Starten met schrapen van het volledige SALTO-Youth aanbod...")
     courses = []
     seen_urls = set()
@@ -188,15 +188,24 @@ def main():
 
     combined_data = salto_data + otlas_data
     
-    # Altijd opslaan in de map 'data/salto_courses.json'
-    target_dir = "data"
+    # Bepaal het doelpad (zowel compatibel met root als met salto-youth-scraper/ submap)
+    if os.path.exists("salto-youth-scraper"):
+        target_dir = os.path.join("salto-youth-scraper", "data")
+    else:
+        target_dir = "data"
+        
     os.makedirs(target_dir, exist_ok=True)
     output_path = os.path.join(target_dir, "salto_courses.json")
+    
+    print(f"\nProberen opslaan op locatie: {os.path.abspath(output_path)}")
     
     try:
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(combined_data, f, ensure_ascii=False, indent=2)
-        print(f"\nSucces! In totaal {len(combined_data)} resultaten opgeslagen in '{output_path}'.")
+            f.flush()
+            os.fsync(f.fileno())
+        
+        print(f"Succes! In totaal {len(combined_data)} resultaten opgeslagen in '{output_path}'.")
     except Exception as e:
         print(f"Fout bij opslaan van het JSON-bestand: {e}")
 
