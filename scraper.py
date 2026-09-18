@@ -11,11 +11,11 @@ HEADERS = {
     "Accept-Language": "en-US,en;q=0.9"
 }
 
-# Ingesteld op 15 pagina's om alle actuele NL-projecten grondig op te halen zonder vast te lopen op oude historie
-MAX_PAGES = 15
+# 25 pagina's diep doorzoeken pakt vrijwel álle actieve en aankomende projecten mee
+MAX_PAGES = 25
 
 def parse_iso_date(date_str):
-    """Zet tekstuele datums om naar YYYY-MM-DD voor datumsortering en filtering."""
+    """Zet tekstuele datums om naar YYYY-MM-DD voor datumsortering en filtering op live website."""
     if not date_str:
         return None
     try:
@@ -31,8 +31,8 @@ def parse_iso_date(date_str):
 
 
 def scrape_salto_courses():
-    """Schraapt SALTO European Training Calendar specifiek voor NL-toegankelijke projecten."""
-    print(f"Starten met schrapen van SALTO-Youth (maximaal {MAX_PAGES} pagina's voor NL)...")
+    """Schraapt SALTO European Training Calendar met alle specifieke details en NL-filtering."""
+    print(f"Starten met diep schrapen van SALTO-Youth (tot {MAX_PAGES} pagina's voor NL)...")
     courses = []
     seen_urls = set()
     today_str = datetime.now().strftime("%Y-%m-%d")
@@ -40,9 +40,11 @@ def scrape_salto_courses():
     base_url = "https://www.salto-youth.net/tools/european-training-calendar/browse/"
     
     for page in range(1, MAX_PAGES + 1):
+        # Parameters voor SALTO: NL als target group + show_past=0 zorgt dat paginering écht werkt
         params = {
             "page": page,
-            "target_group": "NL"
+            "target_group": "NL",
+            "show_past": "0"
         }
         
         try:
@@ -53,36 +55,32 @@ def scrape_salto_courses():
                 
             soup = BeautifulSoup(response.text, "html.parser")
             
-            # Ruime element-zoekers van SALTO
-            items = soup.find_all("div", class_=re.compile("training-item|calendar-item|list-item|item")) or soup.find_all("tr")
+            # Pak alle training-links op de pagina op (brede matching zodat niks gemist wordt)
+            links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/training/"))
             
-            if not items:
-                print(f"Geen items meer gevonden op pagina {page}.")
-                break
-                
-            page_items_count = 0
+            page_new_items = 0
 
-            for item in items:
+            for link in links:
                 try:
-                    title_elem = item.find("a", class_=re.compile("title|heading")) or item.find("h3") or item.find("a")
-                    if not title_elem:
-                        continue
-                        
-                    title = title_elem.get_text(strip=True)
-                    url = title_elem.get("href", "")
+                    title = link.get_text(strip=True)
+                    url = link.get("href", "")
                     
                     if not title or len(title) < 3 or not url:
                         continue
                         
                     full_url = "https://www.salto-youth.net" + url if not url.startswith("http") else url
                     
+                    # Voorkom dubbele projecten
                     if full_url in seen_urls:
                         continue
                     seen_urls.add(full_url)
 
-                    item_text = item.get_text(separator=" ", strip=True)
-                    row_lower = item_text.lower()
+                    # Pak het omringende HTML-blok op voor alle details (zoals type, datums, deadlines)
+                    parent = link.find_parent(["tr", "div", "li"])
+                    parent_text = parent.get_text(separator=" ", strip=True) if parent else title
+                    row_lower = parent_text.lower()
 
+                    # 1. DETAILS: Activiteitstype bepalen
                     activity_type = "training course"
                     if "youth exchange" in row_lower:
                         activity_type = "youth exchange"
@@ -91,7 +89,8 @@ def scrape_salto_courses():
                     elif "partnership" in row_lower:
                         activity_type = "partnership building"
 
-                    date_matches = re.findall(r"\d{1,2}\s+[A-Za-z]+\s+\d{4}|\d{1,2}/\d{1,2}/\d{4}", item_text)
+                    # 2. DETAILS: Datums & Deadlines extractie met Regex
+                    date_matches = re.findall(r"\d{1,2}\s+[A-Za-z]+\s+\d{4}|\d{1,2}/\d{1,2}/\d{4}", parent_text)
                     deadline = "Niet opgegeven"
                     dates = "Zie website"
 
@@ -104,6 +103,7 @@ def scrape_salto_courses():
 
                     deadline_iso = parse_iso_date(deadline)
 
+                    # 3. DETAILS: Filter verlopen projecten eruit
                     if deadline_iso and deadline_iso < today_str:
                         continue
 
@@ -116,14 +116,15 @@ def scrape_salto_courses():
                         "application_deadline_iso": deadline_iso,
                         "url": full_url
                     })
-                    page_items_count += 1
+                    page_new_items += 1
                 except Exception:
                     continue
 
-            print(f"SALTO Pagina {page}: {page_items_count} unieke projecten verwerkt.")
+            print(f"SALTO Pagina {page}: {page_new_items} nieuwe unieke projecten verwerkt.")
 
-            if page_items_count == 0:
-                print(f"Geen nieuwe items meer op pagina {page}. Paginering afgerond.")
+            # Als er op een pagina 0 nieuwe unieke items gevonden worden, zijn alle actieve projecten verwerkt
+            if page_new_items == 0:
+                print(f"Geen nieuwe items meer op pagina {page}. Alle actuele projecten zijn binnen.")
                 break
 
             time.sleep(0.3)
@@ -137,7 +138,7 @@ def scrape_salto_courses():
 
 
 def scrape_otlas_partner_searches():
-    """Schraapt Otlas Partner-finding verzoeken."""
+    """Schraapt Otlas Partner-finding verzoeken op alle specifieke details."""
     print("Starten met schrapen van Otlas Partner-finding...")
     partner_searches = []
     seen_urls = set()
@@ -148,16 +149,12 @@ def scrape_otlas_partner_searches():
         response = requests.get(url, headers=HEADERS, timeout=15)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            items = soup.find_all("div", class_=re.compile("project-item|otlas-item|list-item|item")) or soup.find_all("tr")
+            links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/"))
             
-            for item in items:
+            for link in links:
                 try:
-                    title_elem = item.find("a")
-                    if not title_elem:
-                        continue
-                        
-                    title = title_elem.get_text(strip=True)
-                    item_url = title_elem.get("href", "")
+                    title = link.get_text(strip=True)
+                    item_url = link.get("href", "")
                     
                     if not item_url or not title or len(title) < 5:
                         continue
@@ -168,9 +165,13 @@ def scrape_otlas_partner_searches():
                         continue
                     seen_urls.add(full_url)
 
-                    item_text = item.get_text(separator=" ", strip=True)
-                    date_match = re.search(r"\d{1,2}\s+[A-Za-z]+\s+\d{4}|\b[A-Za-z]+\s+\d{4}\b", item_text)
-                    dates = date_match.group(0) if date_match else "Zie projectomschrijving"
+                    parent = link.find_parent(["tr", "div", "li"])
+                    dates = "Zie projectomschrijving"
+                    if parent:
+                        parent_text = parent.get_text(separator=" ", strip=True)
+                        date_match = re.search(r"\d{1,2}\s+[A-Za-z]+\s+\d{4}|\b[A-Za-z]+\s+\d{4}\b", parent_text)
+                        if date_match:
+                            dates = date_match.group(0)
 
                     partner_searches.append({
                         "title": title,
@@ -196,7 +197,7 @@ def main():
 
     combined_data = salto_data + otlas_data
     
-    # Automatische detectie van de map (salto-youth-scraper/data/ of data/)
+    # Slaat altijd correct op in salto-youth-scraper/data/salto_courses.json
     if os.path.exists("salto-youth-scraper"):
         target_dir = os.path.join("salto-youth-scraper", "data")
     else:
