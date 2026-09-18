@@ -61,12 +61,12 @@ def parse_date(date_str):
         date_str = date_str.replace(nl, en)
 
     formats = [
-        "%d %B %Y",       # 12 October 2026
-        "%d %b %Y",        # 12 Oct 2026
-        "%Y-%m-%d",        # 2026-10-12
-        "%d/%m/%Y",        # 12/10/2026
-        "%d.%m.%Y",        # 12.10.2026
-        "%d-%m-%Y",        # 12-10-2026
+        "%Y-%m-%d",        # 2027-03-01
+        "%d %B %Y",        # 1 March 2027
+        "%d %b %Y",        # 1 Mar 2027
+        "%d/%m/%Y",        # 01/03/2027
+        "%d.%m.%Y",        # 01.03.2027
+        "%d-%m-%Y",        # 01-03-2027
     ]
 
     for fmt in formats:
@@ -77,41 +77,52 @@ def parse_date(date_str):
     return None
 
 
-def extract_deadline(soup, text):
+def extract_deadline_or_startdate(soup, text):
     """
-    Zoekt intensief naar verstopte deadlines op detailpagina's (Otlas & Training).
-    Geavanceerde zoeklogica inclusief 'Deadline for this partner request'.
+    Zoekt eerst naar een expliciete aanmelddeadline.
+    Als die er niet is, zoekt hij naar 'taking place from ...' (project startdatum).
     """
-    # 1. Specifieke Otlas & SALTO HTML velden, inclusief 'Deadline for this partner request'
-    patterns = [
-        r"(?:deadline for this partner request|application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
-        r"(?:deadline for this partner request|deadline|apply by)\s*[:\-\=]?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+    # 1. ZOEKEN NAAR EXPLICIETE AANMELDDEADLINES
+    deadline_patterns = [
+        r"(?:deadline for this partner request|application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{4}-\d{2}-\d{2}|\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
     ]
 
-    # Zoek via bekende HTML structuren (bijv. <th>/<td> paren, dt/dd lijsten of meta tags)
     for element in soup.find_all(['tr', 'div', 'p', 'li', 'td', 'dt']):
         el_text = clean_text(element.get_text(" ", strip=True))
-        for pattern in patterns:
+        for pattern in deadline_patterns:
             match = re.search(pattern, el_text, re.IGNORECASE)
             if match:
                 raw_match = match.group(1).strip()
                 if parse_date(raw_match):
-                    return raw_match
+                    return raw_match, "Inschrijfdeadline"
 
-    # 2. Brede regex-fallback op de gehele paginatekst
-    months_regex = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec|januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
-    
+    # 2. FALLBACK: ZOEKEN NAAR PROJECT STARTDATUM ('taking place from YYYY-MM-DD')
+    project_date_patterns = [
+        r"taking place from\s+(\d{4}-\d{2}-\d{2}|\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+        r"project dates?\s*[:\-\=]?\s*from\s+(\d{4}-\d{2}-\d{2}|\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+        r"from\s+(\d{4}-\d{2}-\d{2})\s+till",
+    ]
+
+    for pattern in project_date_patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            raw_match = match.group(1).strip()
+            if parse_date(raw_match):
+                return raw_match, "Project startdatum (fallback)"
+
+    # 3. BREDE REGEX FALLBACK
+    months_regex = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     fallback_matches = re.findall(
-        rf"(?:deadline for this partner request|deadline|apply|before|until|expires|partners?)\b.*?(\d{{1,2}}\s+{months_regex}\s+\d{{4}}|\d{{1,2}}[\/\.\-]\d{{1,2}}[\/\.\-]\d{{4}})",
+        rf"(?:deadline|taking place from|from)\b.*?(\d{{4}}-\d{{2}}-\d{{2}}|\d{{1,2}}\s+{months_regex}\s+\d{{4}})",
         text,
         re.IGNORECASE
     )
 
     for candidate in fallback_matches:
         if parse_date(candidate):
-            return candidate
+            return candidate, "Aangetroffen datum"
 
-    return None
+    return None, None
 
 
 def extract_activity_type(soup, full_text):
@@ -206,12 +217,13 @@ def fetch_training_calendar(session):
 
             detail_resp = fetch(session, full_url)
             deadline_str = None
+            date_type = None
             act_type = "Overig"
 
             if detail_resp:
                 dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
                 dt_text = clean_text(dt_soup.get_text(" ", strip=True))
-                deadline_str = extract_deadline(dt_soup, dt_text)
+                deadline_str, date_type = extract_deadline_or_startdate(dt_soup, dt_text)
                 act_type = extract_activity_type(dt_soup, dt_text)
 
             deadline_date = parse_date(deadline_str)
@@ -223,6 +235,7 @@ def fetch_training_calendar(session):
                 "source": "Training Calendar",
                 "activity_type": act_type,
                 "application_deadline": deadline_str or "Niet vermeld",
+                "date_type": date_type or "Onbekend",
                 "application_deadline_iso": deadline_iso,
                 "netherlands_eligible": True,
                 "scraped_at": datetime.now(timezone.utc).isoformat()
@@ -306,13 +319,14 @@ def fetch_otlas_exchanges(session):
 
             detail_resp = fetch(session, full_url)
             deadline_str = None
+            date_type = None
             act_type = "Overig"
 
             if detail_resp:
                 dt_soup = BeautifulSoup(detail_resp.text, "html.parser")
                 dt_text = clean_text(dt_soup.get_text(" ", strip=True))
                 
-                deadline_str = extract_deadline(dt_soup, dt_text)
+                deadline_str, date_type = extract_deadline_or_startdate(dt_soup, dt_text)
                 act_type = extract_activity_type(dt_soup, dt_text)
 
             deadline_date = parse_date(deadline_str)
@@ -324,6 +338,7 @@ def fetch_otlas_exchanges(session):
                 "source": "Otlas",
                 "activity_type": act_type,
                 "application_deadline": deadline_str or "Doorlopend / Niet vermeld",
+                "date_type": date_type or "Onbekend",
                 "application_deadline_iso": deadline_iso,
                 "netherlands_eligible": True,
                 "scraped_at": datetime.now(timezone.utc).isoformat()
@@ -354,7 +369,7 @@ def main():
     raw_projects = training_data + otlas_data
     today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    # FILTER: Verwijder verlopen projecten
+    # FILTER: Verwijder verlopen projecten (op basis van deadline óf startdatum)
     active_projects = []
     expired_count = 0
 
