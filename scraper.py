@@ -1,35 +1,6 @@
-import os
-import json
-import re
-import time
-from datetime import datetime
-import requests
-from bs4 import BeautifulSoup
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept-Language": "en-US,en;q=0.9"
-}
-
-def parse_iso_date(date_str):
-    """Zet diverse tekstuele datums om naar YYYY-MM-DD voor datumsortering en filtering."""
-    if not date_str:
-        return None
-    try:
-        clean_str = date_str.strip()
-        for fmt in ("%d %B %Y", "%d %b %Y", "%d-%m-%Y", "%Y-%m-%d", "%d/%m/%Y", "%B %d, %Y", "%b %d, %Y"):
-            try:
-                return datetime.strptime(clean_str, fmt).strftime("%Y-%m-%d")
-            except ValueError:
-                pass
-    except Exception:
-        pass
-    return None
-
-
 def scrape_salto_courses():
-    """Schraapt de SALTO European Training Calendar specifiek gefilterd op Nederlandse deelnemers."""
-    print("Starten met schrapen van SALTO-aanbod specifiek voor Nederlandse deelnemers...")
+    """Schraapt het VOLLEDIGE SALTO-aanbod zonder limieten en filtert zelf op NL en alle mogelijke bredere termen zoals partner/programme countries."""
+    print("Starten met schrapen van het VOLLEDIGE SALTO-aanbod (zonder restricties)...")
     courses = []
     seen_urls = set()
     today_str = datetime.now().strftime("%Y-%m-%d")
@@ -37,22 +8,36 @@ def scrape_salto_courses():
     base_url = "https://www.salto-youth.net/tools/european-training-calendar/browse/"
     
     page = 1
-    while True:
+    max_pages = 60  # Ruime limiet om echt alles op te halen
+    
+    # Een uitgebreide lijst van zoektermen die Nederland of brede deelname garanderen
+    inclusion_keywords = [
+        "nl", "netherlands", "nederland", 
+        "partner countries", "programme countries", 
+        "all countries", "all eligible", "any country", 
+        "salto", "erasmus+", "european solidarity corps", "salto-youth"
+    ]
+
+    while page <= max_pages:
+        # GEEN target_group parameter meer, zodat we echt de hele database doorzoeken
         params = {
             "page": page,
-            "show_past": "0",
-            "target_group": "NL"
+            "show_past": "0"
         }
         
         try:
-            response = requests.get(base_url, headers=HEADERS, params=params, timeout=15)
+            response = requests.get(base_url, headers=HEADERS, params=params, timeout=20)
             if response.status_code != 200:
-                print(f"SALTO pagina {page} geeft status code {response.status_code}. Stoppen.")
+                print(f"SALTO pagina {page} gaf status code {response.status_code}. Stoppen.")
                 break
                 
             soup = BeautifulSoup(response.text, "html.parser")
             links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/(training|goto-training)/"))
             
+            if not links:
+                print(f"Geen links meer gevonden op SALTO pagina {page}. Schrapen afgerond.")
+                break
+
             page_new_items = 0
 
             for link in links:
@@ -72,6 +57,15 @@ def scrape_salto_courses():
                     parent = link.find_parent(["tr", "div", "li"])
                     parent_text = parent.get_text(separator=" ", strip=True) if parent else title
                     row_lower = parent_text.lower()
+
+                    # Controleer of een van de brede inclusietermen erin voorkomt
+                    # Als een project specifiek een heel ander continent filtert (bijv. alleen Latin America), 
+                    # kun je dit hier eventueel op afstemmen, maar zo vangen we alle open/partner/programme/NL termen op.
+                    is_relevant = any(keyword in row_lower for keyword in inclusion_keywords)
+                    
+                    # Als de tekst heel summier is, nemen we hem voor de zekerheid toch mee om geen data te missen
+                    if not is_relevant and len(row_lower) > 50:
+                        continue
 
                     activity_type = "training course"
                     if "youth exchange" in row_lower:
@@ -110,111 +104,18 @@ def scrape_salto_courses():
                 except Exception:
                     continue
 
-            print(f"SALTO Pagina {page}: {page_new_items} nieuwe unieke projecten voor NL verwerkt.")
+            print(f"SALTO Pagina {page}: {page_new_items} projecten gematcht en toegevoegd.")
 
-            if page_new_items == 0:
-                print(f"Geen nieuwe projecten meer gevonden op pagina {page}. Schrapen afgerond.")
-                break
+            if page_new_items == 0 and page > 5:
+                # Als een paar pagina's achter elkaar niks opleveren na pagina 5, kunnen we stoppen
+                pass
 
             page += 1
-            time.sleep(0.3)
+            time.sleep(0.2)
 
         except Exception as e:
-            print(f"Fout tijdens schrapen van SALTO pagina {page}: {e}")
+            print(f"Fout op SALTO pagina {page}: {e}")
             break
 
-    print(f"Totaal aantal SALTO projecten voor NL verzameld: {len(courses)}")
+    print(f"Totaal aantal SALTO projecten (inclusief partner/programme countries) verzameld: {len(courses)}")
     return courses
-
-
-def scrape_otlas_partner_searches():
-    """Schraapt Otlas Partner-finding verzoeken."""
-    print("Starten met schrapen van Otlas Partner-finding...")
-    partner_searches = []
-    seen_urls = set()
-    
-    url = "https://www.salto-youth.net/tools/otlas-partner-finding/project/"
-    
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=15)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-            links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/"))
-            
-            for link in links:
-                try:
-                    title = link.get_text(strip=True)
-                    item_url = link.get("href", "")
-                    
-                    if not item_url or not title or len(title) < 3:
-                        continue
-                        
-                    full_url = "https://www.salto-youth.net" + item_url if not item_url.startswith("http") else item_url
-
-                    if full_url in seen_urls:
-                        continue
-                    seen_urls.add(full_url)
-
-                    parent = link.find_parent(["tr", "div", "li"])
-                    dates = "Zie projectomschrijving"
-                    if parent:
-                        parent_text = parent.get_text(separator=" ", strip=True)
-                        date_match = re.search(r"\d{1,2}\s+[A-Za-z]+\s+\d{4}|\b[A-Za-z]+\s+\d{4}\b", parent_text)
-                        if date_match:
-                            dates = date_match.group(0)
-
-                    partner_searches.append({
-                        "title": title,
-                        "source": "otlas",
-                        "activity_type": "partner finding",
-                        "dates": dates,
-                        "application_deadline": "Zie Otlas",
-                        "application_deadline_iso": None,
-                        "url": full_url
-                    })
-                except Exception:
-                    continue
-    except Exception as e:
-        print(f"Fout bij ophalen Otlas data: {e}")
-
-    print(f"Totaal aantal Otlas verzoeken verzameld: {len(partner_searches)}")
-    return partner_searches
-
-
-def main():
-    salto_data = scrape_salto_courses()
-    otlas_data = scrape_otlas_partner_searches()
-
-    combined_data = salto_data + otlas_data
-    
-    # Absolute padbepaling direct gekoppeld aan de locatie van dit scriptbestand
-    current_script_path = os.path.abspath(__file__)
-    script_dir = os.path.dirname(current_script_path)
-    target_dir = os.path.join(script_dir, "data")
-    
-    print(f"\n[DEBUG] Huidige werkmap (CWD): {os.getcwd()}")
-    print(f"[DEBUG] Locatie van dit script: {current_script_path}")
-    print(f"[DEBUG] Doelmap voor data: {target_dir}")
-    
-    try:
-        os.makedirs(target_dir, exist_ok=True)
-    except Exception as e:
-        print(f"[FOUT] Kon de map '{target_dir}' niet aanmaken: {e}")
-        return
-    
-    output_path = os.path.join(target_dir, "salto_courses.json")
-    print(f"[OPSLAGPAD] Bestand wordt geschreven naar: {output_path}")
-    
-    try:
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(combined_data, f, ensure_ascii=False, indent=2)
-            f.flush()
-            os.fsync(f.fileno())
-            
-        print(f"Succes! In totaal {len(combined_data)} resultaten opgeslagen in '{output_path}'.")
-    except Exception as e:
-        print(f"[FOUT] Kon het JSON-bestand niet wegschrijven naar {output_path}: {e}")
-
-
-if __name__ == "__main__":
-    main()
