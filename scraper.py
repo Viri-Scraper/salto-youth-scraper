@@ -1,84 +1,278 @@
-import requests
-import re
+#!/usr/bin/env python3
+
+"""
+SALTO + OTLAS Erasmus+ Youth scraper
+====================================
+
+Bronnen:
+- SALTO European Training Calendar
+- SALTO OTLAS Partner Finding
+
+Output:
+- data/salto_courses.json
+
+Belangrijk:
+- Nederlandse deelname/partnergeschiktheid wordt expliciet gecontroleerd.
+- Verlopen deadlines worden verwijderd.
+- OTLAS-projecten zonder deadline worden alleen behouden wanneer
+  het project nog loopt of in de toekomst plaatsvindt.
+- Geen vaste paginalimiet.
+- Pagination gebeurt via b_limit + b_offset.
+- Bescherming tegen oneindige loops.
+"""
+
+from __future__ import annotations
+
 import json
+import os
+import re
 import time
+import hashlib
+from datetime import date, datetime
+from pathlib import Path
+from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse
+
+import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-from urllib.parse import urljoin, urlparse
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 
 # ============================================================
-# CONFIG
+# CONFIGURATIE
 # ============================================================
 
-SALTO_BASE = "https://www.salto-youth.net"
-SALTO_BROWSE = (
-    "https://www.salto-youth.net/"
-    "tools/european-training-calendar/browse/"
+BASE_URL = "https://www.salto-youth.net"
+
+SALTO_BROWSE_URL = (
+    "https://www.salto-youth.net/tools/european-training-calendar/browse/"
 )
 
-OTLAS_BROWSE = (
-    "https://www.salto-youth.net/"
-    "tools/otlas-partner-finding/projects/"
+OTLAS_BROWSE_URL = (
+    "https://www.salto-youth.net/tools/otlas-partner-finding/projects/"
 )
 
-OUTPUT_FILE = "data/salto_courses.json"
+OUTPUT_FILE = Path("data/salto_courses.json")
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/153.0 Safari/537.36"
-    ),
-    "Accept-Language": "en-US,en;q=0.9,nl;q=0.8",
-}
+# Aantal resultaten per overzichtspagina.
+# SALTO/OTLAS gebruiken momenteel 10 als standaard.
+PAGE_SIZE = 10
 
-# Kleine pauze om de servers niet onnodig zwaar te belasten.
+# Kleine pauze om de website niet onnodig zwaar te belasten.
 REQUEST_DELAY = 0.35
 
-# Als True: project zonder deadline blijft staan.
-# Je kunt dit later op False zetten als je uitsluitend
-# projecten met een expliciete toekomstige deadline wilt.
-KEEP_WITHOUT_DEADLINE = True
+# Extra timeout voor individuele HTTP requests.
+REQUEST_TIMEOUT = 30
+
+# User-Agent zodat de website weet dat dit een normale scraper/client is.
+USER_AGENT = (
+    "Wikkel-Erasmus-Scraper/1.0 "
+    "(SALTO/OTLAS opportunity aggregation)"
+)
+
+HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+# OTLAS-projecten zonder partnerdeadline mogen worden meegenomen,
+# maar alleen wanneer het project zelf nog actief/toekomstig is.
+KEEP_OTLAS_WITHOUT_DEADLINE = True
 
 
 # ============================================================
-# SESSION MET RETRIES
+# SESSION
 # ============================================================
 
-def create_session():
-    session = requests.Session()
+session = requests.Session()
+session.headers.update(HEADERS)
 
-    retry = Retry(
-        total=5,
-        connect=5,
-        read=5,
-        backoff_factor=1,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["GET"],
+
+# ============================================================
+# CONSTANTEN
+# ============================================================
+
+TODAY = date.today()
+
+
+# SALTO activity types
+SALTO_CATEGORY_MAP = {
+    "study visit": "study_visit",
+    "partnership-building activity": "partnership_building",
+    "partnership building activity": "partnership_building",
+    "seminar": "seminar",
+    "training course": "training_course",
+    "e-learning": "e_learning",
+    "conference – symposium - forum": "conference",
+    "conference - symposium - forum": "conference",
+    "conference": "conference",
+}
+
+
+# OTLAS gebruikt momenteel deze activiteitstypes.
+OTLAS_CATEGORY_MAP = {
+    "youth exchanges": "youth_exchange",
+    "volunteering activities": "volunteering",
+    "volunteering activities (formerly evs)": "volunteering",
+    "training and networking": "training_and_networking",
+    "transnational youth initiatives": "transnational_youth_initiative",
+    "strategic partnerships": "strategic_partnership",
+    "capacity building": "capacity_building",
+    "meetings between young people and decision-makers": "decision_makers",
+}
+
+
+# ============================================================
+# HTTP
+# ============================================================
+
+def fetch(url: str, retries: int = 3) -> requests.Response | None:
+    """
+    Download een pagina met retries.
+
+    Geeft None terug wanneer alle pogingen mislukken.
+    """
+
+    for attempt in range(1, retries + 1):
+        try:
+            response = session.get(
+                url,
+                timeout=REQUEST_TIMEOUT,
+            )
+
+            if response.status_code == 200:
+                time.sleep(REQUEST_DELAY)
+                return response
+
+            # Rate limiting
+            if response.status_code == 429:
+                wait = 5 * attempt
+                print(
+                    f"  HTTP 429 ontvangen. "
+                    f"Wachten {wait}s..."
+                )
+                time.sleep(wait)
+                continue
+
+            print(
+                f"  HTTP {response.status_code}: {url}"
+            )
+
+        except requests.RequestException as exc:
+            print(
+                f"  Request fout "
+                f"(poging {attempt}/{retries}): {exc}"
+            )
+
+            if attempt < retries:
+                time.sleep(2 * attempt)
+
+    return None
+
+
+# ============================================================
+# URL HELPERS
+# ============================================================
+
+def make_offset_url(
+    base_url: str,
+    offset: int,
+    order: str,
+) -> str:
+    """
+    Bouwt een SALTO/OTLAS URL met b_limit + b_offset.
+    """
+
+    parsed = urlparse(base_url)
+
+    params = dict(parse_qsl(parsed.query))
+
+    params["b_limit"] = str(PAGE_SIZE)
+    params["b_offset"] = str(offset)
+    params["b_order"] = order
+
+    new_query = urlencode(params)
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path,
+            parsed.params,
+            new_query,
+            parsed.fragment,
+        )
     )
 
-    adapter = HTTPAdapter(
-        max_retries=retry,
-        pool_connections=10,
-        pool_maxsize=10,
+
+def normalize_url(url: str) -> str:
+    """
+    Normaliseert URL's zodat dezelfde pagina niet meerdere keren
+    wordt opgeslagen.
+    """
+
+    if not url:
+        return ""
+
+    url = urljoin(BASE_URL, url)
+
+    parsed = urlparse(url)
+
+    # Fragment verwijderen
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path.rstrip("/"),
+            "",
+            parsed.query,
+            "",
+        )
     )
-
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-
-    session.headers.update(HEADERS)
-
-    return session
-
-
-session = create_session()
 
 
 # ============================================================
-# DATUM FUNCTIES
+# TEKST HELPERS
+# ============================================================
+
+def clean_text(value: str | None) -> str:
+    """
+    Maakt whitespace netjes.
+    """
+
+    if not value:
+        return ""
+
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def soup_text(soup: BeautifulSoup) -> str:
+    """
+    Volledige tekst van een pagina.
+    """
+
+    return clean_text(soup.get_text(" ", strip=True))
+
+
+def normalize_for_match(value: str) -> str:
+    """
+    Normaliseert tekst voor betrouwbare vergelijkingen.
+    """
+
+    value = value.lower()
+
+    value = (
+        value
+        .replace("–", "-")
+        .replace("—", "-")
+        .replace("’", "'")
+    )
+
+    value = re.sub(r"\s+", " ", value)
+
+    return value.strip()
+
+
+# ============================================================
+# DATUM HELPERS
 # ============================================================
 
 MONTHS = {
@@ -97,1199 +291,1520 @@ MONTHS = {
 }
 
 
-def normalize_text(text):
-    if not text:
-        return ""
-
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"\s+", " ", text)
-
-    return text.strip()
-
-
-def parse_date_string(value):
+def parse_iso_date(value: str) -> date | None:
     """
-    Probeert zoveel mogelijk datumformaten van SALTO/OTLAS
-    te herkennen.
-
-    Geeft YYYY-MM-DD terug.
+    Parse YYYY-MM-DD.
     """
 
     if not value:
         return None
 
-    value = normalize_text(value)
-
-    # ISO
     match = re.search(
-        r"\b(20\d{2})[-/](\d{1,2})[-/](\d{1,2})\b",
-        value
+        r"\b(20\d{2})-(\d{2})-(\d{2})\b",
+        value,
     )
 
-    if match:
-        try:
-            year, month, day = map(int, match.groups())
-            return datetime(year, month, day).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
+    if not match:
+        return None
+
+    try:
+        return date(
+            int(match.group(1)),
+            int(match.group(2)),
+            int(match.group(3)),
+        )
+    except ValueError:
+        return None
+
+
+def parse_english_date(value: str) -> date | None:
+    """
+    Parse bijvoorbeeld:
+    18 September 2026
+    September 18, 2026
+    """
+
+    if not value:
+        return None
+
+    text = clean_text(value).lower()
 
     # 18 September 2026
     match = re.search(
         r"\b(\d{1,2})\s+"
-        r"(January|February|March|April|May|June|July|August|"
-        r"September|October|November|December)"
+        r"(january|february|march|april|may|june|july|"
+        r"august|september|october|november|december)"
         r"\s+(20\d{2})\b",
-        value,
-        re.IGNORECASE,
+        text,
     )
 
     if match:
         day = int(match.group(1))
-        month = MONTHS[match.group(2).lower()]
+        month = MONTHS[match.group(2)]
         year = int(match.group(3))
 
         try:
-            return datetime(year, month, day).strftime("%Y-%m-%d")
+            return date(year, month, day)
         except ValueError:
-            pass
+            return None
 
-    # 18/09/2026
+    # September 18, 2026
     match = re.search(
-        r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b",
-        value
+        r"\b"
+        r"(january|february|march|april|may|june|july|"
+        r"august|september|october|november|december)"
+        r"\s+(\d{1,2}),?\s+(20\d{2})\b",
+        text,
     )
 
     if match:
-        day, month, year = map(int, match.groups())
+        month = MONTHS[match.group(1)]
+        day = int(match.group(2))
+        year = int(match.group(3))
 
         try:
-            return datetime(year, month, day).strftime("%Y-%m-%d")
+            return date(year, month, day)
         except ValueError:
-            pass
-
-    # 18-09-2026
-    match = re.search(
-        r"\b(\d{1,2})-(\d{1,2})-(20\d{2})\b",
-        value
-    )
-
-    if match:
-        day, month, year = map(int, match.groups())
-
-        try:
-            return datetime(year, month, day).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
+            return None
 
     return None
 
 
-def extract_dates(text):
+def extract_iso_dates(text: str) -> list[str]:
     """
-    Haalt zoveel mogelijk datumstrings uit een pagina.
-    """
-
-    if not text:
-        return []
-
-    patterns = [
-        r"\b\d{1,2}\s+"
-        r"(?:January|February|March|April|May|June|July|August|"
-        r"September|October|November|December)"
-        r"\s+20\d{2}\b",
-
-        r"\b\d{1,2}/\d{1,2}/20\d{2}\b",
-
-        r"\b\d{1,2}-\d{1,2}-20\d{2}\b",
-
-        r"\b20\d{2}-\d{1,2}-\d{1,2}\b",
-    ]
-
-    results = []
-
-    for pattern in patterns:
-        matches = re.findall(
-            pattern,
-            text,
-            flags=re.IGNORECASE
-        )
-
-        for match in matches:
-            if match not in results:
-                results.append(match)
-
-    return results
-
-
-# ============================================================
-# DEADLINE DETECTIE
-# ============================================================
-
-DEADLINE_LABELS = [
-    "application deadline",
-    "deadline for application",
-    "application closes",
-    "applications close",
-    "applications are closed",
-    "deadline",
-    "partner request deadline",
-    "partner request",
-    "deadline for this partner request",
-    "last day to apply",
-    "apply by",
-]
-
-
-def extract_deadline(soup, text):
-    """
-    Probeert eerst expliciete deadlinevelden te vinden.
+    Haalt alle ISO-datums uit tekst.
     """
 
-    lower_text = text.lower()
-
-    # Zoek in HTML-elementen rond deadline-termen
-    for element in soup.find_all(
-        ["p", "div", "li", "td", "th", "span", "strong"]
-    ):
-
-        element_text = normalize_text(
-            element.get_text(" ", strip=True)
+    return sorted(
+        set(
+            re.findall(
+                r"\b20\d{2}-\d{2}-\d{2}\b",
+                text or "",
+            )
         )
-
-        if not element_text:
-            continue
-
-        element_lower = element_text.lower()
-
-        if any(label in element_lower for label in DEADLINE_LABELS):
-
-            dates = extract_dates(element_text)
-
-            if dates:
-                iso = parse_date_string(dates[0])
-
-                if iso:
-                    return dates[0], iso
-
-    # Fallback: zoek deadline en vervolgens een datum
-    for label in DEADLINE_LABELS:
-
-        pattern = (
-            re.escape(label)
-            + r".{0,150}?"
-            + r"(\d{1,2}\s+"
-              r"(?:January|February|March|April|May|June|July|August|"
-              r"September|October|November|December)"
-              r"\s+20\d{2}"
-              r"|\d{1,2}/\d{1,2}/20\d{2}"
-              r"|\d{1,2}-\d{1,2}-20\d{2}"
-              r"|20\d{2}-\d{1,2}-\d{1,2})"
-        )
-
-        match = re.search(
-            pattern,
-            text,
-            flags=re.IGNORECASE | re.DOTALL
-        )
-
-        if match:
-            raw = match.group(1)
-            iso = parse_date_string(raw)
-
-            if iso:
-                return raw, iso
-
-    return None, None
+    )
 
 
-# ============================================================
-# DATUM / PROJECT PERIODE
-# ============================================================
-
-def extract_project_dates(text):
-    dates = extract_dates(text)
+def latest_date_from_strings(values: list[str]) -> date | None:
+    """
+    Zoek de laatste parsebare datum.
+    """
 
     parsed = []
 
-    for date in dates:
-        iso = parse_date_string(date)
+    for value in values:
+        d = parse_iso_date(value)
 
-        if iso and iso not in parsed:
-            parsed.append(iso)
+        if d:
+            parsed.append(d)
 
-    return parsed
-
-
-# ============================================================
-# NEDERLANDSE ELIGIBILITY
-# ============================================================
-
-POSITIVE_PATTERNS = [
-
-    # Direct Nederland
-    r"\bnetherlands\b",
-    r"\bdutch\b",
-    r"\bnederland\b",
-
-    # Programma's
-    r"erasmus\+ youth programme countries",
-    r"erasmus\+ programme countries",
-    r"erasmus\+ program countries",
-    r"programme countries",
-    r"program countries",
-
-    # EU
-    r"eu member states",
-    r"eu member state",
-    r"european union member states",
-    r"all eu countries",
-
-    # Breed
-    r"all countries",
-    r"all eligible countries",
-    r"any country",
-    r"participants from all",
-    r"open to all",
-    r"open for all",
-
-    # Partnerlanden
-    r"partner countries",
-    r"neighbouring partner countries",
-    r"partner countries neighbouring the eu",
-]
-
-
-NEGATIVE_PATTERNS = [
-
-    # Expliciet uitgesloten
-    r"excluding netherlands",
-    r"excluding dutch participants",
-    r"not open to netherlands",
-    r"not available for netherlands",
-    r"netherlands.*not eligible",
-    r"dutch participants.*not eligible",
-    r"participants from.*not including.*netherlands",
-]
-
-
-def determine_netherlands_eligibility(text):
-    """
-    Probeert zo conservatief mogelijk te bepalen of Nederland
-    toegestaan is.
-
-    Return:
-        True
-        False
-        None = onbekend
-    """
-
-    lower = normalize_text(text).lower()
-
-    # Eerst expliciete uitsluiting controleren.
-    for pattern in NEGATIVE_PATTERNS:
-        if re.search(pattern, lower):
-            return False
-
-    # Daarna expliciete positieve aanwijzingen.
-    for pattern in POSITIVE_PATTERNS:
-        if re.search(pattern, lower):
-            return True
-
-    return None
-
-
-# ============================================================
-# CATEGORIE NORMALISATIE
-# ============================================================
-
-CATEGORY_RULES = [
-
-    (
-        "youth_exchange",
-        [
-            "youth exchange",
-            "youth exchanges",
-            "ka152",
-            "ka 152",
-        ],
-    ),
-
-    (
-        "training_course",
-        [
-            "training course",
-            "training courses",
-            "ka153",
-            "ka 153",
-        ],
-    ),
-
-    (
-        "seminar",
-        [
-            "seminar",
-            "seminars",
-        ],
-    ),
-
-    (
-        "study_visit",
-        [
-            "study visit",
-            "study visits",
-        ],
-    ),
-
-    (
-        "partnership_building",
-        [
-            "partnership-building activity",
-            "partnership building activity",
-            "partnership-building",
-            "partnership building",
-            "pba",
-        ],
-    ),
-
-    (
-        "training_and_networking",
-        [
-            "training and networking",
-            "training & networking",
-            "ka153",
-        ],
-    ),
-
-    (
-        "strategic_partnership",
-        [
-            "strategic partnership",
-            "strategic partnerships",
-            "ka2",
-            "ka 2",
-            "ka220",
-            "ka 210",
-        ],
-    ),
-
-    (
-        "capacity_building",
-        [
-            "capacity building",
-            "capacity-building",
-        ],
-    ),
-
-    (
-        "transnational_youth_initiative",
-        [
-            "transnational youth initiative",
-            "transnational youth initiatives",
-        ],
-    ),
-
-    (
-        "volunteering",
-        [
-            "volunteering",
-            "volunteer activities",
-            "volunteering activities",
-            "evs",
-            "european solidarity corps",
-        ],
-    ),
-
-    (
-        "meetings_young_people_decision_makers",
-        [
-            "meetings between young people and decision-makers",
-            "young people and decision-makers",
-        ],
-    ),
-
-    (
-        "e_learning",
-        [
-            "e-learning",
-            "elearning",
-            "online training",
-        ],
-    ),
-
-    (
-        "conference",
-        [
-            "conference",
-            "symposium",
-            "forum",
-        ],
-    ),
-
-    (
-        "other",
-        [],
-    ),
-]
-
-
-def normalize_category(activity_text, page_text=""):
-    combined = (
-        normalize_text(activity_text)
-        + " "
-        + normalize_text(page_text)
-    ).lower()
-
-    for category, keywords in CATEGORY_RULES:
-
-        for keyword in keywords:
-            if keyword in combined:
-                return category
-
-    return "other"
-
-
-# ============================================================
-# PAGINA OPHALEN
-# ============================================================
-
-def get_page(url):
-    try:
-
-        response = session.get(
-            url,
-            timeout=30
-        )
-
-        if response.status_code != 200:
-            print(
-                f"HTTP {response.status_code}: {url}"
-            )
-            return None
-
-        time.sleep(REQUEST_DELAY)
-
-        return response.text
-
-    except requests.RequestException as e:
-
-        print(
-            f"Request fout bij {url}: {e}"
-        )
-
+    if not parsed:
         return None
 
-
-# ============================================================
-# SALTO URL DISCOVERY
-# ============================================================
-
-def discover_salto_urls():
-    """
-    Geen max_pages.
-
-    We blijven pagina's proberen totdat:
-    - SALTO geen links meer geeft
-    - dezelfde pagina opnieuw verschijnt
-    """
-
-    print("\n" + "=" * 70)
-    print("SALTO URL DISCOVERY")
-    print("=" * 70)
-
-    discovered = set()
-
-    page = 1
-
-    previous_signature = None
-
-    while True:
-
-        url = f"{SALTO_BROWSE}?page={page}"
-
-        print(
-            f"SALTO browse pagina {page}..."
-        )
-
-        html = get_page(url)
-
-        if not html:
-            break
-
-        soup = BeautifulSoup(
-            html,
-            "html.parser"
-        )
-
-        page_urls = set()
-
-        for link in soup.find_all("a", href=True):
-
-            href = link.get("href", "")
-
-            full_url = urljoin(
-                SALTO_BASE,
-                href
-            )
-
-            if "/tools/european-training-calendar/" not in full_url:
-                continue
-
-            # Alleen individuele activity pages
-            if (
-                "/training/" in full_url
-                or "/goto-training/" in full_url
-            ):
-                page_urls.add(
-                    full_url.split("#")[0]
-                )
-
-        if not page_urls:
-
-            print(
-                "Geen SALTO-projectlinks meer gevonden."
-            )
-
-            break
-
-        signature = tuple(
-            sorted(page_urls)
-        )
-
-        if signature == previous_signature:
-
-            print(
-                "SALTO gaf dezelfde pagina opnieuw. "
-                "Discovery gestopt."
-            )
-
-            break
-
-        previous_signature = signature
-
-        new_urls = page_urls - discovered
-
-        discovered.update(page_urls)
-
-        print(
-            f"  {len(page_urls)} projecten "
-            f"gevonden, {len(new_urls)} nieuw."
-        )
-
-        if not new_urls:
-
-            print(
-                "Geen nieuwe SALTO-projecten meer."
-            )
-
-            break
-
-        page += 1
-
-    print(
-        f"\nSALTO totaal unieke URL's: "
-        f"{len(discovered)}"
-    )
-
-    return discovered
-
-
-# ============================================================
-# OTLAS URL DISCOVERY
-# ============================================================
-
-def discover_otlas_urls():
-    """
-    Geen max_pages.
-
-    OTLAS bevat zeer veel projecten.
-    We blijven pagination volgen totdat er geen nieuwe
-    projectlinks meer gevonden worden.
-    """
-
-    print("\n" + "=" * 70)
-    print("OTLAS URL DISCOVERY")
-    print("=" * 70)
-
-    discovered = set()
-
-    page = 1
-
-    previous_signature = None
-
-    while True:
-
-        url = f"{OTLAS_BROWSE}?page={page}"
-
-        print(
-            f"OTLAS browse pagina {page}..."
-        )
-
-        html = get_page(url)
-
-        if not html:
-            break
-
-        soup = BeautifulSoup(
-            html,
-            "html.parser"
-        )
-
-        page_urls = set()
-
-        for link in soup.find_all("a", href=True):
-
-            href = link.get("href", "")
-
-            full_url = urljoin(
-                SALTO_BASE,
-                href
-            )
-
-            if "/tools/otlas-partner-finding/project/" not in full_url:
-                continue
-
-            page_urls.add(
-                full_url.split("#")[0]
-            )
-
-        if not page_urls:
-
-            print(
-                "Geen OTLAS-projectlinks meer gevonden."
-            )
-
-            break
-
-        signature = tuple(
-            sorted(page_urls)
-        )
-
-        if signature == previous_signature:
-
-            print(
-                "OTLAS gaf dezelfde pagina opnieuw."
-            )
-
-            break
-
-        previous_signature = signature
-
-        new_urls = page_urls - discovered
-
-        discovered.update(page_urls)
-
-        print(
-            f"  {len(page_urls)} projecten "
-            f"gevonden, {len(new_urls)} nieuw."
-        )
-
-        if not new_urls:
-
-            print(
-                "Geen nieuwe OTLAS-projecten meer."
-            )
-
-            break
-
-        page += 1
-
-    print(
-        f"\nOTLAS totaal unieke URL's: "
-        f"{len(discovered)}"
-    )
-
-    return discovered
+    return max(parsed)
 
 
 # ============================================================
 # TITEL
 # ============================================================
 
-def extract_title(soup):
+def extract_title(soup: BeautifulSoup) -> str:
+    """
+    Haalt de titel uit H1.
+    """
 
-    # Eerst H1
     h1 = soup.find("h1")
 
     if h1:
-        title = normalize_text(
-            h1.get_text(" ", strip=True)
-        )
+        title = clean_text(h1.get_text(" ", strip=True))
 
         if title:
             return title
 
-    # Daarna title tag
+    # Fallback
     if soup.title:
-
-        title = normalize_text(
-            soup.title.get_text(
-                " ",
-                strip=True
-            )
-        )
+        title = clean_text(soup.title.get_text(" ", strip=True))
 
         title = re.sub(
-            r"\s*[-|]\s*SALTO.*$",
+            r"\s*\|\s*SALTO.*$",
             "",
             title,
-            flags=re.IGNORECASE
+            flags=re.I,
         )
 
-        return title.strip()
+        return title
 
-    return "Onbekend project"
+    return ""
 
 
 # ============================================================
-# SALTO DETAILPAGINA
+# LINK DETECTIE
 # ============================================================
 
-def scrape_salto_detail(url):
-    html = get_page(url)
+def is_salto_detail_url(url: str) -> bool:
+    """
+    Controleert of een URL naar een SALTO training/detailpagina gaat.
+    """
 
-    if not html:
+    path = urlparse(url).path.lower()
+
+    return (
+        "/tools/european-training-calendar/training/" in path
+        or "/tools/european-training-calendar/goto-training/" in path
+    )
+
+
+def is_otlas_detail_url(url: str) -> bool:
+    """
+    Controleert of een URL naar een OTLAS project gaat.
+    """
+
+    path = urlparse(url).path.lower()
+
+    return "/tools/otlas-partner-finding/project/" in path
+
+
+def extract_detail_links(
+    soup: BeautifulSoup,
+    source: str,
+) -> list[str]:
+
+    links = []
+
+    for a in soup.find_all("a", href=True):
+        href = normalize_url(a.get("href"))
+
+        if not href:
+            continue
+
+        if source == "salto":
+            valid = is_salto_detail_url(href)
+        else:
+            valid = is_otlas_detail_url(href)
+
+        if valid:
+            links.append(href)
+
+    return list(dict.fromkeys(links))
+
+
+# ============================================================
+# ELIGIBILITY
+# ============================================================
+
+def contains_netherlands(text: str) -> bool:
+    """
+    Expliciete Nederlandse deelname.
+    """
+
+    normalized = normalize_for_match(text)
+
+    return (
+        "netherlands" in normalized
+        or "the netherlands" in normalized
+    )
+
+
+def contains_programme_country_group(text: str) -> bool:
+    """
+    Controleert alleen expliciete SALTO/Erasmus+
+    programme-country formuleringen.
+
+    We nemen NIET zomaar ieder voorkomen van
+    'partner countries' als bewijs.
+    """
+
+    normalized = normalize_for_match(text)
+
+    patterns = [
+        "erasmus+ youth programme countries",
+        "erasmus: youth in action programme countries",
+        "erasmus+ programme countries",
+    ]
+
+    return any(
+        pattern in normalized
+        for pattern in patterns
+    )
+
+
+def determine_eligibility(
+    eligibility_text: str,
+) -> tuple[bool, str]:
+
+    text = clean_text(eligibility_text)
+
+    if contains_netherlands(text):
+        return True, "netherlands_explicitly_listed"
+
+    if contains_programme_country_group(text):
+        return True, "erasmus_programme_countries"
+
+    return False, "netherlands_not_found"
+
+
+# ============================================================
+# SALTO ELIGIBILITY
+# ============================================================
+
+def extract_salto_eligibility(soup: BeautifulSoup) -> str:
+    """
+    SALTO heeft momenteel tekst zoals:
+
+    This activity is for participants from
+
+    Netherlands, Germany, ...
+
+    We halen alleen het relevante gedeelte op.
+    """
+
+    text = soup_text(soup)
+
+    marker = re.search(
+        r"This activity is for participants from",
+        text,
+        flags=re.I,
+    )
+
+    if not marker:
+        # Sommige detailpagina's gebruiken:
+        # "This Training Course is for ... from"
+        marker = re.search(
+            r"This .*? is\s+for .*? from",
+            text,
+            flags=re.I,
+        )
+
+    if not marker:
+        return ""
+
+    start = marker.end()
+
+    remainder = text[start:]
+
+    stop_patterns = [
+        r"Application deadline",
+        r"Date of selection",
+        r"Please note",
+        r"More information",
+        r"Contact",
+        r"Apply now",
+        r"Training overview",
+    ]
+
+    end_positions = []
+
+    for pattern in stop_patterns:
+        match = re.search(
+            pattern,
+            remainder,
+            flags=re.I,
+        )
+
+        if match:
+            end_positions.append(match.start())
+
+    if end_positions:
+        remainder = remainder[:min(end_positions)]
+
+    return clean_text(remainder)
+
+
+# ============================================================
+# SALTO DEADLINE
+# ============================================================
+
+def extract_salto_deadline(
+    soup: BeautifulSoup,
+) -> tuple[str, str]:
+    """
+    Haalt de application deadline uit de SALTO-pagina.
+    """
+
+    text = soup_text(soup)
+
+    # Primaire huidige formulering:
+    # Application deadline (24h UTC): 18 September 2026
+    pattern = re.search(
+        r"Application deadline"
+        r"(?:\s*\([^)]*\))?"
+        r"\s*[:\-]?\s*"
+        r"(\d{1,2}\s+"
+        r"(?:January|February|March|April|May|June|July|August|"
+        r"September|October|November|December)"
+        r"\s+20\d{2})",
+        text,
+        flags=re.I,
+    )
+
+    if pattern:
+        raw = clean_text(pattern.group(1))
+        parsed = parse_english_date(raw)
+
+        if parsed:
+            return raw, parsed.isoformat()
+
+    # Fallback voor varianten
+    marker = re.search(
+        r"Application deadline",
+        text,
+        flags=re.I,
+    )
+
+    if marker:
+        section = text[marker.start():marker.start() + 250]
+
+        parsed = parse_english_date(section)
+
+        if parsed:
+            return parsed.strftime("%d %B %Y"), parsed.isoformat()
+
+        iso = parse_iso_date(section)
+
+        if iso:
+            return iso.isoformat(), iso.isoformat()
+
+    return "", ""
+
+
+# ============================================================
+# SALTO CATEGORY
+# ============================================================
+
+def extract_salto_activity_type(
+    soup: BeautifulSoup,
+) -> str:
+    """
+    Probeert eerst het type uit de detailpagina te halen.
+    """
+
+    text = soup_text(soup)
+
+    # Langste/meer specifieke eerst
+    candidates = sorted(
+        SALTO_CATEGORY_MAP.keys(),
+        key=len,
+        reverse=True,
+    )
+
+    normalized = normalize_for_match(text)
+
+    for candidate in candidates:
+        if candidate in normalized:
+            return candidate
+
+    return "Other"
+
+
+def normalize_salto_category(
+    activity_type: str,
+) -> str:
+
+    normalized = normalize_for_match(activity_type)
+
+    return SALTO_CATEGORY_MAP.get(
+        normalized,
+        "other",
+    )
+
+
+# ============================================================
+# SALTO DATA
+# ============================================================
+
+def scrape_salto_detail(url: str) -> dict | None:
+    """
+    Verwerk één SALTO detailpagina.
+    """
+
+    response = fetch(url)
+
+    if not response:
         return None
 
     soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    text = normalize_text(
-        soup.get_text(" ", strip=True)
+        response.text,
+        "html.parser",
     )
 
     title = extract_title(soup)
 
-    # Activity type proberen te vinden
-    activity_type = ""
+    if not title:
+        return None
 
-    # Zoek labels rondom bekende SALTO types
-    known_types = [
-        "Study Visit",
-        "Partnership-building Activity",
-        "Seminar",
-        "Training Course",
-        "E-learning",
-        "Conference – Symposium - Forum",
-        "Conference - Symposium - Forum",
-        "Youth Exchange",
-        "Training and Networking",
-    ]
+    eligibility_text = extract_salto_eligibility(soup)
 
-    lower_text = text.lower()
-
-    for candidate in known_types:
-
-        if candidate.lower() in lower_text:
-
-            activity_type = candidate
-
-            break
-
-    category = normalize_category(
-        activity_type,
-        text
+    eligible, reason = determine_eligibility(
+        eligibility_text
     )
 
-    deadline, deadline_iso = extract_deadline(
-        soup,
-        text
+    if not eligible:
+        return None
+
+    activity_type = extract_salto_activity_type(soup)
+
+    category = normalize_salto_category(
+        activity_type
     )
 
-    dates = extract_project_dates(text)
-
-    netherlands_eligible = (
-        determine_netherlands_eligibility(text)
+    deadline, deadline_iso = extract_salto_deadline(
+        soup
     )
 
-    # SALTO gebruikt expliciet "This activity is for
-    # participants from". Dit is een sterke aanwijzing.
-    participant_section = ""
+    # Verlopen deadline verwijderen
+    if deadline_iso:
+        parsed_deadline = parse_iso_date(deadline_iso)
 
-    match = re.search(
-        r"This activity is for participants from(.{0,5000})",
-        text,
-        flags=re.IGNORECASE
-    )
+        if parsed_deadline and parsed_deadline < TODAY:
+            return None
 
-    if match:
+    # Datums uit de detailpagina.
+    # Alleen informatief; de deadline wordt apart opgeslagen.
+    all_text = soup_text(soup)
 
-        participant_section = match.group(1)
+    dates_found = extract_iso_dates(all_text)
 
-        section_eligibility = (
-            determine_netherlands_eligibility(
-                participant_section
-            )
-        )
-
-        if section_eligibility is not None:
-
-            netherlands_eligible = (
-                section_eligibility
-            )
-
-    # Als Nederland niet expliciet genoemd wordt maar
-    # de pagina duidelijk een brede programme-country
-    # doelgroep heeft, mag hij door.
-    if netherlands_eligible is None:
-
-        broad_programme_patterns = [
-            "erasmus+ youth programme countries",
-            "erasmus+ programme countries",
-            "programme countries",
-        ]
-
-        if any(
-            p in lower_text
-            for p in broad_programme_patterns
-        ):
-            netherlands_eligible = True
+    # Nederlandse / Engelse datums op detailpagina kunnen
+    # ook in andere vorm staan. We bewaren ISO indien gevonden.
+    dates_found = sorted(set(dates_found))
 
     return {
         "title": title,
         "source": "salto",
         "category": category,
+        "categories": [category],
         "activity_type": activity_type,
-        "dates_found": dates,
-        "application_deadline": deadline or "Niet opgegeven",
+        "dates_found": dates_found,
+        "application_deadline": deadline,
         "application_deadline_iso": deadline_iso,
-        "netherlands_eligible": (
-            netherlands_eligible is True
-        ),
-        "eligibility_status": (
-            "eligible"
-            if netherlands_eligible is True
-            else "not_eligible"
-            if netherlands_eligible is False
-            else "unknown"
-        ),
+        "netherlands_eligible": True,
+        "eligibility_reason": reason,
+        "eligibility_type": "participant",
         "url": url,
     }
 
 
 # ============================================================
-# OTLAS DETAILPAGINA
+# SALTO SCRAPER
 # ============================================================
 
-def scrape_otlas_detail(url):
-    html = get_page(url)
+def scrape_salto_courses() -> list[dict]:
+    """
+    Doorzoekt alle SALTO ETC-pagina's.
 
-    if not html:
+    Geen vaste paginalimiet.
+
+    Stopvoorwaarden:
+    - pagina bevat geen nieuwe detail-URL's
+    - dezelfde URL-signatuur komt opnieuw voor
+    """
+
+    print()
+    print("=" * 70)
+    print("SALTO EUROPEAN TRAINING CALENDAR")
+    print("=" * 70)
+
+    results = []
+
+    seen_detail_urls = set()
+    seen_page_signatures = set()
+
+    offset = 0
+    page_number = 1
+
+    while True:
+
+        url = make_offset_url(
+            SALTO_BROWSE_URL,
+            offset,
+            "applicationDeadline",
+        )
+
+        print(
+            f"\nSALTO pagina {page_number} "
+            f"(offset={offset})"
+        )
+
+        response = fetch(url)
+
+        if not response:
+            print("  Pagina kon niet worden geladen.")
+            break
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser",
+        )
+
+        detail_urls = extract_detail_links(
+            soup,
+            "salto",
+        )
+
+        new_urls = [
+            item
+            for item in detail_urls
+            if item not in seen_detail_urls
+        ]
+
+        print(
+            f"  Detail-links gevonden: "
+            f"{len(detail_urls)}"
+        )
+
+        print(
+            f"  Nieuwe links: "
+            f"{len(new_urls)}"
+        )
+
+        if not new_urls:
+            print(
+                "  Geen nieuwe SALTO-resultaten meer."
+            )
+            break
+
+        # Bescherming tegen een pagina die steeds dezelfde
+        # resultaten teruggeeft.
+        signature = hashlib.sha256(
+            "|".join(sorted(new_urls)).encode("utf-8")
+        ).hexdigest()
+
+        if signature in seen_page_signatures:
+            print(
+                "  Herhaalde pagina gedetecteerd. "
+                "SALTO wordt gestopt."
+            )
+            break
+
+        seen_page_signatures.add(signature)
+
+        for detail_url in new_urls:
+            seen_detail_urls.add(detail_url)
+
+            print(
+                f"    -> {detail_url}"
+            )
+
+            try:
+                item = scrape_salto_detail(
+                    detail_url
+                )
+
+                if item:
+                    results.append(item)
+
+            except Exception as exc:
+                print(
+                    f"       FOUT: {exc}"
+                )
+
+        offset += PAGE_SIZE
+        page_number += 1
+
+    print()
+    print(
+        f"SALTO: {len(results)} "
+        f"bruikbare Nederlandse resultaten."
+    )
+
+    return results
+
+
+# ============================================================
+# OTLAS LIST DATE EXTRACTION
+# ============================================================
+
+def extract_otlas_list_dates(
+    soup: BeautifulSoup,
+) -> tuple[date | None, date | None, date | None]:
+    """
+    Probeert op de OTLAS-overzichtspagina:
+
+    - partner deadline
+    - project start
+    - project einde
+
+    te vinden.
+
+    OTLAS gebruikt op de huidige pagina ISO-datums.
+    """
+
+    text = soup_text(soup)
+
+    deadline = None
+    start = None
+    end = None
+
+    # We zoeken eerst expliciet rond de labels.
+
+    deadline_match = re.search(
+        r"Deadline for this partner request:"
+        r"\s*(20\d{2}-\d{2}-\d{2})",
+        text,
+        flags=re.I,
+    )
+
+    if deadline_match:
+        deadline = parse_iso_date(
+            deadline_match.group(1)
+        )
+
+    project_match = re.search(
+        r"This project takes place:"
+        r"\s*from\s*"
+        r"(20\d{2}(?:-\d{2})?(?:-\d{2})?)"
+        r"\s*till\s*"
+        r"(20\d{2}(?:-\d{2})?(?:-\d{2})?)",
+        text,
+        flags=re.I,
+    )
+
+    if project_match:
+
+        start_raw = project_match.group(1)
+        end_raw = project_match.group(2)
+
+        # Alleen volledige ISO datum betrouwbaar parsen.
+        start = parse_iso_date(start_raw)
+        end = parse_iso_date(end_raw)
+
+    return deadline, start, end
+
+
+# ============================================================
+# OTLAS CATEGORY EXTRACTION
+# ============================================================
+
+def extract_otlas_categories(
+    soup: BeautifulSoup,
+) -> tuple[list[str], str]:
+    """
+    Haalt categorieën uit het specifieke:
+
+    This project relates to:
+
+    gedeelte.
+
+    Hierdoor worden woorden elders op de pagina niet
+    ten onrechte als categorie gezien.
+    """
+
+    text = soup_text(soup)
+
+    marker = re.search(
+        r"This project relates to:",
+        text,
+        flags=re.I,
+    )
+
+    if not marker:
+        return ["other"], "Other"
+
+    remainder = text[marker.end():]
+
+    stop_patterns = [
+        r"and is focusing on:",
+        r"This project can include",
+        r"Short URL to this project:",
+        r"Please login",
+    ]
+
+    end_positions = []
+
+    for pattern in stop_patterns:
+        match = re.search(
+            pattern,
+            remainder,
+            flags=re.I,
+        )
+
+        if match:
+            end_positions.append(match.start())
+
+    if end_positions:
+        remainder = remainder[:min(end_positions)]
+
+    relevant_text = normalize_for_match(
+        remainder
+    )
+
+    categories = []
+    labels = []
+
+    # Langste labels eerst.
+    for label, category in sorted(
+        OTLAS_CATEGORY_MAP.items(),
+        key=lambda item: len(item[0]),
+        reverse=True,
+    ):
+
+        if label in relevant_text:
+            if category not in categories:
+                categories.append(category)
+
+                # Mooie originele label
+                labels.append(
+                    label.title()
+                )
+
+    if not categories:
+        return ["other"], "Other"
+
+    return categories, ", ".join(labels)
+
+
+# ============================================================
+# OTLAS ELIGIBILITY
+# ============================================================
+
+def extract_otlas_eligibility(
+    soup: BeautifulSoup,
+) -> str:
+    """
+    Haalt alleen het gedeelte rondom:
+
+    We're looking for:
+
+    ... from Netherlands, Germany, ...
+
+    """
+
+    text = soup_text(soup)
+
+    marker = re.search(
+        r"We['’]re looking for:",
+        text,
+        flags=re.I,
+    )
+
+    if not marker:
+        return ""
+
+    remainder = text[marker.end():]
+
+    # Zoek het eerste "from ..."
+    from_match = re.search(
+        r"\bfrom\s+(.+?)(?="
+        r"\s+Deadline for this partner request:"
+        r"|\s+Please login"
+        r"|\s+Project overview"
+        r")",
+        remainder,
+        flags=re.I,
+    )
+
+    if from_match:
+        return clean_text(
+            from_match.group(1)
+        )
+
+    # Sommige projecten hebben geen deadline.
+    from_match = re.search(
+        r"\bfrom\s+(.+?)(?="
+        r"\s+Please login"
+        r"|\s+Project overview"
+        r")",
+        remainder,
+        flags=re.I,
+    )
+
+    if from_match:
+        return clean_text(
+            from_match.group(1)
+        )
+
+    return ""
+
+
+# ============================================================
+# OTLAS DEADLINE
+# ============================================================
+
+def extract_otlas_deadline(
+    soup: BeautifulSoup,
+) -> tuple[str, str]:
+    """
+    Extracteert:
+
+    Deadline for this partner request:
+    2026-10-16
+    """
+
+    text = soup_text(soup)
+
+    match = re.search(
+        r"Deadline for this partner request:"
+        r"\s*(20\d{2}-\d{2}-\d{2})",
+        text,
+        flags=re.I,
+    )
+
+    if not match:
+        return "", ""
+
+    raw = match.group(1)
+
+    parsed = parse_iso_date(raw)
+
+    if not parsed:
+        return "", ""
+
+    return raw, parsed.isoformat()
+
+
+# ============================================================
+# OTLAS DETAIL
+# ============================================================
+
+def scrape_otlas_detail(
+    url: str,
+) -> dict | None:
+
+    response = fetch(url)
+
+    if not response:
         return None
 
     soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    text = normalize_text(
-        soup.get_text(" ", strip=True)
+        response.text,
+        "html.parser",
     )
 
     title = extract_title(soup)
 
-    lower_text = text.lower()
+    if not title:
+        return None
 
-    # OTLAS gebruikt verschillende termen.
-    activity_type = ""
-
-    otlas_types = [
-        "Youth Exchanges",
-        "Volunteering Activities",
-        "Training and Networking",
-        "Transnational Youth Initiatives",
-        "Strategic Partnerships",
-        "Capacity Building",
-        "Meetings between young people and decision-makers",
-        "Training course",
-        "Training Course",
-        "Seminar",
-        "Study visit",
-        "Study Visit",
-        "Partnership-building activity",
-        "Partnership Building Activity",
-        "E-learning",
-    ]
-
-    for candidate in otlas_types:
-
-        if candidate.lower() in lower_text:
-
-            activity_type = candidate
-
-            break
-
-    category = normalize_category(
-        activity_type,
-        text
+    eligibility_text = extract_otlas_eligibility(
+        soup
     )
 
-    deadline, deadline_iso = extract_deadline(
-        soup,
-        text
+    eligible, reason = determine_eligibility(
+        eligibility_text
     )
 
-    dates = extract_project_dates(text)
+    if not eligible:
+        return None
 
-    netherlands_eligible = (
-        determine_netherlands_eligibility(
-            text
+    categories, activity_type = (
+        extract_otlas_categories(soup)
+    )
+
+    deadline, deadline_iso = (
+        extract_otlas_deadline(soup)
+    )
+
+    # Verlopen deadline = verwijderen
+    if deadline_iso:
+        parsed_deadline = parse_iso_date(
+            deadline_iso
         )
+
+        if parsed_deadline and parsed_deadline < TODAY:
+            return None
+
+    # Projectdatums
+    project_text = soup_text(soup)
+
+    iso_dates = extract_iso_dates(
+        project_text
     )
 
-    # OTLAS kan bijvoorbeeld aangeven:
-    #
-    # "All Erasmus+ Programme countries"
-    #
-    # Dit moet Nederland toelaten.
-    if netherlands_eligible is None:
+    # Als er geen deadline is:
+    # alleen behouden als het project zelf nog loopt/toekomstig is.
+    if not deadline_iso:
 
-        broad_patterns = [
-            "all erasmus+ programme countries",
-            "all programme countries",
-            "erasmus+ programme countries",
-            "programme countries",
-            "all eu countries",
-            "all countries",
-        ]
+        if not KEEP_OTLAS_WITHOUT_DEADLINE:
+            return None
 
-        if any(
-            p in lower_text
-            for p in broad_patterns
-        ):
-            netherlands_eligible = True
+        # Zoek projectperiode.
+        project_match = re.search(
+            r"taking place\s+from\s+"
+            r"(20\d{2}(?:-\d{2})?(?:-\d{2})?)"
+            r"\s+till\s+"
+            r"(20\d{2}(?:-\d{2})?(?:-\d{2})?)",
+            project_text,
+            flags=re.I,
+        )
+
+        if project_match:
+
+            end_raw = project_match.group(2)
+
+            end_date = parse_iso_date(
+                end_raw
+            )
+
+            if end_date and end_date < TODAY:
+                return None
 
     return {
         "title": title,
         "source": "otlas",
-        "category": category,
+        "category": categories[0],
+        "categories": categories,
         "activity_type": activity_type,
-        "dates_found": dates,
-        "application_deadline": deadline or "Niet opgegeven",
+        "dates_found": iso_dates,
+        "application_deadline": deadline,
         "application_deadline_iso": deadline_iso,
-        "netherlands_eligible": (
-            netherlands_eligible is True
-        ),
-        "eligibility_status": (
-            "eligible"
-            if netherlands_eligible is True
-            else "not_eligible"
-            if netherlands_eligible is False
-            else "unknown"
-        ),
+        "netherlands_eligible": True,
+        "eligibility_reason": reason,
+        "eligibility_type": "organisation_partner",
         "url": url,
     }
 
 
 # ============================================================
-# DEADLINE FILTER
+# OTLAS LIST PAGE FILTERING
 # ============================================================
 
-def deadline_is_valid(course):
+def get_otlas_candidate_links(
+    soup: BeautifulSoup,
+) -> list[str]:
     """
-    Verwijdert projecten waarvan de deadline verstreken is.
+    Haalt OTLAS detail-links uit een overzichtspagina.
+
+    We openen niet automatisch ieder oud project.
     """
 
-    deadline = course.get(
-        "application_deadline_iso"
+    return extract_detail_links(
+        soup,
+        "otlas",
     )
 
-    if not deadline:
 
-        return KEEP_WITHOUT_DEADLINE
+def page_contains_relevant_otlas_projects(
+    soup: BeautifulSoup,
+) -> bool:
+    """
+    Controleert of de pagina überhaupt nog
+    potentiële actieve projecten bevat.
 
-    today = datetime.now().strftime(
-        "%Y-%m-%d"
-    )
+    We gebruiken dit niet als enige filter;
+    detailpagina's blijven de definitieve bron.
+    """
 
-    return deadline >= today
+    text = soup_text(soup)
+
+    if "Deadline for this partner request:" in text:
+        return True
+
+    if "This project takes place:" in text:
+        return True
+
+    return False
 
 
 # ============================================================
-# HOOFDFUNCTIE
+# OTLAS SCRAPER
 # ============================================================
 
-def scrape_all_projects():
-    print("\n")
+def scrape_otlas_projects() -> list[dict]:
+    """
+    Doorzoekt OTLAS.
+
+    Belangrijk optimalisatieprincipe:
+
+    OTLAS bevat momenteel meer dan 11.000 projecten.
+    De database bevat ook veel oude/verlopen projecten.
+
+    Daarom:
+    1. overzichtspagina's doorlopen;
+    2. detail-links verzamelen;
+    3. alleen actieve/potentieel relevante projecten openen;
+    4. op detailpagina Nederlandse partnergeschiktheid bevestigen.
+    """
+
+    print()
     print("=" * 70)
-    print("SALTO + OTLAS COMPLETE SCRAPER")
+    print("OTLAS PARTNER FINDING")
     print("=" * 70)
 
-    # --------------------------------------------------------
-    # 1. URL'S VERZAMELEN
-    # --------------------------------------------------------
+    results = []
 
-    salto_urls = discover_salto_urls()
+    seen_detail_urls = set()
+    seen_page_signatures = set()
 
-    otlas_urls = discover_otlas_urls()
+    offset = 0
+    page_number = 1
 
-    print("\n")
+    while True:
+
+        url = make_offset_url(
+            OTLAS_BROWSE_URL,
+            offset,
+            "lastmod",
+        )
+
+        print(
+            f"\nOTLAS pagina {page_number} "
+            f"(offset={offset})"
+        )
+
+        response = fetch(url)
+
+        if not response:
+            print(
+                "  Pagina kon niet worden geladen."
+            )
+            break
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser",
+        )
+
+        if not page_contains_relevant_otlas_projects(
+            soup
+        ):
+            print(
+                "  Geen relevante OTLAS-resultaten "
+                "meer op deze pagina."
+            )
+            break
+
+        detail_urls = get_otlas_candidate_links(
+            soup
+        )
+
+        new_urls = [
+            item
+            for item in detail_urls
+            if item not in seen_detail_urls
+        ]
+
+        print(
+            f"  Detail-links gevonden: "
+            f"{len(detail_urls)}"
+        )
+
+        print(
+            f"  Nieuwe links: "
+            f"{len(new_urls)}"
+        )
+
+        if not new_urls:
+            print(
+                "  Geen nieuwe OTLAS-resultaten meer."
+            )
+            break
+
+        signature = hashlib.sha256(
+            "|".join(sorted(new_urls)).encode("utf-8")
+        ).hexdigest()
+
+        if signature in seen_page_signatures:
+            print(
+                "  Herhaalde pagina gedetecteerd. "
+                "OTLAS wordt gestopt."
+            )
+            break
+
+        seen_page_signatures.add(signature)
+
+        for detail_url in new_urls:
+
+            seen_detail_urls.add(
+                detail_url
+            )
+
+            print(
+                f"    -> {detail_url}"
+            )
+
+            try:
+
+                item = scrape_otlas_detail(
+                    detail_url
+                )
+
+                if item:
+                    results.append(item)
+
+            except Exception as exc:
+                print(
+                    f"       FOUT: {exc}"
+                )
+
+        offset += PAGE_SIZE
+        page_number += 1
+
+    print()
     print(
-        f"SALTO URL's : {len(salto_urls)}"
+        f"OTLAS: {len(results)} "
+        f"bruikbare Nederlandse partner-resultaten."
+    )
+
+    return results
+
+
+# ============================================================
+# DEDUPLICATIE
+# ============================================================
+
+def deduplicate_results(
+    items: list[dict],
+) -> list[dict]:
+    """
+    Verwijdert dubbele resultaten op URL.
+    """
+
+    seen = set()
+    output = []
+
+    for item in items:
+
+        url = normalize_url(
+            item.get("url", "")
+        )
+
+        if not url:
+            continue
+
+        if url in seen:
+            continue
+
+        seen.add(url)
+
+        item["url"] = url
+
+        output.append(item)
+
+    return output
+
+
+# ============================================================
+# EXTRA VALIDATIE
+# ============================================================
+
+def validate_item(item: dict) -> bool:
+    """
+    Controleert of een JSON-item minimaal
+    de noodzakelijke structuur heeft.
+    """
+
+    required_fields = [
+        "title",
+        "source",
+        "category",
+        "categories",
+        "activity_type",
+        "netherlands_eligible",
+        "eligibility_type",
+        "url",
+    ]
+
+    for field in required_fields:
+
+        if field not in item:
+            return False
+
+    if not item["title"]:
+        return False
+
+    if item["source"] not in {
+        "salto",
+        "otlas",
+    }:
+        return False
+
+    if item["netherlands_eligible"] is not True:
+        return False
+
+    if not isinstance(
+        item["categories"],
+        list,
+    ):
+        return False
+
+    return True
+
+
+def validate_results(
+    items: list[dict],
+) -> list[dict]:
+
+    valid = []
+
+    for item in items:
+
+        if validate_item(item):
+            valid.append(item)
+
+    return valid
+
+
+# ============================================================
+# SORTERING
+# ============================================================
+
+def sort_results(
+    items: list[dict],
+) -> list[dict]:
+    """
+    Sorteert eerst op deadline.
+    Items zonder deadline komen daarna.
+    """
+
+    def sort_key(item):
+
+        deadline = item.get(
+            "application_deadline_iso"
+        )
+
+        if deadline:
+            return (
+                0,
+                deadline,
+                item.get("title", "").lower(),
+            )
+
+        return (
+            1,
+            "9999-99-99",
+            item.get("title", "").lower(),
+        )
+
+    return sorted(
+        items,
+        key=sort_key,
+    )
+
+
+# ============================================================
+# JSON SCHRIJVEN
+# ============================================================
+
+def write_json(
+    items: list[dict],
+) -> None:
+    """
+    Schrijft atomisch naar data/salto_courses.json.
+
+    Eerst wordt een tijdelijk bestand geschreven.
+    Daarna wordt het bestaande bestand vervangen.
+
+    Daardoor blijft het oude JSON-bestand behouden wanneer
+    het schrijven mislukt.
+    """
+
+    OUTPUT_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    temporary_file = OUTPUT_FILE.with_suffix(
+        ".tmp"
+    )
+
+    with temporary_file.open(
+        "w",
+        encoding="utf-8",
+    ) as file:
+
+        json.dump(
+            items,
+            file,
+            ensure_ascii=False,
+            indent=2,
+        )
+
+        file.write("\n")
+
+    os.replace(
+        temporary_file,
+        OUTPUT_FILE,
+    )
+
+
+# ============================================================
+# STATISTIEKEN
+# ============================================================
+
+def print_statistics(
+    items: list[dict],
+) -> None:
+
+    salto = [
+        item
+        for item in items
+        if item["source"] == "salto"
+    ]
+
+    otlas = [
+        item
+        for item in items
+        if item["source"] == "otlas"
+    ]
+
+    print()
+    print("=" * 70)
+    print("RESULTAAT")
+    print("=" * 70)
+
+    print(
+        f"Totaal: {len(items)}"
     )
 
     print(
-        f"OTLAS URL's : {len(otlas_urls)}"
+        f"SALTO:  {len(salto)}"
     )
 
-    # --------------------------------------------------------
-    # 2. DETAILPAGINA'S SCRAPEN
-    # --------------------------------------------------------
-
-    courses = []
-
-    total = (
-        len(salto_urls)
-        + len(otlas_urls)
+    print(
+        f"OTLAS:  {len(otlas)}"
     )
 
-    current = 0
+    print()
+    print("Categorieën:")
+
+    counts = {}
+
+    for item in items:
+
+        for category in item.get(
+            "categories",
+            [],
+        ):
+
+            counts[category] = (
+                counts.get(category, 0) + 1
+            )
+
+    for category, count in sorted(
+        counts.items()
+    ):
+        print(
+            f"  {category}: {count}"
+        )
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+
+    started = datetime.now()
+
+    print()
+    print("=" * 70)
+    print("WIKKEL ERASMUS+ SCRAPER")
+    print("=" * 70)
+
+    print(
+        f"Datum: {TODAY.isoformat()}"
+    )
+
+    print(
+        f"Output: {OUTPUT_FILE}"
+    )
+
+    print()
 
     # --------------------------------------------------------
     # SALTO
     # --------------------------------------------------------
 
-    for url in sorted(salto_urls):
+    try:
+        salto_results = scrape_salto_courses()
 
-        current += 1
+    except Exception as exc:
 
         print(
-            f"[{current}/{total}] SALTO: {url}"
+            "\nFATALE SALTO-FOUT:"
         )
+        print(exc)
 
-        try:
-
-            project = scrape_salto_detail(
-                url
-            )
-
-            if not project:
-                continue
-
-            # Alleen Nederlandse deelnemers
-            if not project[
-                "netherlands_eligible"
-            ]:
-                continue
-
-            # Deadline verlopen?
-            if not deadline_is_valid(
-                project
-            ):
-                print(
-                    "  -> VERLOPEN DEADLINE"
-                )
-                continue
-
-            courses.append(project)
-
-        except Exception as e:
-
-            print(
-                f"  -> fout: {e}"
-            )
+        salto_results = []
 
     # --------------------------------------------------------
     # OTLAS
     # --------------------------------------------------------
 
-    for url in sorted(otlas_urls):
+    try:
+        otlas_results = scrape_otlas_projects()
 
-        current += 1
+    except Exception as exc:
 
         print(
-            f"[{current}/{total}] OTLAS: {url}"
+            "\nFATALE OTLAS-FOUT:"
         )
+        print(exc)
 
-        try:
-
-            project = scrape_otlas_detail(
-                url
-            )
-
-            if not project:
-                continue
-
-            # Nederlandse organisatie moet kunnen deelnemen
-            if not project[
-                "netherlands_eligible"
-            ]:
-                continue
-
-            # Deadline verlopen?
-            if not deadline_is_valid(
-                project
-            ):
-                print(
-                    "  -> VERLOPEN DEADLINE"
-                )
-                continue
-
-            courses.append(project)
-
-        except Exception as e:
-
-            print(
-                f"  -> fout: {e}"
-            )
+        otlas_results = []
 
     # --------------------------------------------------------
-    # 3. DUBBELE PROJECTEN VERWIJDEREN
+    # COMBINEREN
     # --------------------------------------------------------
 
-    unique = {}
+    combined = (
+        salto_results
+        + otlas_results
+    )
 
-    for project in courses:
+    combined = deduplicate_results(
+        combined
+    )
 
-        url = project.get("url")
+    combined = validate_results(
+        combined
+    )
 
-        if url:
-            unique[url] = project
-
-    courses = list(unique.values())
-
-    # --------------------------------------------------------
-    # 4. SORTEREN
-    # --------------------------------------------------------
-
-    courses.sort(
-        key=lambda x: (
-            x.get(
-                "application_deadline_iso"
-            ) or "9999-12-31"
-        )
+    combined = sort_results(
+        combined
     )
 
     # --------------------------------------------------------
-    # 5. JSON SCHRIJVEN
+    # VEILIGHEID
     # --------------------------------------------------------
 
-    with open(
-        OUTPUT_FILE,
-        "w",
-        encoding="utf-8"
-    ) as f:
+    # Als beide bronnen niets opleveren, overschrijven we
+    # NIET je bestaande JSON.
+    if not combined:
 
-        json.dump(
-            courses,
-            f,
-            ensure_ascii=False,
-            indent=2
+        print()
+        print(
+            "WAARSCHUWING:"
         )
 
+        print(
+            "De scraper heeft 0 geldige resultaten "
+            "opgeleverd."
+        )
+
+        print(
+            "Het bestaande JSON-bestand wordt "
+            "NIET overschreven."
+        )
+
+        return
+
     # --------------------------------------------------------
-    # 6. STATISTIEKEN
+    # JSON
     # --------------------------------------------------------
 
-    print("\n")
-    print("=" * 70)
-    print("SCRAPING KLAAR")
+    write_json(
+        combined
+    )
+
+    # --------------------------------------------------------
+    # STATISTIEKEN
+    # --------------------------------------------------------
+
+    print_statistics(
+        combined
+    )
+
+    elapsed = (
+        datetime.now()
+        - started
+    )
+
+    print()
     print("=" * 70)
 
     print(
-        f"Totaal Nederlandse projecten: "
-        f"{len(courses)}"
+        f"Klaar in: {elapsed}"
     )
 
     print(
@@ -1297,58 +1812,8 @@ def scrape_all_projects():
         f"{OUTPUT_FILE}"
     )
 
-    # Categorieën
-    categories = {}
+    print("=" * 70)
 
-    for course in courses:
-
-        category = course.get(
-            "category",
-            "other"
-        )
-
-        categories[category] = (
-            categories.get(category, 0) + 1
-        )
-
-    print("\nCategorieën:")
-
-    for category, count in sorted(
-        categories.items()
-    ):
-
-        print(
-            f"  {category}: {count}"
-        )
-
-    # Bronnen
-    sources = {}
-
-    for course in courses:
-
-        source = course.get(
-            "source",
-            "unknown"
-        )
-
-        sources[source] = (
-            sources.get(source, 0) + 1
-        )
-
-    print("\nBronnen:")
-
-    for source, count in sources.items():
-
-        print(
-            f"  {source}: {count}"
-        )
-
-    return courses
-
-
-# ============================================================
-# START
-# ============================================================
 
 if __name__ == "__main__":
-    scrape_all_projects()
+    main()
