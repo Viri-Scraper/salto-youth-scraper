@@ -48,13 +48,25 @@ def parse_date(date_str):
     if not date_str:
         return None
 
-    date_str = date_str.strip()
+    date_str = date_str.strip().lower()
+    
+    # Vervang Nederlandse maandnamen door Engelse voor eenduidige parsing
+    nl_to_en = {
+        "januari": "january", "februari": "february", "maart": "march",
+        "april": "april", "mei": "may", "juni": "june",
+        "juli": "july", "augustus": "august", "september": "september",
+        "oktober": "october", "november": "november", "december": "december"
+    }
+    for nl, en in nl_to_en.items():
+        date_str = date_str.replace(nl, en)
+
     formats = [
         "%d %B %Y",       # 12 October 2026
         "%d %b %Y",        # 12 Oct 2026
         "%Y-%m-%d",        # 2026-10-12
         "%d/%m/%Y",        # 12/10/2026
         "%d.%m.%Y",        # 12.10.2026
+        "%d-%m-%Y",        # 12-10-2026
     ]
 
     for fmt in formats:
@@ -66,28 +78,47 @@ def parse_date(date_str):
 
 
 def extract_deadline(soup, text):
-    """Zoekt naar een aanmelddeadline in de detailpagina."""
-    label = soup.find(text=re.compile(r"Application deadline|Deadline", re.IGNORECASE))
-    if label and label.parent:
-        parent_text = label.parent.get_text(" ", strip=True)
-        match = re.search(r"(?:Application deadline|Deadline)\s*:\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})", parent_text, re.IGNORECASE)
-        if match:
-            return match.group(1)
+    """
+    Zoekt intensief naar verstopte deadlines op detailpagina's (Otlas & Training).
+    Geavanceerde zoeklogica met bredere trefwoorden en regex.
+    """
+    # 1. Specifieke Otlas & SALTO HTML velden en labels
+    patterns = [
+        r"(?:application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
+        r"(?:deadline|apply by)\s*[:\-\=]?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+    ]
 
-    match = re.search(r"(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})", text, re.IGNORECASE)
-    if match:
-        return match.group(1)
+    # Zoek via bekende HTML structuren (bijv. <th>/<td> paren, dt/dd lijsten of meta tags)
+    for element in soup.find_all(['tr', 'div', 'p', 'li', 'td', 'dt']):
+        el_text = clean_text(element.get_text(" ", strip=True))
+        for pattern in patterns:
+            match = re.search(pattern, el_text, re.IGNORECASE)
+            if match:
+                raw_match = match.group(1).strip()
+                # Valideer of het een echte datum is
+                if parse_date(raw_match):
+                    return raw_match
+
+    # 2. Brede regex-fallback op de gehele paginatekst
+    months_regex = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec|januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+    
+    # Zoekt naar patronen als "Deadline: 15 October 2026" of "until 20/11/2026"
+    fallback_matches = re.findall(
+        rf"(?:deadline|apply|before|until|expires|partners?)\b.*?(\d{{1,2}}\s+{months_regex}\s+\d{{4}}|\d{{1,2}}[\/\.\-]\d{{1,2}}[\/\.\-]\d{{4}})",
+        text,
+        re.IGNORECASE
+    )
+
+    for candidate in fallback_matches:
+        if parse_date(candidate):
+            return candidate
 
     return None
 
 
 def extract_activity_type(soup, full_text):
-    """
-    Bepaalt het type activiteit op basis van specifieke HTML-elementen 
-    of regex-zoekwoorden over de tekst.
-    """
+    """Bepaalt het type activiteit op basis van HTML-elementen of trefwoorden."""
     extracted_raw = ""
-    
     type_selectors = [".project-type", ".activity-type", ".badge", ".tags", "span[class*='type']"]
     for selector in type_selectors:
         for el in soup.select(selector):
@@ -203,7 +234,6 @@ def fetch_training_calendar(session):
 
         print(f"  -> {added_on_page} nieuwe trainingen verwerkt op deze pagina.")
         
-        # Stop als er in 2 achtereenvolgende offsets niks meer op de HTML staat
         if len(links) < limit:
             break
 
@@ -251,7 +281,6 @@ def fetch_otlas_exchanges(session):
             break
 
         soup = BeautifulSoup(response.text, "html.parser")
-        # Brede match voor Otlas project links
         links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/"))
 
         if not links:
