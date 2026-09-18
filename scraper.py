@@ -80,12 +80,12 @@ def parse_date(date_str):
 def extract_deadline(soup, text):
     """
     Zoekt intensief naar verstopte deadlines op detailpagina's (Otlas & Training).
-    Geavanceerde zoeklogica met bredere trefwoorden en regex.
+    Geavanceerde zoeklogica inclusief 'Deadline for this partner request'.
     """
-    # 1. Specifieke Otlas & SALTO HTML velden en labels
+    # 1. Specifieke Otlas & SALTO HTML velden, inclusief 'Deadline for this partner request'
     patterns = [
-        r"(?:application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
-        r"(?:deadline|apply by)\s*[:\-\=]?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
+        r"(?:deadline for this partner request|application deadline|deadline|partners needed by|partners found by|apply before|expiry date|valid until)\s*[:\-\=]?\s*(\d{1,2}[\/\.\-\s]+(?:[A-Za-z]+|\d{1,2})[\/\.\-\s]+\d{2,4})",
+        r"(?:deadline for this partner request|deadline|apply by)\s*[:\-\=]?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})",
     ]
 
     # Zoek via bekende HTML structuren (bijv. <th>/<td> paren, dt/dd lijsten of meta tags)
@@ -95,16 +95,14 @@ def extract_deadline(soup, text):
             match = re.search(pattern, el_text, re.IGNORECASE)
             if match:
                 raw_match = match.group(1).strip()
-                # Valideer of het een echte datum is
                 if parse_date(raw_match):
                     return raw_match
 
     # 2. Brede regex-fallback op de gehele paginatekst
     months_regex = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec|januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
     
-    # Zoekt naar patronen als "Deadline: 15 October 2026" of "until 20/11/2026"
     fallback_matches = re.findall(
-        rf"(?:deadline|apply|before|until|expires|partners?)\b.*?(\d{{1,2}}\s+{months_regex}\s+\d{{4}}|\d{{1,2}}[\/\.\-]\d{{1,2}}[\/\.\-]\d{{4}})",
+        rf"(?:deadline for this partner request|deadline|apply|before|until|expires|partners?)\b.*?(\d{{1,2}}\s+{months_regex}\s+\d{{4}}|\d{{1,2}}[\/\.\-]\d{{1,2}}[\/\.\-]\d{{4}})",
         text,
         re.IGNORECASE
     )
