@@ -125,16 +125,12 @@ def extract_activity_type(soup, full_text):
 # ============================================================
 
 def build_training_search_url(offset=0, limit=20):
-    now = datetime.now()
     params = [
         ("b_offset", offset),
         ("b_limit", limit),
         ("b_order", "applicationDeadline"),
         ("b_keyword", ""),
         ("b_participating_countries", "country-20"),
-        ("b_application_deadline_after_day", now.day),
-        ("b_application_deadline_after_month", now.month),
-        ("b_application_deadline_after_year", now.year),
         ("b_browse", "1"),
     ]
     return f"{BROWSE_TRAINING_URL}?{urlencode(params)}"
@@ -149,7 +145,6 @@ def fetch_training_calendar(session):
     seen = set()
     offset = 0
     limit = 20
-    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     while True:
         url = build_training_search_url(offset=offset, limit=limit)
@@ -163,16 +158,20 @@ def fetch_training_calendar(session):
         links = soup.find_all("a", href=re.compile(r"/tools/european-training-calendar/training/[^/]+/\d+"))
 
         if not links:
-            print("  -> Geen trainingen meer gevonden.")
+            print("  -> Geen trainingen meer gevonden op deze pagina.")
             break
 
-        new_count = 0
+        # Controleer of er écht nieuwe links op de pagina staan
+        new_links_found = False
+
         for link in links:
             href = link.get("href", "").strip()
             full_url = urljoin(BASE_URL, href)
 
             if full_url not in seen:
                 seen.add(full_url)
+                new_links_found = True
+                
                 title = clean_text(link.get_text(" ", strip=True))
                 if not title or title.lower() in ["view", "more", "details"]:
                     continue
@@ -190,11 +189,6 @@ def fetch_training_calendar(session):
                 deadline_date = parse_date(deadline_str)
                 deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
 
-                # CONTROLE: Sla over als de deadline in het verleden ligt
-                if deadline_iso and deadline_iso < today_iso:
-                    print(f"  [SLA OVER] Deadline verlopen ({deadline_iso}): {title}")
-                    continue
-
                 results.append({
                     "title": title,
                     "url": full_url,
@@ -205,12 +199,10 @@ def fetch_training_calendar(session):
                     "netherlands_eligible": True,
                     "scraped_at": datetime.now(timezone.utc).isoformat()
                 })
-                new_count += 1
-                time.sleep(0.2)
+                time.sleep(0.1)
 
-        print(f"  -> {new_count} actieve trainingen toegevoegd.")
-
-        if new_count == 0:
+        if not new_links_found:
+            print("  -> Geen nieuwe onziene links op deze pagina.")
             break
 
         offset += limit
@@ -247,7 +239,6 @@ def fetch_otlas_exchanges(session):
     seen = set()
     offset = 0
     limit = 10
-    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     while True:
         url = build_otlas_search_url(offset=offset, limit=limit)
@@ -261,16 +252,18 @@ def fetch_otlas_exchanges(session):
         links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/\d+"))
 
         if not links:
-            print("  -> Geen Otlas projecten meer gevonden.")
+            print("  -> Geen Otlas projecten meer gevonden op deze pagina.")
             break
 
-        new_count = 0
+        new_links_found = False
+
         for link in links:
             href = link.get("href", "").strip()
             full_url = urljoin(BASE_URL, href)
 
             if full_url not in seen:
                 seen.add(full_url)
+                new_links_found = True
                 
                 title = clean_text(link.get_text(" ", strip=True))
                 if not title or title.lower() in ["view", "more", "details", "read more"]:
@@ -296,11 +289,6 @@ def fetch_otlas_exchanges(session):
                 deadline_date = parse_date(deadline_str)
                 deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
 
-                # CONTROLE: Sla over als de deadline in het verleden ligt
-                if deadline_iso and deadline_iso < today_iso:
-                    print(f"  [SLA OVER] Deadline verlopen ({deadline_iso}): {title}")
-                    continue
-
                 otlas_results.append({
                     "title": title,
                     "url": full_url,
@@ -311,12 +299,10 @@ def fetch_otlas_exchanges(session):
                     "netherlands_eligible": True,
                     "scraped_at": datetime.now(timezone.utc).isoformat()
                 })
-                new_count += 1
-                time.sleep(0.2)
+                time.sleep(0.1)
 
-        print(f"  -> {new_count} actieve Otlas projecten verwerkt.")
-
-        if new_count == 0:
+        if not new_links_found:
+            print("  -> Geen nieuwe onziene links op deze pagina.")
             break
 
         offset += limit
@@ -334,20 +320,35 @@ def main():
     training_data = fetch_training_calendar(session)
     otlas_data = fetch_otlas_exchanges(session)
 
-    all_projects = training_data + otlas_data
+    raw_projects = training_data + otlas_data
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    # FILTER: Verwijder verlopen projecten
+    active_projects = []
+    expired_count = 0
+
+    for project in raw_projects:
+        iso_deadline = project.get("application_deadline_iso")
+        # Behoud het project als er géén ISO-datum is OF als de datum vandaag/in de toekomst ligt
+        if not iso_deadline or iso_deadline >= today_iso:
+            active_projects.append(project)
+        else:
+            expired_count += 1
 
     print("\n" + "=" * 60)
-    print(f"SCRAPING VOLTOOID:")
-    print(f" - Training Calendar : {len(training_data)} items")
-    print(f" - Otlas Partnering  : {len(otlas_data)} items")
-    print(f" - Totaal actief     : {len(all_projects)} items")
+    print("SCRAPING EN FILTERING VOLTOOID:")
+    print(f" - Totaal opgehaald    : {len(raw_projects)} items")
+    print(f" - Verlopen (verwijderd): {expired_count} items")
+    print(f" - Totaal actief behouden: {len(active_projects)} items")
     print("=" * 60)
 
     output_filename = "salto_projects.json"
+    
+    # Gebruik mode 'w' om het bestand expliciet te overschrijven
     with open(output_filename, "w", encoding="utf-8") as f:
-        json.dump(all_projects, f, ensure_ascii=False, indent=2)
+        json.dump(active_projects, f, ensure_ascii=False, indent=2)
 
-    print(f"\nResultaten succesvol opgeslagen in '{output_filename}'")
+    print(f"\nResultaten succesvol overschreven in '{output_filename}'")
 
 
 if __name__ == "__main__":
