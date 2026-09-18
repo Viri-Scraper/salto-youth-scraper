@@ -49,11 +49,11 @@ def parse_date(date_str):
 
     date_str = date_str.strip()
     formats = [
-        "%d %B %Y",      # 12 October 2026
-        "%d %b %Y",       # 12 Oct 2026
-        "%Y-%m-%d",       # 2026-10-12
-        "%d/%m/%Y",       # 12/10/2026
-        "%d.%m.%Y",       # 12.10.2026
+        "%d %B %Y",       # 12 October 2026
+        "%d %b %Y",        # 12 Oct 2026
+        "%Y-%m-%d",        # 2026-10-12
+        "%d/%m/%Y",        # 12/10/2026
+        "%d.%m.%Y",        # 12.10.2026
     ]
 
     for fmt in formats:
@@ -87,7 +87,6 @@ def extract_activity_type(soup, full_text):
     """
     extracted_raw = ""
     
-    # Zoek in bekende Otlas & SALTO HTML containers
     type_selectors = [".project-type", ".activity-type", ".badge", ".tags", "span[class*='type']"]
     for selector in type_selectors:
         for el in soup.select(selector):
@@ -150,6 +149,7 @@ def fetch_training_calendar(session):
     seen = set()
     offset = 0
     limit = 20
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     while True:
         url = build_training_search_url(offset=offset, limit=limit)
@@ -188,23 +188,27 @@ def fetch_training_calendar(session):
                     act_type = extract_activity_type(dt_soup, dt_text)
 
                 deadline_date = parse_date(deadline_str)
+                deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
+
+                # CONTROLE: Sla over als de deadline in het verleden ligt
+                if deadline_iso and deadline_iso < today_iso:
+                    print(f"  [SLA OVER] Deadline verlopen ({deadline_iso}): {title}")
+                    continue
 
                 results.append({
                     "title": title,
                     "url": full_url,
                     "source": "Training Calendar",
                     "activity_type": act_type,
-                    "application_deadline": deadline_str,
-                    "application_deadline_iso": (
-                        deadline_date.strftime("%Y-%m-%d") if deadline_date else None
-                    ),
+                    "application_deadline": deadline_str or "Niet vermeld",
+                    "application_deadline_iso": deadline_iso,
                     "netherlands_eligible": True,
                     "scraped_at": datetime.now(timezone.utc).isoformat()
                 })
                 new_count += 1
                 time.sleep(0.2)
 
-        print(f"  -> {new_count} nieuwe activiteiten toegevoegd.")
+        print(f"  -> {new_count} actieve trainingen toegevoegd.")
 
         if new_count == 0:
             break
@@ -215,14 +219,10 @@ def fetch_training_calendar(session):
 
 
 # ============================================================
-# 2. OTLAS PARTNER FINDING SCRAPER (GECORRIGEERDE URL & LOGICA)
+# 2. OTLAS PARTNER FINDING SCRAPER
 # ============================================================
 
 def build_otlas_search_url(offset=0, limit=10):
-    """
-    Gebruikt de exacte URL-structuur van de Otlas zoekopdracht, 
-    zonder de restrictieve datum-parameters die resultaten blokkeren.
-    """
     base_params = (
         "b_browse=Search+projects"
         "&b_countries%5B%5D=country-20"
@@ -240,7 +240,7 @@ def build_otlas_search_url(offset=0, limit=10):
 
 def fetch_otlas_exchanges(session):
     print("\n" + "=" * 60)
-    print("OTLAS SCRAPING (HERSTELD EN GEOPTIMALISEERD)")
+    print("OTLAS SCRAPING")
     print("=" * 60)
 
     otlas_results = []
@@ -258,8 +258,6 @@ def fetch_otlas_exchanges(session):
             break
 
         soup = BeautifulSoup(response.text, "html.parser")
-        
-        # Otlas projectlinks herkennen
         links = soup.find_all("a", href=re.compile(r"/tools/otlas-partner-finding/project/\d+"))
 
         if not links:
@@ -275,8 +273,6 @@ def fetch_otlas_exchanges(session):
                 seen.add(full_url)
                 
                 title = clean_text(link.get_text(" ", strip=True))
-                
-                # Als de link zelf alleen 'View' of 'Details' zegt, pak de titel uit de rij/container
                 if not title or title.lower() in ["view", "more", "details", "read more"]:
                     container = link.find_parent(["tr", "div", "li"])
                     if container:
@@ -300,8 +296,9 @@ def fetch_otlas_exchanges(session):
                 deadline_date = parse_date(deadline_str)
                 deadline_iso = deadline_date.strftime("%Y-%m-%d") if deadline_date else None
 
-                # Sla projecten alleen over als de deadline hard in het verleden ligt
+                # CONTROLE: Sla over als de deadline in het verleden ligt
                 if deadline_iso and deadline_iso < today_iso:
+                    print(f"  [SLA OVER] Deadline verlopen ({deadline_iso}): {title}")
                     continue
 
                 otlas_results.append({
@@ -319,7 +316,6 @@ def fetch_otlas_exchanges(session):
 
         print(f"  -> {new_count} actieve Otlas projecten verwerkt.")
 
-        # Veiligheidsstop als er op een pagina niks nieuws meer bij kwam
         if new_count == 0:
             break
 
