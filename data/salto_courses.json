@@ -1,92 +1,219 @@
 [
   {
-    "title": "International Seen & Heard Festival",
+    "title": "Bringing Agile Learning into Youth Work",
     "source": "salto",
-    "activity_type": "study visit",
-    "dates": "5 December 2026 - 18 September 2026",
-    "application_deadline": "5 December 2026",
-    "application_deadline_iso": "2026-12-05",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/international-seen-heard-festival.15135/"
+    "category": "seminar",
+    "activity_type": "Seminar",
+    "dates_found": [
+      "2026-09-21",
+      "2026-09-20"
+    ],
+    "application_deadline": "21 September 2026",
+    "application_deadline_iso": "2026-09-21",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/bringing-agile-learning-into-youth-work.15164/"
   },
   {
-    "title": "Creative training for non-creative youth workers 3.0",
+    "title": "VIRTUALLYEDU Final Conference - Bridging the Digital Skills Divide in Youth Work and Education",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "18 September 2026",
-    "application_deadline": "18 October 2026",
-    "application_deadline_iso": "2026-10-18",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/creative-training-for-non-creative-youth-workers-3-0.15121/"
+    "category": "strategic_partnership",
+    "activity_type": "E-learning",
+    "dates_found": [
+      "2026-09-21",
+      "2026-09-20",
+      "2026-09-19"
+    ],
+    "application_deadline": "21 September 2026",
+    "application_deadline_iso": "2026-09-21",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/virtuallyedu-final-conference-bridging-the-digital-skills-divide-in-youth-work-and-education.15267/"
+  },
+  {
+    "title": "Room to Breathe",
+    "source": "otlas",
+    "category": "training_course",
+    "activity_type": "Training and Networking",
+    "dates_found": [
+      "2026-09-21"
+    ],
+    "application_deadline": "2026-09-21",
+    "application_deadline_iso": "2026-09-21",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/room-to-breathe.20562/"
+  },
+  {
+    "title": "ROBOTECH: Human-Centred AI & Robotics for Youth Civic Participation and Future of Work",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "activity_type": "Meetings between young people and decision-makers",
+    "dates_found": [
+      "2026-09-25",
+      "2027-02-01",
+      "2027-11-01"
+    ],
+    "application_deadline": "2026-09-25",
+    "application_deadline_iso": "2026-09-25",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/robotech-human-centred-ai-robotics-for-youth-civic-participation-and-future-of-work.20564/"
+  },
+  {
+    "title": "Looking to join KA1 or KA2",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "activity_type": "Training and Networking",
+    "dates_found": [
+      "2026-10-01"
+    ],
+    "application_deadline": "2026-10-01",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-to-join-ka1-or-ka2.20271/"
   },
   {
     "title": "Training Course \"Roots\" - Life Paths",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "18 September 2026",
+    "category": "training_course",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "2026-10-09",
+      "2026-09-18",
+      "2026-09-21"
+    ],
     "application_deadline": "9 October 2026",
     "application_deadline_iso": "2026-10-09",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-roots-life-paths.15287/"
   },
   {
     "title": "Training course \"Career UP\"",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "18 September 2026",
+    "category": "training_course",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "2026-10-16",
+      "2026-09-18",
+      "2026-09-23"
+    ],
     "application_deadline": "16 October 2026",
     "application_deadline_iso": "2026-10-16",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303/"
   },
   {
-    "title": "Step Into Paralympics",
+    "title": "Creative training for non-creative youth workers 3.0",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "19 September 2026",
-    "application_deadline": "29 October 2026",
-    "application_deadline_iso": "2026-10-29",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/step-into-paralympics.15312/"
-  },
-  {
-    "title": "VIRTUALLYEDU Final Conference -  Bridging the Digital Skills Divide in Youth Work and Education",
-    "source": "salto",
-    "activity_type": "training course",
-    "dates": "19 September 2026",
-    "application_deadline": "21 September 2026",
-    "application_deadline_iso": "2026-09-21",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/virtuallyedu-final-conference-bridging-the-digital-skills-divide-in-youth-work-and-education.15267/"
+    "category": "training_course",
+    "activity_type": "Training Course",
+    "dates_found": [
+      "2026-10-18",
+      "2026-09-18",
+      "2026-09-19"
+    ],
+    "application_deadline": "18 October 2026",
+    "application_deadline_iso": "2026-10-18",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/creative-training-for-non-creative-youth-workers-3-0.15121/"
   },
   {
     "title": "Evidence-based approach in Erasmus+ and European Solidarity Corps: Innovations in Research, Research on Innovations",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "20 September 2026",
+    "category": "strategic_partnership",
+    "activity_type": "Conference – Symposium - Forum",
+    "dates_found": [
+      "2026-11-26",
+      "2026-09-20",
+      "2026-10-05"
+    ],
     "application_deadline": "26 November 2026",
     "application_deadline_iso": "2026-11-26",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/evidence-based-approach-in-erasmus-and-european-solidarity-corps-innovations-in-research-research-on-innovations.15167/"
-  },
-  {
-    "title": "Bringing Agile Learning into Youth Work",
-    "source": "salto",
-    "activity_type": "training course",
-    "dates": "20 September 2026",
-    "application_deadline": "21 September 2026",
-    "application_deadline_iso": "2026-09-21",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/bringing-agile-learning-into-youth-work.15164/"
   },
   {
     "title": "EGL-DR – Empowerment Youth, from Policy to Practice: How Municipal Approaches Can Drive Transformative Change Study Visit",
     "source": "salto",
-    "activity_type": "study visit",
-    "dates": "20 September 2026",
+    "category": "study_visit",
+    "activity_type": "Study Visit",
+    "dates_found": [
+      "2026-11-27",
+      "2026-11-23",
+      "2026-11-26",
+      "2026-09-20",
+      "2026-10-02"
+    ],
     "application_deadline": "27 November 2026",
     "application_deadline_iso": "2026-11-27",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/egl-dr-empowerment-youth-from-policy-to-practice-how-municipal-approaches-can-drive-transformative-change-study-visit.15124/"
   },
   {
     "title": "Sparking Change: Enhancing Community Impact in European Solidarity Corps Activities",
     "source": "salto",
-    "activity_type": "training course",
-    "dates": "20 September 2026",
+    "category": "seminar",
+    "activity_type": "Seminar",
+    "dates_found": [
+      "2026-11-27",
+      "2026-09-20",
+      "2026-10-05"
+    ],
     "application_deadline": "27 November 2026",
     "application_deadline_iso": "2026-11-27",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sparking-change-enhancing-community-impact-in-european-solidarity-corps-activities.15102/"
+  },
+  {
+    "title": "International Seen & Heard Festival",
+    "source": "salto",
+    "category": "study_visit",
+    "activity_type": "Study Visit",
+    "dates_found": [
+      "2026-12-05",
+      "2026-12-02",
+      "2026-09-18",
+      "2026-09-25"
+    ],
+    "application_deadline": "5 December 2026",
+    "application_deadline_iso": "2026-12-05",
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/international-seen-heard-festival.15135/"
+  },
+  {
+    "title": "KA2 Capacity building with sub Sahara Africa",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "activity_type": "Capacity Building",
+    "dates_found": [],
+    "application_deadline": "Niet opgegeven",
+    "application_deadline_iso": null,
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka2-capacity-building-with-sub-sahara-africa.20565/"
+  },
+  {
+    "title": "Think Green, Transform Digital",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2027-09-05",
+      "2027-09-13"
+    ],
+    "application_deadline": "Niet opgegeven",
+    "application_deadline_iso": null,
+    "netherlands_eligible": true,
+    "eligibility_status": "eligible",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/think-green-transform-digital.20563/"
   }
 ]
