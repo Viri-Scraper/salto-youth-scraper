@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import time
 from datetime import datetime, timezone
@@ -161,7 +162,6 @@ def fetch_training_calendar(session):
             print("  -> Geen trainingen meer gevonden op deze pagina.")
             break
 
-        # Controleer of er écht nieuwe links op de pagina staan
         new_links_found = False
 
         for link in links:
@@ -337,14 +337,19 @@ def main():
 
     print("\n" + "=" * 60)
     print("SCRAPING EN FILTERING VOLTOOID:")
-    print(f" - Totaal opgehaald    : {len(raw_projects)} items")
+    print(f" - Totaal opgehaald     : {len(raw_projects)} items")
     print(f" - Verlopen (verwijderd): {expired_count} items")
     print(f" - Totaal actief behouden: {len(active_projects)} items")
     print("=" * 60)
 
-    output_filename = "salto_projects.json"
+    # Schrijf naar data/salto_courses.json
+    output_dir = "data"
+    output_filename = os.path.join(output_dir, "salto_courses.json")
+
+    # Zorg dat de map 'data/' bestaat
+    os.makedirs(output_dir, exist_ok=True)
     
-    # Gebruik mode 'w' om het bestand expliciet te overschrijven
+    # Overschrijf het bestand met de opgeschoonde dataset
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(active_projects, f, ensure_ascii=False, indent=2)
 
