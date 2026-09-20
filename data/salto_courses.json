@@ -1798,6 +1798,25 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/es-pathways-a-100-day-reintegration-program.20129"
   },
   {
+    "title": "From Waste To Action",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-11-10",
+      "2026-11-16"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/from-waste-to-action.20581"
+  },
+  {
     "title": "Garden Based Education Approach and Nature/Environmental Awareness for early school education",
     "source": "otlas",
     "category": "strategic_partnership",
@@ -1834,25 +1853,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/give-hope-to-the-voiceless-children-in-kenya.9857"
-  },
-  {
-    "title": "GREEN CANVAS – Youth Creating Circular Futures through Art",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2027-03-01",
-      "2027-12-31"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/green-canvas-youth-creating-circular-futures-through-art.20480"
   },
   {
     "title": "High-Security, High-Hope",
