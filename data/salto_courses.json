@@ -1,121 +1,5 @@
 [
   {
-    "title": "Bringing Agile Learning into Youth Work",
-    "source": "salto",
-    "category": "seminar",
-    "categories": [
-      "seminar"
-    ],
-    "activity_type": "seminar",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/bringing-agile-learning-into-youth-work.15164"
-  },
-  {
-    "title": "Digital Eco Activism For The Earth",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-09-20",
-      "2027-02-07",
-      "2027-02-17"
-    ],
-    "application_deadline": "2026-09-20",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-eco-activism-for-the-earth.20442"
-  },
-  {
-    "title": "EGL-DR – Empowerment Youth, from Policy to Practice: How Municipal Approaches Can Drive Transformative Change Study Visit",
-    "source": "salto",
-    "category": "study_visit",
-    "categories": [
-      "study_visit"
-    ],
-    "activity_type": "study visit",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/egl-dr-empowerment-youth-from-policy-to-practice-how-municipal-approaches-can-drive-transformative-change-study-visit.15124"
-  },
-  {
-    "title": "Evidence-based approach in Erasmus+ and European Solidarity Corps: Innovations in Research, Research on Innovations",
-    "source": "salto",
-    "category": "conference",
-    "categories": [
-      "conference"
-    ],
-    "activity_type": "conference - symposium - forum",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/evidence-based-approach-in-erasmus-and-european-solidarity-corps-innovations-in-research-research-on-innovations.15167"
-  },
-  {
-    "title": "PBA with Study Visit Elements on Democratic Transformation and European Values",
-    "source": "salto",
-    "category": "partnership_building",
-    "categories": [
-      "partnership_building"
-    ],
-    "activity_type": "partnership-building activity",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/pba-with-study-visit-elements-on-democratic-transformation-and-european-values.15232"
-  },
-  {
-    "title": "Sparking Change: Enhancing Community Impact in European Solidarity Corps Activities",
-    "source": "salto",
-    "category": "seminar",
-    "categories": [
-      "seminar"
-    ],
-    "activity_type": "seminar",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sparking-change-enhancing-community-impact-in-european-solidarity-corps-activities.15102"
-  },
-  {
-    "title": "YOUTH WORK CREATE-Creativity, Resilience, Entrepreneurship & Action Through Empowerment",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "20 September 2026",
-    "application_deadline_iso": "2026-09-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-create-creativity-resilience-entrepreneurship-action-through-empowerment.15292"
-  },
-  {
     "title": "Dance Without Borders",
     "source": "otlas",
     "category": "youth_exchange",
@@ -236,6 +120,24 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
+  },
+  {
+    "title": "URGENT Partner Search | KA153 Youth Workers Mobility – Rural Youth, Cultural Tourism & Entrepreneurship",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-09-24"
+    ],
+    "application_deadline": "2026-09-24",
+    "application_deadline_iso": "2026-09-24",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/urgent-partner-search-ka153-youth-workers-mobility-rural-youth-cultural-tourism-entrepreneurship.20584"
   },
   {
     "title": "CyberShield Youth: Cybersecurity and Digital Privacy Awareness for Young People/Erasmus+KA152",
@@ -1806,8 +1708,8 @@
     ],
     "activity_type": "Training And Networking",
     "dates_found": [
-      "2026-11-10",
-      "2026-11-16"
+      "2027-09-22",
+      "2027-09-28"
     ],
     "application_deadline": "",
     "application_deadline_iso": "",
@@ -2000,8 +1902,8 @@
     ],
     "activity_type": "Youth Exchanges",
     "dates_found": [
-      "2026-11-26",
-      "2026-12-02"
+      "2027-05-15",
+      "2027-05-21"
     ],
     "application_deadline": "",
     "application_deadline_iso": "",
