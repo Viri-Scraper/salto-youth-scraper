@@ -332,6 +332,26 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/listening-to-every-body.15327"
   },
   {
+    "title": "Partner call: DE-WASH – Look Beyond the Label",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-09-29",
+      "2027-01-01",
+      "2027-10-31"
+    ],
+    "application_deadline": "2026-09-29",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/partner-call-de-wash-look-beyond-the-label.20594"
+  },
+  {
     "title": "STOP THE NOISE Stop-Motion & Digital Wellbeing Tools",
     "source": "salto",
     "category": "training_course",
