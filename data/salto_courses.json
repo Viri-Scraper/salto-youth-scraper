@@ -1,25 +1,5 @@
 [
   {
-    "title": "Dance Without Borders",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-09-21",
-      "2027-03-01",
-      "2027-03-08"
-    ],
-    "application_deadline": "2026-09-21",
-    "application_deadline_iso": "2026-09-21",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/dance-without-borders.20443"
-  },
-  {
     "title": "Quality in Practice: Strengthening Youth Organisations through Self-Assessment and Learning",
     "source": "salto",
     "category": "training_course",
@@ -2295,6 +2275,22 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/rebuilding-futures-post-release-rehabilitation-and-social-reintegration-of-juvenile-offenders.19240"
+  },
+  {
+    "title": "RECONNECT",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/reconnect.20592"
   },
   {
     "title": "Save Women & girls from Violence-Kenya",
