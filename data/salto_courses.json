@@ -1299,6 +1299,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/create-with-makey-makey-turning-everyday-objects-into-interactive-learning.15330"
   },
   {
+    "title": "Mental health in youth work Training Course",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "31 October 2026",
+    "application_deadline_iso": "2026-10-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/mental-health-in-youth-work-training-course.15390"
+  },
+  {
     "title": "Strengthening Mentoring in the European Solidarity Corps. Training of Trainers and Multipliers",
     "source": "salto",
     "category": "training_course",
