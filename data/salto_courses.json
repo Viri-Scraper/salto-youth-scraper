@@ -1,55 +1,5 @@
 [
   {
-    "title": "Navigating the Polarities of Democracy: Human Rights & Communal Obligation - Live Webinar Series",
-    "source": "salto",
-    "category": "e_learning",
-    "categories": [
-      "e_learning"
-    ],
-    "activity_type": "e-learning",
-    "dates_found": [],
-    "application_deadline": "23 September 2026",
-    "application_deadline_iso": "2026-09-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/navigating-the-polarities-of-democracy-human-rights-communal-obligation-live-webinar-series.15315"
-  },
-  {
-    "title": "Social Economy in Practice",
-    "source": "otlas",
-    "category": "strategic_partnership",
-    "categories": [
-      "strategic_partnership"
-    ],
-    "activity_type": "Strategic Partnerships",
-    "dates_found": [
-      "2026-09-23"
-    ],
-    "application_deadline": "2026-09-23",
-    "application_deadline_iso": "2026-09-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/social-economy-in-practice.20559"
-  },
-  {
-    "title": "Streetstival 2026 - Without us, there is no community",
-    "source": "salto",
-    "category": "conference",
-    "categories": [
-      "conference"
-    ],
-    "activity_type": "conference - symposium - forum",
-    "dates_found": [],
-    "application_deadline": "23 September 2026",
-    "application_deadline_iso": "2026-09-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/streetstival-2026-without-us-there-is-no-community.15338"
-  },
-  {
     "title": "KA153 Cut FREE from Catastrophe",
     "source": "otlas",
     "category": "training_and_networking",
@@ -560,6 +510,26 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/european-solidary-corps-2026.11367"
   },
   {
+    "title": "From Waste To Action",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-10-01",
+      "2027-09-22",
+      "2027-09-28"
+    ],
+    "application_deadline": "2026-10-01",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/from-waste-to-action.20581"
+  },
+  {
     "title": "Future Skills Lab – Preparing Young People for the AI Era KA210YOU",
     "source": "otlas",
     "category": "strategic_partnership",
@@ -595,6 +565,26 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inclusion-diversity-in-youth-work.15245"
+  },
+  {
+    "title": "Learning Without Pressure: Deconstructing Toxic Productivity and Reclaiming Passion in Youth Work",
+    "source": "otlas",
+    "category": "youth_exchange",
+    "categories": [
+      "youth_exchange"
+    ],
+    "activity_type": "Youth Exchanges",
+    "dates_found": [
+      "2026-10-01",
+      "2027-05-15",
+      "2027-05-21"
+    ],
+    "application_deadline": "2026-10-01",
+    "application_deadline_iso": "2026-10-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/learning-without-pressure-deconstructing-toxic-productivity-and-reclaiming-passion-in-youth-work.20568"
   },
   {
     "title": "Looking to join KA1 or KA2",
@@ -1940,25 +1930,6 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/es-pathways-a-100-day-reintegration-program.20129"
   },
   {
-    "title": "From Waste To Action",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2027-09-22",
-      "2027-09-28"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/from-waste-to-action.20581"
-  },
-  {
     "title": "Garden Based Education Approach and Nature/Environmental Awareness for early school education",
     "source": "otlas",
     "category": "strategic_partnership",
@@ -2132,25 +2103,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka154-voices-across-borders-youth-memory-participation.19621"
-  },
-  {
-    "title": "Learning Without Pressure: Deconstructing Toxic Productivity and Reclaiming Passion in Youth Work",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2027-05-15",
-      "2027-05-21"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/learning-without-pressure-deconstructing-toxic-productivity-and-reclaiming-passion-in-youth-work.20568"
   },
   {
     "title": "Looking for an experienced EU partner to co-create and write a new project proposal",
