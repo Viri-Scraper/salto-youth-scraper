@@ -302,6 +302,48 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/stop-the-noise-stop-motion-digital-wellbeing-tools.15343"
   },
   {
+    "title": "ECO-ENGAGE – Youth Climate Justice, Media Literacy and Civic Action",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-09-30",
+      "2027-02-01",
+      "2028-02-01"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eco-engage-youth-climate-justice-media-literacy-and-civic-action.20620"
+  },
+  {
+    "title": "ECO-VOICES – Youth Climate Justice & Media Literacy through Culture",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2026-09-30",
+      "2027-09-01",
+      "2029-08-31"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eco-voices-youth-climate-justice-media-literacy-through-culture.19377"
+  },
+  {
     "title": "Empowering Youth Participation & Democratic Engagement: Online Activity-Based Civic Education Training for Trainers, Educators, Teachers & Youth Workers",
     "source": "salto",
     "category": "training_course",
@@ -419,6 +461,28 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/open-call-for-participants-growing-into-real-leaders-girl.15285"
+  },
+  {
+    "title": "SHIFTing FOCUS",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
+    "dates_found": [
+      "2026-09-30",
+      "2027-02-02",
+      "2028-02-02"
+    ],
+    "application_deadline": "2026-09-30",
+    "application_deadline_iso": "2026-09-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/shifting-focus.20611"
   },
   {
     "title": "Spaces that Empower: Rethinking Environments for Young People in Europe (IN GERMAN LANGUAGE)",
@@ -2723,25 +2787,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ycreate.20114"
-  },
-  {
-    "title": "YOUR SUPPORT IN SPAIN",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-08-18",
-      "2036-12-31"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/your-support-in-spain.20321"
   },
   {
     "title": "“Onkoloji Sağlık Personeli İçin Yenilikçi Fiziksel Aktivite Modeli: Pickleball Uygulamaları”",
