@@ -1,43 +1,5 @@
 [
   {
-    "title": "KA153 Cut FREE from Catastrophe",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-24",
-      "2027-06-01",
-      "2027-12-01"
-    ],
-    "application_deadline": "2026-09-24",
-    "application_deadline_iso": "2026-09-24",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
-  },
-  {
-    "title": "URGENT Partner Search | KA153 Youth Workers Mobility – Rural Youth, Cultural Tourism & Entrepreneurship",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-24"
-    ],
-    "application_deadline": "2026-09-24",
-    "application_deadline_iso": "2026-09-24",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/urgent-partner-search-ka153-youth-workers-mobility-rural-youth-cultural-tourism-entrepreneurship.20584"
-  },
-  {
     "title": "CyberShield Youth: Cybersecurity and Digital Privacy Awareness for Young People/Erasmus+KA152",
     "source": "otlas",
     "category": "youth_exchange",
@@ -196,6 +158,26 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303"
+  },
+  {
+    "title": "KA220-YOU – YOUTH DEM-LAB | Looking for an Experienced Coordinator",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Training And Networking, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2026-09-28"
+    ],
+    "application_deadline": "2026-09-28",
+    "application_deadline_iso": "2026-09-28",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka220-you-youth-dem-lab-looking-for-an-experienced-coordinator.20629"
   },
   {
     "title": "BREAK THE LOOP: Breking The Digital Gambling-Relapse Cycle in Addiction Rehabilitation",
