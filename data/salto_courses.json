@@ -72,26 +72,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/lec-love-every-challenge.15310"
   },
   {
-    "title": "Outdoor Education KA152",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-09-25",
-      "2027-06-01",
-      "2027-12-01"
-    ],
-    "application_deadline": "2026-09-25",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/outdoor-education-ka152.19616"
-  },
-  {
     "title": "RIGHTS4CLIMATE – Youth Climate Rights Observatories for Climate-Just Cities (KA153-YOU)",
     "source": "otlas",
     "category": "training_and_networking",
@@ -158,6 +138,26 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303"
+  },
+  {
+    "title": "KA153 Cut FREE from Catastrophe",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-09-28",
+      "2027-06-01",
+      "2027-12-01"
+    ],
+    "application_deadline": "2026-09-28",
+    "application_deadline_iso": "2026-09-28",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
   },
   {
     "title": "KA220-YOU – YOUTH DEM-LAB | Looking for an Experienced Coordinator",
