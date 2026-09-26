@@ -1,97 +1,5 @@
 [
   {
-    "title": "CyberShield Youth: Cybersecurity and Digital Privacy Awareness for Young People/Erasmus+KA152",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-09-25",
-      "2027-05-01",
-      "2028-10-31"
-    ],
-    "application_deadline": "2026-09-25",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/cybershield-youth-cybersecurity-and-digital-privacy-awareness-for-young-people-erasmus-ka152.20421"
-  },
-  {
-    "title": "Getting started with CP’s – Introduction to KA2",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "25 September 2026",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/getting-started-with-cp-s-introduction-to-ka2.15248"
-  },
-  {
-    "title": "KA210 SafeNet & KiVa: AI-Driven Cyberbullying Prevention and Digital Empathy in Schools",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-25",
-      "2027-05-20",
-      "2028-11-20"
-    ],
-    "application_deadline": "2026-09-25",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka210-safenet-kiva-ai-driven-cyberbullying-prevention-and-digital-empathy-in-schools.20510"
-  },
-  {
-    "title": "LEC (Love Every Challenge)",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "25 September 2026",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/lec-love-every-challenge.15310"
-  },
-  {
-    "title": "RIGHTS4CLIMATE – Youth Climate Rights Observatories for Climate-Just Cities (KA153-YOU)",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-25",
-      "2027-01-01",
-      "2027-09-30"
-    ],
-    "application_deadline": "2026-09-25",
-    "application_deadline_iso": "2026-09-25",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/rights4climate-youth-climate-rights-observatories-for-climate-just-cities-ka153-you.20350"
-  },
-  {
     "title": "Roadmap to NEETwork 4.0",
     "source": "salto",
     "category": "training_course",
@@ -1674,25 +1582,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/agrilearn-digital-farming-future.18063"
-  },
-  {
-    "title": "AI & Digital Tools for Modern Teaching – Practical Training in Nantes (France)",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-22",
-      "2026-09-26"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-digital-tools-for-modern-teaching-practical-training-in-nantes-france.19935"
   },
   {
     "title": "AI & Sport: modernizing professional practices (KA-182)",
