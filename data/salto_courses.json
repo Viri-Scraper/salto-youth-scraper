@@ -48,26 +48,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-career-up.15303"
   },
   {
-    "title": "KA153 Cut FREE from Catastrophe",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-09-28",
-      "2027-06-01",
-      "2027-12-01"
-    ],
-    "application_deadline": "2026-09-28",
-    "application_deadline_iso": "2026-09-28",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
-  },
-  {
     "title": "KA220-YOU – YOUTH DEM-LAB | Looking for an Experienced Coordinator",
     "source": "otlas",
     "category": "training_and_networking",
@@ -138,6 +118,26 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/discover-eu-inclusion-meeting.15215"
+  },
+  {
+    "title": "KA153 Cut FREE from Catastrophe",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2026-09-29",
+      "2027-06-01",
+      "2027-12-01"
+    ],
+    "application_deadline": "2026-09-29",
+    "application_deadline_iso": "2026-09-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ka153-cut-free-from-catastrophe.19615"
   },
   {
     "title": "Listening to Every-Body",
