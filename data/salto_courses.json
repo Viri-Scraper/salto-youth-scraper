@@ -1,104 +1,5 @@
 [
   {
-    "title": "European Solidary Corps 2026",
-    "source": "otlas",
-    "category": "volunteering",
-    "categories": [
-      "volunteering"
-    ],
-    "activity_type": "Volunteering Activities (Formerly Evs)",
-    "dates_found": [
-      "2026-10-01",
-      "2027-10-31"
-    ],
-    "application_deadline": "2026-10-01",
-    "application_deadline_iso": "2026-10-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/european-solidary-corps-2026.11367"
-  },
-  {
-    "title": "From Waste To Action",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-10-01",
-      "2027-09-22",
-      "2027-09-28"
-    ],
-    "application_deadline": "2026-10-01",
-    "application_deadline_iso": "2026-10-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/from-waste-to-action.20581"
-  },
-  {
-    "title": "Future Skills Lab – Preparing Young People for the AI Era KA210YOU",
-    "source": "otlas",
-    "category": "strategic_partnership",
-    "categories": [
-      "strategic_partnership",
-      "youth_exchange"
-    ],
-    "activity_type": "Strategic Partnerships, Youth Exchanges",
-    "dates_found": [
-      "2026-10-01",
-      "2027-01-01",
-      "2028-12-31"
-    ],
-    "application_deadline": "2026-10-01",
-    "application_deadline_iso": "2026-10-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/future-skills-lab-preparing-young-people-for-the-ai-era-ka210you.20209"
-  },
-  {
-    "title": "Learning Without Pressure: Deconstructing Toxic Productivity and Reclaiming Passion in Youth Work",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-10-01",
-      "2027-05-15",
-      "2027-05-21"
-    ],
-    "application_deadline": "2026-10-01",
-    "application_deadline_iso": "2026-10-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/learning-without-pressure-deconstructing-toxic-productivity-and-reclaiming-passion-in-youth-work.20568"
-  },
-  {
-    "title": "Looking to join KA1 or KA2",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking",
-      "capacity_building"
-    ],
-    "activity_type": "Training And Networking, Capacity Building",
-    "dates_found": [
-      "2026-10-01"
-    ],
-    "application_deadline": "2026-10-01",
-    "application_deadline_iso": "2026-10-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/looking-to-join-ka1-or-ka2.20271"
-  },
-  {
     "title": "EmpowerYouth Forum 3.0: Bringing Change to Communities",
     "source": "salto",
     "category": "conference",
@@ -1180,7 +1081,7 @@
     "netherlands_eligible": true,
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eau-et-biodiversite-jeunes-engages-pour-un-avenir-durable-a-mayotte.19162"
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eau-et-biodiversit-jeunes-engags-pour-un-avenir-durable-mayotte.19162"
   },
   {
     "title": "ACCOMPANIER",
