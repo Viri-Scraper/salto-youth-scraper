@@ -435,22 +435,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inside-track-webinar-series-by-youth-work-partnership-unfiltered-finance-breaking-taboos-and-building-economic-autonomy-with-young-people.15304"
   },
   {
-    "title": "CONNECTING WITH NATURE: Nature-Based learning for Eco-friendly Youth Work",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "11 October 2026",
-    "application_deadline_iso": "2026-10-11",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/connecting-with-nature-nature-based-learning-for-eco-friendly-youth-work.15329"
-  },
-  {
     "title": "FACILITATE VISUALLY",
     "source": "salto",
     "category": "training_course",
@@ -497,54 +481,6 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tools-for-adventurous-education.15298"
-  },
-  {
-    "title": "Training for Mentors 2",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "11 October 2026",
-    "application_deadline_iso": "2026-10-11",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-for-mentors-2.15320"
-  },
-  {
-    "title": "UNLOCK LEARNING - Creative Learning Through Educational Escape Rooms",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "11 October 2026",
-    "application_deadline_iso": "2026-10-11",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/unlock-learning-creative-learning-through-educational-escape-rooms.15333"
-  },
-  {
-    "title": "Youth Trainers Academy (YTA)",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "11 October 2026",
-    "application_deadline_iso": "2026-10-11",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-trainers-academy-yta.15369"
   },
   {
     "title": "International Conference \"European Network of Local Youth Councils (ENLYC) in the Digital Age\"",
@@ -1508,6 +1444,22 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/es-pathways-a-100-day-reintegration-program.20129"
+  },
+  {
+    "title": "EU Tales: Once upon a union",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eu-tales-once-upon-a-union.20680"
   },
   {
     "title": "Garden Based Education Approach and Nature/Environmental Awareness for early school education",
