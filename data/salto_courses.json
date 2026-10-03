@@ -1,85 +1,5 @@
 [
   {
-    "title": "EmpowerYouth Forum 3.0: Bringing Change to Communities",
-    "source": "salto",
-    "category": "conference",
-    "categories": [
-      "conference"
-    ],
-    "activity_type": "conference - symposium - forum",
-    "dates_found": [],
-    "application_deadline": "2 October 2026",
-    "application_deadline_iso": "2026-10-02",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/empoweryouth-forum-3-0-bringing-change-to-communities.15294"
-  },
-  {
-    "title": "MindBoost Academy: Mental Health & Youth Work",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "2 October 2026",
-    "application_deadline_iso": "2026-10-02",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/mindboost-academy-mental-health-youth-work.15180"
-  },
-  {
-    "title": "Safeguarding in ESC organisations in practice",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "2 October 2026",
-    "application_deadline_iso": "2026-10-02",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/safeguarding-in-esc-organisations-in-practice.15356"
-  },
-  {
-    "title": "ScreenWriting for Social Change: Tell the Story that Changes the World",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "2 October 2026",
-    "application_deadline_iso": "2026-10-02",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/screenwriting-for-social-change-tell-the-story-that-changes-the-world.14963"
-  },
-  {
-    "title": "The Story of Us",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "2 October 2026",
-    "application_deadline_iso": "2026-10-02",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-story-of-us.15347"
-  },
-  {
     "title": "Erasmus+ Make art not walls",
     "source": "salto",
     "category": "training_course",
@@ -435,6 +355,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inside-track-webinar-series-by-youth-work-partnership-unfiltered-finance-breaking-taboos-and-building-economic-autonomy-with-young-people.15304"
   },
   {
+    "title": "CONNECTING WITH NATURE: Nature-Based learning for Eco-friendly Youth Work",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/connecting-with-nature-nature-based-learning-for-eco-friendly-youth-work.15329"
+  },
+  {
     "title": "FACILITATE VISUALLY",
     "source": "salto",
     "category": "training_course",
@@ -481,6 +417,54 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tools-for-adventurous-education.15298"
+  },
+  {
+    "title": "Training for Mentors 2",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-for-mentors-2.15320"
+  },
+  {
+    "title": "UNLOCK LEARNING - Creative Learning Through Educational Escape Rooms",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/unlock-learning-creative-learning-through-educational-escape-rooms.15333"
+  },
+  {
+    "title": "Youth Trainers Academy (YTA)",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "11 October 2026",
+    "application_deadline_iso": "2026-10-11",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-trainers-academy-yta.15369"
   },
   {
     "title": "International Conference \"European Network of Local Youth Councils (ENLYC) in the Digital Age\"",
