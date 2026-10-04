@@ -1,37 +1,5 @@
 [
   {
-    "title": "Erasmus+ Make art not walls",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "3 October 2026",
-    "application_deadline_iso": "2026-10-03",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/erasmus-make-art-not-walls.15331"
-  },
-  {
-    "title": "Inclusion & Diversity in Youth Work",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "3 October 2026",
-    "application_deadline_iso": "2026-10-03",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/inclusion-diversity-in-youth-work.15245"
-  },
-  {
     "title": "Democracy Reloading Webinars 2026: Developing youth participation in municipal decisions",
     "source": "salto",
     "category": "e_learning",
@@ -1057,27 +1025,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/agrilearn-digital-farming-future.18063"
-  },
-  {
-    "title": "AI & Sport: modernizing professional practices (KA-182)",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking",
-      "strategic_partnership",
-      "capacity_building"
-    ],
-    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
-    "dates_found": [
-      "2026-09-21",
-      "2026-10-04"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ai-sport-modernizing-professional-practices-ka-182.19190"
   },
   {
     "title": "AI-Supported Digital Literacy for Ethical Social Media Use",
@@ -2267,25 +2214,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ycreate.20114"
-  },
-  {
-    "title": "“Onkoloji Sağlık Personeli İçin Yenilikçi Fiziksel Aktivite Modeli: Pickleball Uygulamaları”",
-    "source": "otlas",
-    "category": "strategic_partnership",
-    "categories": [
-      "strategic_partnership"
-    ],
-    "activity_type": "Strategic Partnerships",
-    "dates_found": [
-      "2026-04-26",
-      "2026-11-18"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/onkoloji-salk-personeli-iin-yeniliki-fiziksel-aktivite-modeli-pickleball-uygulamalar.19026"
   },
   {
     "title": "“Preventing NEET Risk by Strengthening the Capacities of Youth Workers Working with Disadvantaged Youth”",
