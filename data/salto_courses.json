@@ -147,6 +147,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/online-training-course-for-youth-centre-coordinators.15368"
   },
   {
+    "title": "Reconnecting 'U'th",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "9 October 2026",
+    "application_deadline_iso": "2026-10-09",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/reconnecting-u-th.15350"
+  },
+  {
     "title": "Arts of Prevention: Partnership-building activity",
     "source": "salto",
     "category": "partnership_building",
@@ -457,6 +473,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/european-network-for-mental-health-of-youth-partnership-building-activity.15365"
   },
   {
+    "title": "Webinar - Presentation of the Consent Toolkit",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "19 October 2026",
+    "application_deadline_iso": "2026-10-19",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/webinar-presentation-of-the-consent-toolkit.15418"
+  },
+  {
     "title": "Advocacy and Lobbying for international youth work",
     "source": "salto",
     "category": "training_course",
@@ -487,6 +519,38 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/pba-partners-up.15366"
+  },
+  {
+    "title": "Youth Work Off Autopilot",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 October 2026",
+    "application_deadline_iso": "2026-10-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-off-autopilot.15420"
+  },
+  {
+    "title": "2nd Winter Youth Work Academy",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "21 October 2026",
+    "application_deadline_iso": "2026-10-21",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/2nd-winter-youth-work-academy.15421"
   },
   {
     "title": "Training Course “Youth Exchanges for Youth ” 5th Edition - YOU for YOU 5",
@@ -528,6 +592,22 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/bamllkla-muecadelede-yeni-nesil-genlik-almas-etkileimli-ve-deneyime-dayal-metotlar-iin-uluslararas-i-ba-goezlemi-ve-eitimi.18840"
+  },
+  {
+    "title": "Massive Open Online Course on European Solidarity Corps 2026",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "24 October 2026",
+    "application_deadline_iso": "2026-10-24",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
   },
   {
     "title": "Introduction training for newcomers to Youth Exchanges - BiTriMulti",
@@ -576,6 +656,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sustainable-project-management.15391"
+  },
+  {
+    "title": "Action for Peace",
+    "source": "salto",
+    "category": "seminar",
+    "categories": [
+      "seminar"
+    ],
+    "activity_type": "seminar",
+    "dates_found": [],
+    "application_deadline": "31 October 2026",
+    "application_deadline_iso": "2026-10-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/action-for-peace.15413"
   },
   {
     "title": "Mental health in youth work Training Course",
