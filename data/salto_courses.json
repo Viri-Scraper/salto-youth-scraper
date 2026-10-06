@@ -1653,6 +1653,31 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/one-more-tomorrow-a-narrative-game-on-teenage-depression-ka210-2027-call.20587"
   },
   {
+    "title": "Ortaklıklara Açığız",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-10-01",
+      "2026-10-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ortaklklara-az.18652"
+  },
+  {
     "title": "PROMOTION OF HEALTH AND WELL BEING THROUGH ECO THERAPY",
     "source": "otlas",
     "category": "strategic_partnership",
