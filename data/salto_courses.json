@@ -1,21 +1,5 @@
 [
   {
-    "title": "A Drop Brings Change contact-making seminar",
-    "source": "salto",
-    "category": "partnership_building",
-    "categories": [
-      "partnership_building"
-    ],
-    "activity_type": "partnership-building activity",
-    "dates_found": [],
-    "application_deadline": "7 October 2026",
-    "application_deadline_iso": "2026-10-07",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/a-drop-brings-change-contact-making-seminar.15380"
-  },
-  {
     "title": "Build, Connect, Erasmus+ | European Partner-Finding & Networking Event",
     "source": "otlas",
     "category": "training_and_networking",
@@ -530,6 +514,24 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
   },
   {
+    "title": "IN.PACT Final Event: Connecting People, Sharing Practices, Shaping Participation",
+    "source": "salto",
+    "category": "seminar",
+    "categories": [
+      "seminar"
+    ],
+    "activity_type": "seminar",
+    "dates_found": [
+      "2026-10-05"
+    ],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/in-pact-final-event-connecting-people-sharing-practices-shaping-participation.15426"
+  },
+  {
     "title": "Introduction training for newcomers to Youth Exchanges - BiTriMulti",
     "source": "salto",
     "category": "training_course",
@@ -562,6 +564,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/create-with-makey-makey-turning-everyday-objects-into-interactive-learning.15330"
   },
   {
+    "title": "DISCOVERING YOU! - Empowering youth with fewer opportunities through DiscoverEU Inclusion projects",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "29 October 2026",
+    "application_deadline_iso": "2026-10-29",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/discovering-you-empowering-youth-with-fewer-opportunities-through-discovereu-inclusion-projects.15424"
+  },
+  {
     "title": "Sustainable Project Management",
     "source": "salto",
     "category": "e_learning",
@@ -576,6 +594,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sustainable-project-management.15391"
+  },
+  {
+    "title": "EuroPeers international Training Course 2026, Duisburg",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 October 2026",
+    "application_deadline_iso": "2026-10-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/europeers-international-training-course-2026-duisburg.15432"
   },
   {
     "title": "Action for Peace",
@@ -656,6 +690,54 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/equal-ground-q1-meaningful-participation-beyond-the-seat-at-the-table.15397"
+  },
+  {
+    "title": "STAGE — Staging Tools for Awareness, Growth & Expression",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "15 November 2026",
+    "application_deadline_iso": "2026-11-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/stage-staging-tools-for-awareness-growth-expression.15417"
+  },
+  {
+    "title": "Democracy Reloading Webinars 2026: Developing youth participation in municipal decisions",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "22 November 2026",
+    "application_deadline_iso": "2026-11-22",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/democracy-reloading-webinars-2026-developing-youth-participation-in-municipal-decisions.14419"
+  },
+  {
+    "title": "The Playbook for Inclusion: Socio-Sports Leadership",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 November 2026",
+    "application_deadline_iso": "2026-11-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-playbook-for-inclusion-socio-sports-leadership.15414"
   },
   {
     "title": "Seeking Long-Term Accredited Partners for KA1, KA2 & CBY Cooperation",
@@ -1295,25 +1377,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/eu-tales-once-upon-a-union.20680"
-  },
-  {
-    "title": "Garden Based Education Approach and Nature/Environmental Awareness for early school education",
-    "source": "otlas",
-    "category": "strategic_partnership",
-    "categories": [
-      "strategic_partnership"
-    ],
-    "activity_type": "Strategic Partnerships",
-    "dates_found": [
-      "2024-10-09",
-      "2026-10-08"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/garden-based-education-approach-and-nature-environmental-awareness-for-early-school-education.16320"
   },
   {
     "title": "Give Hope to the Voiceless Children in Kenya",
