@@ -546,6 +546,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
   },
   {
+    "title": "Erasmus+ Make art not walls",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/erasmus-make-art-not-walls.15331"
+  },
+  {
     "title": "How to forge learning communities: stories and adventures from a E+ Small Scale projects",
     "source": "salto",
     "category": "seminar",
@@ -2224,6 +2240,26 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ycreate.20114"
+  },
+  {
+    "title": "YETİŞKİN EĞİTİMİ KA210 ADU",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking",
+      "capacity_building"
+    ],
+    "activity_type": "Training And Networking, Capacity Building",
+    "dates_found": [
+      "2026-10-09",
+      "2027-04-15"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/yetikin-eitimi-ka210-adu.20686"
   },
   {
     "title": "“Onkoloji Sağlık Personeli İçin Yenilikçi Fiziksel Aktivite Modeli: Pickleball Uygulamaları”",
