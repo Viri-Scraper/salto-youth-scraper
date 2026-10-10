@@ -1,24 +1,5 @@
 [
   {
-    "title": "Build, Connect, Erasmus+ | European Partner-Finding & Networking Event",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking"
-    ],
-    "activity_type": "Training And Networking",
-    "dates_found": [
-      "2026-10-09",
-      "2026-10-13"
-    ],
-    "application_deadline": "2026-10-09",
-    "application_deadline_iso": "2026-10-09",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/build-connect-erasmus-european-partner-finding-networking-event.20659"
-  },
-  {
     "title": "Arts of Prevention: Partnership-building activity",
     "source": "salto",
     "category": "partnership_building",
