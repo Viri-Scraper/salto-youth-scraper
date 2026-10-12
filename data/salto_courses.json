@@ -319,6 +319,38 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
   },
   {
+    "title": "S.A.F.E. Moves",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "24 October 2026",
+    "application_deadline_iso": "2026-10-24",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/s-a-f-e-moves.15434"
+  },
+  {
+    "title": "Democracy Lab. Beyond elections: meaningful Participation & Community Building in Youth Work",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/democracy-lab-beyond-elections-meaningful-participation-community-building-in-youth-work.15447"
+  },
+  {
     "title": "Erasmus+ Make art not walls",
     "source": "salto",
     "category": "training_course",
@@ -401,6 +433,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/create-with-makey-makey-turning-everyday-objects-into-interactive-learning.15330"
   },
   {
+    "title": "Action for Inclusion. Applying Inclusive Tools in Youth Work",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "27 October 2026",
+    "application_deadline_iso": "2026-10-27",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/action-for-inclusion-applying-inclusive-tools-in-youth-work.15445"
+  },
+  {
     "title": "MeMentor",
     "source": "salto",
     "category": "training_course",
@@ -479,6 +527,38 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/action-for-peace.15413"
+  },
+  {
+    "title": "EMPOWERING YOUTH WORKERS TO SHIELD AGAINST DIGITAL VIOLENCE",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "31 October 2026",
+    "application_deadline_iso": "2026-10-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/empowering-youth-workers-to-shield-against-digital-violence.15322"
+  },
+  {
+    "title": "Key of Sustainability",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "31 October 2026",
+    "application_deadline_iso": "2026-10-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/key-of-sustainability.15431"
   },
   {
     "title": "Mental health in youth work Training Course",
@@ -577,6 +657,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/democracy-reloading-webinars-2026-developing-youth-participation-in-municipal-decisions.14419"
   },
   {
+    "title": "TIC TAC - Training Course & Partnership Building Activity Mobility of Youth Workers",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership building activity",
+    "dates_found": [],
+    "application_deadline": "23 November 2026",
+    "application_deadline_iso": "2026-11-23",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tic-tac-training-course-partnership-building-activity-mobility-of-youth-workers.15443"
+  },
+  {
     "title": "The Playbook for Inclusion: Socio-Sports Leadership",
     "source": "salto",
     "category": "training_course",
@@ -616,6 +712,22 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/seeking-long-term-accredited-partners-for-ka1-ka2-cby-cooperation.18807"
   },
   {
+    "title": "TC WINTER 27 - Adventure and Experiential Learning for Personal Growth & Wellbeing",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "5 December 2026",
+    "application_deadline_iso": "2026-12-05",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tc-winter-27-adventure-and-experiential-learning-for-personal-growth-wellbeing.15439"
+  },
+  {
     "title": "Digital Independence for Adults in an AI-Driven Society",
     "source": "otlas",
     "category": "strategic_partnership",
@@ -634,6 +746,22 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-independence-for-adults-in-an-ai-driven-society.20258"
+  },
+  {
+    "title": "ENVIRONMENTAL LEADERSHIP",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "4 February 2027",
+    "application_deadline_iso": "2027-02-04",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/environmental-leadership.15152"
   },
   {
     "title": "From Lived Experience to Opportunity, Knowledge and Action: European Dialogue & Capacity-Building Forum 2027",
