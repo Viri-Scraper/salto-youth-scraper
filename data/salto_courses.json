@@ -271,22 +271,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
   },
   {
-    "title": "S.A.F.E. Moves",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "24 October 2026",
-    "application_deadline_iso": "2026-10-24",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/s-a-f-e-moves.15434"
-  },
-  {
     "title": "Democracy Lab. Beyond elections: meaningful Participation & Community Building in Youth Work",
     "source": "salto",
     "category": "training_course",
@@ -369,6 +353,38 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/introduction-training-for-newcomers-to-youth-exchanges-bitrimulti.15372"
   },
   {
+    "title": "Call for 8 Group Facilitators of the European Youth Conference",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "26 October 2026",
+    "application_deadline_iso": "2026-10-26",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/call-for-8-group-facilitators-of-the-european-youth-conference.15449"
+  },
+  {
+    "title": "Call for 8 Harvesters of the European Youth Conference",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "26 October 2026",
+    "application_deadline_iso": "2026-10-26",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/call-for-8-harvesters-of-the-european-youth-conference.15450"
+  },
+  {
     "title": "Create with Makey Makey: Turning Everyday Objects into Interactive Learning",
     "source": "salto",
     "category": "e_learning",
@@ -385,6 +401,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/create-with-makey-makey-turning-everyday-objects-into-interactive-learning.15330"
   },
   {
+    "title": "Navigating the Polarities of Democracy: Participation & Representation - Live Webinar Series",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "26 October 2026",
+    "application_deadline_iso": "2026-10-26",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/navigating-the-polarities-of-democracy-participation-representation-live-webinar-series.15457"
+  },
+  {
     "title": "Action for Inclusion. Applying Inclusive Tools in Youth Work",
     "source": "salto",
     "category": "training_course",
@@ -399,6 +431,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/action-for-inclusion-applying-inclusive-tools-in-youth-work.15445"
+  },
+  {
+    "title": "”AI Youth Work Navigator” Online Conference 28/10/2026 10:00 CET",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "27 October 2026",
+    "application_deadline_iso": "2026-10-27",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ai-youth-work-navigator-online-conference-28-10-2026-10-00-cet.15451"
   },
   {
     "title": "DISCOVERING YOU! - Empowering youth with fewer opportunities through DiscoverEU Inclusion projects",
@@ -513,6 +561,38 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/mental-health-in-youth-work-training-course.15390"
   },
   {
+    "title": "Online Training Course for Animators of Youth Centres",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "1 November 2026",
+    "application_deadline_iso": "2026-11-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/online-training-course-for-animators-of-youth-centres.15460"
+  },
+  {
+    "title": "Re:Design Youth Work",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "1 November 2026",
+    "application_deadline_iso": "2026-11-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/re-design-youth-work.15459"
+  },
+  {
     "title": "MeMentor",
     "source": "salto",
     "category": "training_course",
@@ -559,6 +639,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/off-script-through-an-egyptian-lens-20-24-november-2026-cairo-egypt.15395"
+  },
+  {
+    "title": "Hope Works: Youth Workers supporting young People's positive outlook on the FUTURE",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "8 November 2026",
+    "application_deadline_iso": "2026-11-08",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/hope-works-youth-workers-supporting-young-people-s-positive-outlook-on-the-future.15442"
   },
   {
     "title": "Equal Ground Q1: Meaningful Participation — Beyond the Seat at the Table",
