@@ -112,22 +112,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-off-autopilot.15420"
   },
   {
-    "title": "2nd Winter Youth Work Academy",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "21 October 2026",
-    "application_deadline_iso": "2026-10-21",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/2nd-winter-youth-work-academy.15421"
-  },
-  {
     "title": "Training Course “Youth Exchanges for Youth ” 5th Edition - YOU for YOU 5",
     "source": "salto",
     "category": "training_course",
@@ -199,6 +183,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/massive-open-online-course-on-european-solidarity-corps-2026.15416"
+  },
+  {
+    "title": "2nd Winter Youth Work Academy",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/2nd-winter-youth-work-academy.15421"
   },
   {
     "title": "Democracy Lab. Beyond elections: meaningful Participation & Community Building in Youth Work",
