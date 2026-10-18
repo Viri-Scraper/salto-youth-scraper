@@ -667,6 +667,25 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tic-tac-training-course-partnership-building-activity-mobility-of-youth-workers.15443"
   },
   {
+    "title": "B.E.S.T PROJECT 2027",
+    "source": "otlas",
+    "category": "other",
+    "categories": [
+      "other"
+    ],
+    "activity_type": "Other",
+    "dates_found": [
+      "2026-11-30",
+      "2027-06-01"
+    ],
+    "application_deadline": "2026-11-30",
+    "application_deadline_iso": "2026-11-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/b-e-s-t-project-2027.20697"
+  },
+  {
     "title": "The Playbook for Inclusion: Socio-Sports Leadership",
     "source": "salto",
     "category": "training_course",
