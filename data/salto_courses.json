@@ -1,37 +1,5 @@
 [
   {
-    "title": "Digital Content & Pedagogical Practices",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "19 October 2026",
-    "application_deadline_iso": "2026-10-19",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/digital-content-pedagogical-practices.15401"
-  },
-  {
-    "title": "Webinar - Presentation of the Consent Toolkit",
-    "source": "salto",
-    "category": "conference",
-    "categories": [
-      "conference"
-    ],
-    "activity_type": "conference - symposium - forum",
-    "dates_found": [],
-    "application_deadline": "19 October 2026",
-    "application_deadline_iso": "2026-10-19",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/webinar-presentation-of-the-consent-toolkit.15418"
-  },
-  {
     "title": "Advocacy and Lobbying for international youth work",
     "source": "salto",
     "category": "training_course",
@@ -151,6 +119,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-power-of-non-formal-education-2026.15440"
+  },
+  {
+    "title": "Write a Project, Make a Change!",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "22 October 2026",
+    "application_deadline_iso": "2026-10-22",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/write-a-project-make-a-change.15201"
   },
   {
     "title": "Massive Open Online Course on European Solidarity Corps 2026",
@@ -1915,25 +1899,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/social-inclusion-for-youth-with-fewer-opportunities-through-sport-in-kenya.9937"
-  },
-  {
-    "title": "Sowing Seeds of Sustainable Entrepreneurship",
-    "source": "otlas",
-    "category": "youth_exchange",
-    "categories": [
-      "youth_exchange"
-    ],
-    "activity_type": "Youth Exchanges",
-    "dates_found": [
-      "2026-10-13",
-      "2026-10-20"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/sowing-seeds-of-sustainable-entrepreneurship.20301"
   },
   {
     "title": "sport for all",
