@@ -146,6 +146,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/introduction-training-for-newcomers-to-youth-exchanges-bitrimulti.15372"
   },
   {
+    "title": "Training course \"Inside OUT\"",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/training-course-inside-out.15336"
+  },
+  {
     "title": "Call for 8 Group Facilitators of the European Youth Conference",
     "source": "salto",
     "category": "conference",
