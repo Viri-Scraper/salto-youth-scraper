@@ -1287,6 +1287,31 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/enhancing-language-skills-of-prison-staff-working-with-foreign-inmates.18671"
   },
   {
+    "title": "Erasmus Connect: International Youth Partnerships",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2027-01-01",
+      "2027-12-31"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/erasmus-connect-international-youth-partnerships.20711"
+  },
+  {
     "title": "Erasmus+ Cooperation and Hosting Opportunities - Kars, Türkiye",
     "source": "otlas",
     "category": "training_and_networking",
