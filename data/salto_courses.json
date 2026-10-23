@@ -32,6 +32,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/2nd-winter-youth-work-academy.15421"
   },
   {
+    "title": "Are We Playing with Our Future? Blended training on game-based and participatory methods for climate action with young people (in Spanish)",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "25 October 2026",
+    "application_deadline_iso": "2026-10-25",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/are-we-playing-with-our-future-blended-training-on-game-based-and-participatory-methods-for-climate-action-with-young-people-in-spanish.15465"
+  },
+  {
     "title": "Democracy Lab. Beyond elections: meaningful Participation & Community Building in Youth Work",
     "source": "salto",
     "category": "training_course",
@@ -1683,6 +1699,31 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/one-more-tomorrow-a-narrative-game-on-teenage-depression-ka210-2027-call.20587"
+  },
+  {
+    "title": "Ortaklıklara Açığız",
+    "source": "otlas",
+    "category": "decision_makers",
+    "categories": [
+      "decision_makers",
+      "volunteering",
+      "transnational_youth_initiative",
+      "training_and_networking",
+      "strategic_partnership",
+      "capacity_building",
+      "youth_exchange"
+    ],
+    "activity_type": "Meetings Between Young People And Decision-Makers, Volunteering Activities (Formerly Evs), Transnational Youth Initiatives, Training And Networking, Strategic Partnerships, Capacity Building, Youth Exchanges",
+    "dates_found": [
+      "2025-10-01",
+      "2026-10-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/ortaklklara-az.18652"
   },
   {
     "title": "PROMOTION OF HEALTH AND WELL BEING THROUGH ECO THERAPY",
