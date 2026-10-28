@@ -272,6 +272,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/hope-works-youth-workers-supporting-young-people-s-positive-outlook-on-the-future.15442"
   },
   {
+    "title": "LIMITLESS Training Course",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "8 November 2026",
+    "application_deadline_iso": "2026-11-08",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/limitless-training-course.15379"
+  },
+  {
     "title": "Equal Ground Q1: Meaningful Participation — Beyond the Seat at the Table",
     "source": "salto",
     "category": "conference",
@@ -304,6 +320,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ready-4-life.15467"
   },
   {
+    "title": "„ART for inclusion. Art related methods for Youth Workers and Educators”",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "10 November 2026",
+    "application_deadline_iso": "2026-11-10",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/art-for-inclusion-art-related-methods-for-youth-workers-and-educators.15498"
+  },
+  {
     "title": "Youth@Work Digital Competences Forum 2026 (3rd Edition)",
     "source": "salto",
     "category": "conference",
@@ -318,6 +350,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-digital-competences-forum-2026-3rd-edition.15466"
+  },
+  {
+    "title": "Off script! Everyone's a facilitator until... the group does something unexpected",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "13 November 2026",
+    "application_deadline_iso": "2026-11-13",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/off-script-everyone-s-a-facilitator-until-the-group-does-something-unexpected.15491"
   },
   {
     "title": "Buoyancy",
@@ -350,6 +398,38 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/stage-staging-tools-for-awareness-growth-expression.15417"
+  },
+  {
+    "title": "The Octopus Project - ensuring a space suitable for neurodiverse people",
+    "source": "salto",
+    "category": "conference",
+    "categories": [
+      "conference"
+    ],
+    "activity_type": "conference - symposium - forum",
+    "dates_found": [],
+    "application_deadline": "19 November 2026",
+    "application_deadline_iso": "2026-11-19",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-octopus-project-ensuring-a-space-suitable-for-neurodiverse-people.15495"
+  },
+  {
+    "title": "Our Feelings Deck: Training of Facilitators",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 November 2026",
+    "application_deadline_iso": "2026-11-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/our-feelings-deck-training-of-facilitators.15483"
   },
   {
     "title": "Democracy Reloading Webinars 2026: Developing youth participation in municipal decisions",
@@ -474,6 +554,22 @@
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/seeking-long-term-accredited-partners-for-ka1-ka2-cby-cooperation.18807"
   },
   {
+    "title": "Sharing Paths, Strenghthening Families",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "1 December 2026",
+    "application_deadline_iso": "2026-12-01",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sharing-paths-strenghthening-families.15497"
+  },
+  {
     "title": "TC WINTER 27 - Adventure and Experiential Learning for Personal Growth & Wellbeing",
     "source": "salto",
     "category": "training_course",
@@ -488,6 +584,22 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tc-winter-27-adventure-and-experiential-learning-for-personal-growth-wellbeing.15439"
+  },
+  {
+    "title": "BEYOND THE DİSTANCE:EMPOWERİNG RURAL YOUTH THROUGH INCLUSİVE AND PARTİCİPATORY YOUTH WORK",
+    "source": "salto",
+    "category": "study_visit",
+    "categories": [
+      "study_visit"
+    ],
+    "activity_type": "study visit",
+    "dates_found": [],
+    "application_deadline": "18 January 2027",
+    "application_deadline_iso": "2027-01-18",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/beyond-the-distance-empowering-rural-youth-through-inclusive-and-participatory-youth-work.15490"
   },
   {
     "title": "Digital Independence for Adults in an AI-Driven Society",
