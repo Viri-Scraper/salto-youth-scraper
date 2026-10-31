@@ -112,22 +112,6 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/permayouth-4-0.15480"
   },
   {
-    "title": "Re:Design Youth Work",
-    "source": "salto",
-    "category": "partnership_building",
-    "categories": [
-      "partnership_building"
-    ],
-    "activity_type": "partnership-building activity",
-    "dates_found": [],
-    "application_deadline": "1 November 2026",
-    "application_deadline_iso": "2026-11-01",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/re-design-youth-work.15459"
-  },
-  {
     "title": "Resilient Roots - Two Module Facilitation Training",
     "source": "salto",
     "category": "training_course",
@@ -238,6 +222,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/limitless-training-course.15379"
+  },
+  {
+    "title": "Re:Design Youth Work_Extended deadline",
+    "source": "salto",
+    "category": "partnership_building",
+    "categories": [
+      "partnership_building"
+    ],
+    "activity_type": "partnership-building activity",
+    "dates_found": [],
+    "application_deadline": "8 November 2026",
+    "application_deadline_iso": "2026-11-08",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/re-design-youth-work-extended-deadline.15459"
   },
   {
     "title": "Equal Ground Q1: Meaningful Participation — Beyond the Seat at the Table",
