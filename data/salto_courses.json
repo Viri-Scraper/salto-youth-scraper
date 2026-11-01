@@ -1,85 +1,5 @@
 [
   {
-    "title": "Action for Peace",
-    "source": "salto",
-    "category": "seminar",
-    "categories": [
-      "seminar"
-    ],
-    "activity_type": "seminar",
-    "dates_found": [],
-    "application_deadline": "31 October 2026",
-    "application_deadline_iso": "2026-10-31",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/action-for-peace.15413"
-  },
-  {
-    "title": "EMPOWERING YOUTH WORKERS TO SHIELD AGAINST DIGITAL VIOLENCE",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "31 October 2026",
-    "application_deadline_iso": "2026-10-31",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/empowering-youth-workers-to-shield-against-digital-violence.15322"
-  },
-  {
-    "title": "FOUND - Long-term Financial Strategy for an NGO",
-    "source": "salto",
-    "category": "partnership_building",
-    "categories": [
-      "partnership_building"
-    ],
-    "activity_type": "partnership building activity",
-    "dates_found": [],
-    "application_deadline": "31 October 2026",
-    "application_deadline_iso": "2026-10-31",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/found-long-term-financial-strategy-for-an-ngo.15462"
-  },
-  {
-    "title": "Key of Sustainability",
-    "source": "salto",
-    "category": "partnership_building",
-    "categories": [
-      "partnership_building"
-    ],
-    "activity_type": "partnership-building activity",
-    "dates_found": [],
-    "application_deadline": "31 October 2026",
-    "application_deadline_iso": "2026-10-31",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/key-of-sustainability.15431"
-  },
-  {
-    "title": "Mental health in youth work Training Course",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "31 October 2026",
-    "application_deadline_iso": "2026-10-31",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/mental-health-in-youth-work-training-course.15390"
-  },
-  {
     "title": "Online Training Course for Animators of Youth Centres",
     "source": "salto",
     "category": "training_course",
@@ -1786,27 +1706,6 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/tr01-the-centre-for-european-union-education-and-youth-programmes.20676"
-  },
-  {
-    "title": "Unity in Diversity: Collaborative Learning",
-    "source": "otlas",
-    "category": "training_and_networking",
-    "categories": [
-      "training_and_networking",
-      "strategic_partnership",
-      "capacity_building"
-    ],
-    "activity_type": "Training And Networking, Strategic Partnerships, Capacity Building",
-    "dates_found": [
-      "2025-11-02",
-      "2026-11-01"
-    ],
-    "application_deadline": "",
-    "application_deadline_iso": "",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "organisation_partner",
-    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/unity-in-diversity-collaborative-learning.17775"
   },
   {
     "title": "Unleash the Leader in a Girl",
