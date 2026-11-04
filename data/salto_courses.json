@@ -304,6 +304,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/our-feelings-deck-training-of-facilitators.15483"
   },
   {
+    "title": "Play Your Part: Games, Youth Participation and Social Entrepreneurship",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 November 2026",
+    "application_deadline_iso": "2026-11-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/play-your-part-games-youth-participation-and-social-entrepreneurship.15500"
+  },
+  {
     "title": "Democracy Reloading Webinars 2026: Developing youth participation in municipal decisions",
     "source": "salto",
     "category": "e_learning",
@@ -536,6 +552,54 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/pedagogy-of-the-pitch-football-as-a-tool.15479"
+  },
+  {
+    "title": "AI and IT tools for youth workers",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "17 December 2026",
+    "application_deadline_iso": "2026-12-17",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/ai-and-it-tools-for-youth-workers.15517"
+  },
+  {
+    "title": "Soulo - Moving Through Culture",
+    "source": "salto",
+    "category": "study_visit",
+    "categories": [
+      "study_visit"
+    ],
+    "activity_type": "study visit",
+    "dates_found": [],
+    "application_deadline": "18 December 2026",
+    "application_deadline_iso": "2026-12-18",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/soulo-moving-through-culture.15489"
+  },
+  {
+    "title": "\"LET’S DARE THE INNER JOURNEY: FROM SELF TO US\" Training course",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "10 January 2027",
+    "application_deadline_iso": "2027-01-10",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/let-s-dare-the-inner-journey-from-self-to-us-training-course.14943"
   },
   {
     "title": "GREEN & DIGITAL YOUTH COMMUNITIES",
@@ -1249,6 +1313,25 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/give-hope-to-the-voiceless-children-in-kenya.9857"
+  },
+  {
+    "title": "GREEN-WATER-TURKEY: Youth-Led Source Separation and Circular Water Management in Massive Campuses",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2027-10-01",
+      "2029-09-30"
+    ],
+    "application_deadline": "",
+    "application_deadline_iso": "",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/green-water-turkey-youth-led-source-separation-and-circular-water-management-in-massive-campuses.20737"
   },
   {
     "title": "High-Security, High-Hope",
