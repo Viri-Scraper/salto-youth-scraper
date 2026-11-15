@@ -16,6 +16,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/buoyancy.15458"
   },
   {
+    "title": "Digital Content & Pedagogical Practices",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "15 November 2026",
+    "application_deadline_iso": "2026-11-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/digital-content-pedagogical-practices.15401"
+  },
+  {
     "title": "EURO-AI Lab: Seminar for the Exchange of Resources and Good Practices on Virtual Components and Digital Technology to Achieve EU Youth Goals",
     "source": "salto",
     "category": "seminar",
