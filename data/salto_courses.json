@@ -339,6 +339,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/digital-and-innovative-smart-youth-work-training-for-the-future-youth-workers.15502"
   },
   {
+    "title": "Gamification 4 inclusion",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 November 2026",
+    "application_deadline_iso": "2026-11-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/gamification-4-inclusion.15472"
+  },
+  {
     "title": "HerSpace: Beyond Understanding the Manosphere – Responding to Anti-Feminism with Girls and Young Women",
     "source": "salto",
     "category": "training_course",
@@ -637,6 +653,26 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/beyond-the-distance-empowering-rural-youth-through-inclusive-and-participatory-youth-work.15490"
+  },
+  {
+    "title": "DIGITAL STEPS – Accessible Digital Skills for Adults with Fewer Opportunities.",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2027-01-31",
+      "2027-07-01",
+      "2029-06-28"
+    ],
+    "application_deadline": "2027-01-31",
+    "application_deadline_iso": "2027-01-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-steps-accessible-digital-skills-for-adults-with-fewer-opportunities.20789"
   },
   {
     "title": "Digital Independence for Adults in an AI-Driven Society",
