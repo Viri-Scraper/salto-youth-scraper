@@ -48,6 +48,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/train-the-trainer-with-certification.15533"
   },
   {
+    "title": "Digital Content & Pedagogical Practices",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 November 2026",
+    "application_deadline_iso": "2026-11-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/digital-content-pedagogical-practices.15401"
+  },
+  {
     "title": "Myths and Realities of Learning",
     "source": "salto",
     "category": "training_course",
@@ -62,22 +78,6 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/myths-and-realities-of-learning.15528"
-  },
-  {
-    "title": "Our Feelings Deck: Training of Facilitators",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "20 November 2026",
-    "application_deadline_iso": "2026-11-20",
-    "netherlands_eligible": true,
-    "eligibility_reason": "netherlands_explicitly_listed",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/our-feelings-deck-training-of-facilitators.15483"
   },
   {
     "title": "Play Your Part: Games, Youth Participation and Social Entrepreneurship",
@@ -620,6 +620,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/generations-together-training-course-on-strengthening-solidarity-through-youth-work.15550"
+  },
+  {
+    "title": "Our Feelings Deck: Training of Facilitators",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "3 January 2027",
+    "application_deadline_iso": "2027-01-03",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/our-feelings-deck-training-of-facilitators.15483"
   },
   {
     "title": "\"LET’S DARE THE INNER JOURNEY: FROM SELF TO US\" Training course",
