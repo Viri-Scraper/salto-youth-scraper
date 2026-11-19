@@ -1,21 +1,5 @@
 [
   {
-    "title": "GreenSteps",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "18 November 2026",
-    "application_deadline_iso": "2026-11-18",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/greensteps.15545"
-  },
-  {
     "title": "The Octopus Project - ensuring a space suitable for neurodiverse people",
     "source": "salto",
     "category": "conference",
