@@ -339,6 +339,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/the-playbook-for-inclusion-socio-sports-leadership.15414"
   },
   {
+    "title": "Youth Work Through Gender Lens",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "30 November 2026",
+    "application_deadline_iso": "2026-11-30",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/youth-work-through-gender-lens.15574"
+  },
+  {
     "title": "“K*LL THE BOSS” - Shared governance and transformation of power dynamics in youth organisations",
     "source": "salto",
     "category": "training_course",
@@ -458,6 +474,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tc-winter-27-adventure-and-experiential-learning-for-personal-growth-wellbeing.15439"
   },
   {
+    "title": "Europe Talks Solidarity: Is solidarity important for young people today?",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "6 December 2026",
+    "application_deadline_iso": "2026-12-06",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/europe-talks-solidarity-is-solidarity-important-for-young-people-today.15577"
+  },
+  {
     "title": "Participatory Learning through Arts for Youth | IMMERSION LAB",
     "source": "salto",
     "category": "training_course",
@@ -490,6 +522,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sport-for-inclusion-a-partnership-building-activity-for-erasmus-projects-uk-eu.15560"
   },
   {
+    "title": "Tools 4 (ex)change",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "10 December 2026",
+    "application_deadline_iso": "2026-12-10",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tools-4-ex-change.15573"
+  },
+  {
     "title": "Pedagogy of the Pitch: Football as a tool",
     "source": "salto",
     "category": "training_course",
@@ -504,6 +552,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/pedagogy-of-the-pitch-football-as-a-tool.15479"
+  },
+  {
+    "title": "2EthiC-Con: Ethical Conversation – From Opinion to Dialogue",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "13 December 2026",
+    "application_deadline_iso": "2026-12-13",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/2ethic-con-ethical-conversation-from-opinion-to-dialogue.15576"
   },
   {
     "title": "Financial Education - Money Matters: Take Control of Your Financial Future",
@@ -590,6 +654,22 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/europe-talks-solidarity-exploring-the-role-of-solidarity-in-education-training-youth-volunteering-and-sport.15564"
   },
   {
+    "title": "Minds open: culture of observation and evaluation for change, 01.03.–07.03.2027 | Weimar (Germany) & 28.06.–04.07.2027 | Tauchen (Austria)",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "20 December 2026",
+    "application_deadline_iso": "2026-12-20",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/minds-open-culture-of-observation-and-evaluation-for-change-01-03-07-03-2027-weimar-germany-28-06-04-07-2027-tauchen-austria.15581"
+  },
+  {
     "title": "Erasmus+ Vote in action",
     "source": "salto",
     "category": "training_course",
@@ -654,6 +734,26 @@
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/let-s-dare-the-inner-journey-from-self-to-us-training-course.14943"
   },
   {
+    "title": "COACH-EX Miroslava – Erasmus+ Sport KA182 Football Coaches Exchange",
+    "source": "otlas",
+    "category": "training_and_networking",
+    "categories": [
+      "training_and_networking"
+    ],
+    "activity_type": "Training And Networking",
+    "dates_found": [
+      "2027-01-15",
+      "2027-07-01",
+      "2028-07-01"
+    ],
+    "application_deadline": "2027-01-15",
+    "application_deadline_iso": "2027-01-15",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/coach-ex-miroslava-erasmus-sport-ka182-football-coaches-exchange.20805"
+  },
+  {
     "title": "GREEN & DIGITAL YOUTH COMMUNITIES",
     "source": "otlas",
     "category": "strategic_partnership",
@@ -709,6 +809,26 @@
     "eligibility_reason": "netherlands_explicitly_listed",
     "eligibility_type": "organisation_partner",
     "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/digital-steps-accessible-digital-skills-for-adults-with-fewer-opportunities.20789"
+  },
+  {
+    "title": "European Youth Football Academy Network – Erasmus+ Sport KA210-SPO 2027",
+    "source": "otlas",
+    "category": "strategic_partnership",
+    "categories": [
+      "strategic_partnership"
+    ],
+    "activity_type": "Strategic Partnerships",
+    "dates_found": [
+      "2027-01-31",
+      "2028-01-01",
+      "2029-06-30"
+    ],
+    "application_deadline": "2027-01-31",
+    "application_deadline_iso": "2027-01-31",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "organisation_partner",
+    "url": "https://www.salto-youth.net/tools/otlas-partner-finding/project/european-youth-football-academy-network-erasmus-sport-ka210-spo-2027.20807"
   },
   {
     "title": "Digital Independence for Adults in an AI-Driven Society",
