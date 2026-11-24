@@ -1,53 +1,5 @@
 [
   {
-    "title": "Digital Content & Pedagogical Practices",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "23 November 2026",
-    "application_deadline_iso": "2026-11-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/digital-content-pedagogical-practices.15401"
-  },
-  {
-    "title": "Myths and Realities of Learning",
-    "source": "salto",
-    "category": "training_course",
-    "categories": [
-      "training_course"
-    ],
-    "activity_type": "training course",
-    "dates_found": [],
-    "application_deadline": "23 November 2026",
-    "application_deadline_iso": "2026-11-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/myths-and-realities-of-learning.15540"
-  },
-  {
-    "title": "Wellness Navigators - Webinar Series",
-    "source": "salto",
-    "category": "e_learning",
-    "categories": [
-      "e_learning"
-    ],
-    "activity_type": "e-learning",
-    "dates_found": [],
-    "application_deadline": "23 November 2026",
-    "application_deadline_iso": "2026-11-23",
-    "netherlands_eligible": true,
-    "eligibility_reason": "erasmus_programme_countries",
-    "eligibility_type": "participant",
-    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/wellness-navigators-webinar-series.15262"
-  },
-  {
     "title": "EuroPeers Training Course",
     "source": "salto",
     "category": "training_course",
@@ -110,6 +62,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/tic-tac-training-course-partnership-building-activity-mobility-of-youth-workers.15443"
+  },
+  {
+    "title": "Off script! Everyone's a facilitator until... the group does something unexpected",
+    "source": "salto",
+    "category": "training_course",
+    "categories": [
+      "training_course"
+    ],
+    "activity_type": "training course",
+    "dates_found": [],
+    "application_deadline": "26 November 2026",
+    "application_deadline_iso": "2026-11-26",
+    "netherlands_eligible": true,
+    "eligibility_reason": "netherlands_explicitly_listed",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/off-script-everyone-s-a-facilitator-until-the-group-does-something-unexpected.15491"
   },
   {
     "title": "Online Challenge - Develop your quality KA2 small-scale partnership project focused on youth participation",
@@ -456,6 +424,22 @@
     "eligibility_reason": "erasmus_programme_countries",
     "eligibility_type": "participant",
     "url": "https://www.salto-youth.net/tools/european-training-calendar/training/sport-for-inclusion-a-partnership-building-activity-for-erasmus-projects-uk-eu.15560"
+  },
+  {
+    "title": "Supporting Volunteers Beyond the Project | Mentoring for Impact 2026 Mentoring under Construction Intensive Workshop",
+    "source": "salto",
+    "category": "e_learning",
+    "categories": [
+      "e_learning"
+    ],
+    "activity_type": "e-learning",
+    "dates_found": [],
+    "application_deadline": "8 December 2026",
+    "application_deadline_iso": "2026-12-08",
+    "netherlands_eligible": true,
+    "eligibility_reason": "erasmus_programme_countries",
+    "eligibility_type": "participant",
+    "url": "https://www.salto-youth.net/tools/european-training-calendar/training/supporting-volunteers-beyond-the-project-mentoring-for-impact-2026-mentoring-under-construction-intensive-workshop.15578"
   },
   {
     "title": "Tools 4 (ex)change",
